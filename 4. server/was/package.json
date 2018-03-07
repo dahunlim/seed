@@ -1,0 +1,20 @@
+{
+  "name": "was",
+  "version": "1.0.0",
+  "description": "Aram Web Application Service Seed",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {},
+  "author": "Aram",
+  "license": "ISC"
+}
