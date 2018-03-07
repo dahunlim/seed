@@ -1,0 +1,37 @@
+@import "variable";
+@import "typography";
+@import "mixin";
+@import "component";
+
+.title{
+  @include font(display);
+  @include background-size(50%);
+  line-height: 150px;
+  color: $color-blue-1;
+  text-align: center;
+}
+
+.desc{
+  border-top: 1px solid $color-blue-1;
+  padding-top: 20px;
+  input[type="text"]{
+    @include placeholder {
+      color: blue !important;
+    }
+  }
+  @include font(body-1);
+}
+
+form{
+  .input-container{
+    &.left-label{
+
+    }
+    &.top-label{
+      label{
+        display: block;
+      }
+    }
+
+  }
+}

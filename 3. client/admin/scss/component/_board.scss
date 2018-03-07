@@ -1,0 +1,58 @@
+.homepage-board-list-container {
+  .page-header {
+    @include font(heading);
+    color: $color-grey-7;
+    border-bottom: 2px solid $color-grey-7;
+    height: 50px;
+    padding-bottom: 18px;
+  }
+
+  .total-count{
+    @include font(caption);
+    color: $color-grey-5;
+    margin-bottom: 15px;
+    span{
+      color: $color-red-1;
+    }
+  }
+
+  .table {
+    text-align: center;
+    thead{
+      @include font(body-2);
+      @include table-height;
+      color: $color-grey-6;
+      background-color: $color-grey-2;
+    }
+    tr{
+      @include font(body-1);
+      @include table-height;
+      border: 1px solid $color-grey-3;
+    }
+    td{
+      border: 1px solid $color-grey-3;
+    }
+    tfoot{
+      th{
+        @include font(caption);
+        @include table-height;
+        background-color: $color-grey-1;
+        border: 1px solid $color-grey-3;
+        padding:0;
+        .tfoot-content{
+          margin-left:40px;
+          float:left;
+        }
+      }
+    }
+    .title {
+      text-align: left;
+    }
+    tr:hover {
+      cursor: pointer;
+    }
+  }
+  .paging {
+    text-align: center;
+  }
+}

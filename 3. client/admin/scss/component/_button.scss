@@ -1,0 +1,50 @@
+.btn{
+  text-align: center;
+  padding: 0 10px;
+  border-radius: 0 !important;
+
+  &.button-blue1{
+    @include font(body-2);
+    color: $color-grey-0;
+    background-color: $color-blue-1;
+    height: 40px;
+    width:110px;
+  }
+
+  &.button-blue2{
+    @include font(body-2);
+    color: $color-grey-0;
+    background-color: $color-blue-2;
+    height: 40px;
+    width:110px;
+  }
+
+  &.button-grey{
+    @include font(body-2);
+    color: $color-grey-6;
+    background-color: $color-grey-2;
+    height: 40px;
+    width:110px;
+  }
+
+  &.button-red{
+    @include font(caption);
+    color: $color-grey-0;
+    background-color: $color-red-1;
+    height: 30px;
+    width: 55px;
+  }
+
+  &.button-white{
+    @include font(caption);
+    color: $color-grey-6;
+    background-color: $color-grey-0;
+    border: 1px solid $color-grey-3;
+    height: 28px;
+    width: 53px;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+
+}

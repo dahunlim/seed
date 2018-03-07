@@ -1,0 +1,22 @@
+@import "component";
+
+.inquiry-container {
+  height: 100%;
+  .table-layout {
+    display: table;
+    min-height: calc(100% - 200px);
+    position: absolute;
+    width: calc(100% - 60px);
+    .no-data {
+      @include font(body-1);
+      color: $color-grey-8;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      i {
+        font-size: 40px;
+        padding-bottom: 16px;
+      }
+    }
+  }
+}

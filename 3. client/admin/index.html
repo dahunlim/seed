@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AramIn Inc. AngularJs Web Seed Project</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no"/>
+
+    <!-- StyleSheet -->
+    <link rel="stylesheet" type="text/css" href="scss/style.css"/>
+
+</head>
+<body ng-app="app">
+    <div ui-view="mainContainer" class="contents-section"></div>
+
+    <!-- AngularJs -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="//ajax.aram-in.com/aram.angular.min.js"></script>
+
+    <!-- JQuery -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- include summernote css/js-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+    <!-- App -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.route.js"></script>
+
+    <script src="app/common/config/config.develope.js"></script>
+
+    <!-- Controller -->
+    <script src="app/page/dashboard/dashboardCtrl.js"></script>
+    <script src="app/page/homepage/board/list/listCtrl.js"></script>
+    <script src="app/page/homepage/board/detail/detailCtrl.js"></script>
+    <script src="app/page/homepage/board/write/writeCtrl.js"></script>
+    <script src="app/page/homepage/board/modify/modifyCtrl.js"></script>
+    <script src="app/page/login/loginCtrl.js"></script>
+
+    <!-- Service -->
+    <script src="app/common/service/Login.js"></script>
+    <script src="app/common/service/Logout.js"></script>
+    <script src="app/common/service/Board.js"></script>
+    <script src="app/common/service/Media.js"></script>
+
+</body>
+</html>

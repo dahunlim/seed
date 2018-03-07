@@ -1,0 +1,51 @@
+/**
+ * Date : 2017. 12. 06.
+ * Create : Dong Gyu
+ */
+@import "component";
+
+.notice-container {
+  .content-title {
+    border-bottom: 1px solid $color-grey-4;
+    padding: 20px 0 20px 40px;
+    .c_name {
+      @include font(title);
+      height: 36px;
+      letter-spacing: -0px;
+      text-align: left;
+      color: #323e4c;
+    }
+    .c_date {
+      @include font(body-1);
+      height: 23px;
+      letter-spacing: -0px;
+      text-align: left;
+      color: #3b3d40;
+    }
+  }
+  .content-main {
+    min-height: 430px;
+    padding: 40px;
+    .c_text {
+      @include font(body-1);
+      letter-spacing: -0px;
+      text-align: left;
+      color: #3b3d40;
+    }
+    .c_img {
+      margin-top: 40px;
+      text-align: center;
+      width: 100%;
+    }
+  }
+  .paging-layout {
+    background-color: $color-grey-1;
+    padding: 30px 0;
+    text-align: center;
+  }
+
+  .link {
+    @include font(body-1);
+    color: $color-blue-1;
+  }
+}

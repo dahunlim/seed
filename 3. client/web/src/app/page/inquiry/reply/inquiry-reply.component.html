@@ -1,0 +1,68 @@
+<div class="common-container inquiry-container script-container">
+  <div class="title2">
+    1:1 문의관리
+    <button class="lg success" appGrantDirective="[9]" (click)="setAnswer()">완료</button>
+    <button class="lg dark" routerLink="/inquiry/list/1">목록보기</button>
+  </div>
+  <div class="form-layout">
+    <div class="form-content">
+      <div class="content-title">
+        <div class="title_name">{{inquiry.title}}</div>
+        <div class="title_create">
+          <div class="title_writer">{{inquiry.user.name}}</div>
+          <div class="title_date">{{inquiry.date | date: 'yyyy. MM. dd' }}</div>
+        </div>
+        <button class="board primary">답변대기중</button>
+      </div>
+      <div class="content-main">
+        <div class="content-question">
+          <div class="circle-icon q primary">
+            <div>
+              Q
+            </div>
+          </div>
+          <div class="text">
+            <span class="title_name">{{inquiry.title}}</span><br>
+            <br>
+            {{inquiry.question}}
+          </div>
+        </div>
+        <span *ngIf="!!inquiry.file" (click)="downloadFile()" style="cursor: pointer;margin-left: 47px;">{{inquiry.file.name}}</span>
+        <br/>
+        <a class="link" *ngIf="!!inquiry.link" href="{{inquiry.link}}" target="_blank" style="text-decoration: none;;margin-left: 47px;">{{inquiry.link}}</a>
+        <div class="content-answer">
+          <div class="circle-icon a danger">
+            <div>
+              A
+            </div>
+          </div>
+          <div class="text">
+            <!--(ngModelChange)="answer.contents = $event"-->
+            <textarea [(ngModel)]="inquiry.answer.contents" placeholder="이곳을 클릭하여 답변을 입력해주세요."></textarea>
+          </div>
+        </div>
+        <!-- -->
+        <div class="content-sub">
+          <div class="file-title">첨부파일</div>
+          <div class="file-input">
+            <input type="text" class="input none" [ngModel]="inquiry.answer.file?.name" placeholder="jpg,png 파일 가능" [disabled]="true"/>
+          </div>
+          <div class="file-search">
+            <button class="md primary" (click)="addFile()">파일찾기</button>
+            <input type="file" id="inquiry-reply-file" style="display: none;"/>
+          </div>
+        </div>
+        <div class="content-sub">
+          <div class="file-title">url</div>
+          <div class="file-input">
+            <input type="text" id="link" class="input none" placeholder="홈페이지, 영상 url" [ngModel]="inquiry.answer?.link" (ngModelChange)="inquiry.answer.link = $event"/>
+          </div>
+          <div class="file-search">
+            <button class="md" style="visibility: hidden"></button>
+          </div>
+        </div>
+        <!-- -->
+      </div>
+    </div>
+  </div>
+</div>

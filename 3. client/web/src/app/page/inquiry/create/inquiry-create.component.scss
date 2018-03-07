@@ -1,0 +1,119 @@
+/**
+ * Date : 2017. 12. 08.
+ * Create : Dong Gyu
+ */
+@import "component";
+
+.inquiry-container {
+  .form-content {
+      border: solid 1px #e3e4e9;
+
+    .page-title {
+      background-color: $color-grey-2;
+      display: table;
+      height: 80px;
+      width: inherit;
+      .page-name {
+        @include font(subheading);
+        color: $color-grey-8;
+        display: table-cell;
+        float: left;
+        height: 29px;
+        letter-spacing: -0px;
+        padding: 26px 0 25px 20px;
+        text-align: left;
+      }
+      .page-right {
+        display: table-cell;
+        float: right;
+        padding: 18px 20px;
+        button:nth-child(1) {
+          margin-right: 16px;
+        }
+      }
+    }
+
+    .page-content {
+      @include font(body-1);
+      color: #3b3d40;
+      letter-spacing: -0px;
+      text-align: left;
+      min-height: 430px;
+      padding: 0 40px 40px 40px;
+      .content-layout {
+        min-height: inherit;
+        width: inherit;
+        .content-title {
+          height: 99px;
+          border-bottom: 1px solid $color-grey-4;
+          > input[type=text] {
+            @include font(title);
+            border: none;
+            height: 36px;
+            letter-spacing: -0px;
+            margin-top: 32px;
+            margin-bottom: 32px;
+            text-align: left;
+            width: 100%;
+            @include placeholder {
+              color: $color-grey-6;
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+        .content-main {
+          min-height: inherit;
+          > textarea {
+            @include font(body-1);
+            border: none;
+            min-height: inherit;
+            letter-spacing: -0px;
+            padding: 30px 0;
+            resize: none;
+            text-align: left;
+            width: 100%;
+            @include placeholder {
+              color: $color-grey-6;
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+      .content-sub {
+        display: table;
+        height: 60px;
+        width: 100%;
+        .file-title {
+          display: table-cell;
+          height: 60px;
+          min-width: 200px;
+          text-align: center;
+          vertical-align: middle;
+          width: 200px;
+        }
+        .file-input {
+          display: table-cell;
+          width: inherit;
+          input[type=text] {
+            padding: 10px 20px;
+            width: calc(100% - 42px);
+            @include placeholder {
+              color: $color-grey-7;
+            }
+          }
+        }
+        .file-search {
+          display: table-cell;
+          padding-left: 16px;
+          button {
+            width: 140px;
+          }
+        }
+      }
+    }
+  }
+}

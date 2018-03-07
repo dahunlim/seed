@@ -1,0 +1,93 @@
+@import "component";
+.notice-container {
+  .form-content {
+    border: solid 1px #e3e4e9;
+
+    .page-content {
+      @include font(body-1);
+      color: #3b3d40;
+      letter-spacing: -0px;
+      text-align: left;
+      min-height: 430px;
+      .content-layout {
+        min-height: inherit;
+        width: inherit;
+        .content-title {
+          padding: 0 40px;
+          height: 99px;
+          border-bottom: 1px solid $color-grey-4;
+          > input[type=text] {
+            @include font(title);
+            border: none;
+            color: $color-grey-8;
+            height: 36px;
+            letter-spacing: -0px;
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+            @include placeholder {
+              color: $color-grey-6;
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+          .content-date {
+            @include font(body-1);
+            color: $color-grey-6;
+          }
+        }
+        .content-main {
+          min-height: inherit;
+          > textarea {
+            @include font(body-1);
+            border: none;
+            color: $color-grey-8;
+            min-height: inherit;
+            letter-spacing: -0px;
+            padding: 30px 40px;
+            resize: none;
+            text-align: left;
+            width: calc(100% - 80px);
+            @include placeholder {
+              color: $color-grey-6;
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+      .content-sub {
+        display: table;
+        height: 60px;
+        padding: 0 40px;
+        width: calc(100% - 80px);
+        .file-title {
+          display: table-cell;
+          color: $color-grey-6;
+          height: 60px;
+          min-width: 200px;
+          text-align: left;
+          vertical-align: middle;
+          width: 200px;
+        }
+        .file-input {
+          display: table-cell;
+          width: 100%;
+          padding-right: 60px;
+          input[type=text] {
+            padding: 10px 20px;
+            width: 100%;
+            @include placeholder {
+              color: $color-grey-7;
+            }
+          }
+        }
+        .file-search {
+          display: table-cell;
+        }
+      }
+    }
+  }
+}

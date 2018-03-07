@@ -1,0 +1,56 @@
+<div class="common-container inquiry-container script-container">
+  <div class="title1">
+    1:1 문의
+    <!--<button class="lg left-icon primary" routerLink="/inquiry/create">
+      <div class="icon">
+        <i class="material-icons">create</i>
+      </div>
+      <div class="text">
+        문의하기
+      </div>
+    </button>-->
+    <button class="lg white cancel" appGrantDirective="[9]" routerLink="{{'/inquiry/reply/'+inquiry._id}}">답변 수정</button>
+    <button class="lg dark" style="margin-right: 16px;" routerLink="/inquiry/list/1">목록보기</button>
+  </div>
+  <div class="form-layout">
+    <div class="form-content">
+      <div class="content-title">
+        <div class="title_name">{{inquiry.title}}</div>
+        <div class="title_create">
+          <div class="title_writer">{{inquiry.user.name}}</div>
+          <div class="title_date">{{inquiry.date | date: 'yyyy. MM. dd' }}</div>
+        </div>
+      </div>
+      <div class="content-main">
+        <div class="content-question">
+          <div class="circle-icon q primary">
+            <div>
+              Q
+            </div>
+          </div>
+          <div class="text">
+            <span class="title_name">{{inquiry.title}}</span><br>
+            <br>
+            {{inquiry.question}}
+          </div>
+        </div>
+        <span *ngIf="!!inquiry.file" (click)="downloadFile(1)" style="cursor: pointer">{{inquiry.file.name}}</span>
+        <br/>
+        <a class="link" *ngIf="!!inquiry.link" href="{{inquiry.link}}" target="_blank" style="text-decoration: none;">{{inquiry.link}}</a>
+        <div class="content-answer">
+          <div class="circle-icon a danger">
+            <div>
+              A
+            </div>
+          </div>
+          <div class="text">
+            {{inquiry.answer.contents}}
+          </div>
+        </div>
+        <span *ngIf="!!inquiry.answer.file" (click)="downloadFile(2)" style="cursor: pointer">{{inquiry.answer.file.name}}</span>
+        <br/>
+        <a class="link" *ngIf="!!inquiry.answer.link" href="{{inquiry.answer.link}}" target="_blank" style="text-decoration: none;">{{inquiry.answer.link}}</a>
+      </div>
+    </div>
+  </div>
+</div>

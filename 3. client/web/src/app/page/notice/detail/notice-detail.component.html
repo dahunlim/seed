@@ -1,0 +1,28 @@
+<div class="common-container notice-container">
+  <div class="title2">
+    공지사항
+    <button class="lg white delete" appGrantDirective="[9]" (click)="delete()">삭제</button>
+    <button class="lg white cancel" appGrantDirective="[9]" routerLink="{{'/notice/form/'+ notice._id}}">수정</button>
+    <button class="lg dark" routerLink="/notice">목록보기</button>
+  </div>
+  <div class="form-layout">
+    <div class="form-content">
+      <div class="content-title">
+        <div class="c_name">{{notice.title}}</div>
+        <div class="c_date">{{notice.date | date : 'yyyy. MM. dd'}}</div>
+      </div>
+      <div class="content-main">
+        <div class="c_text">
+          {{notice.contents}}
+        </div>
+        <span *ngIf="!!notice.file" (click)="downloadFile()" style="cursor: pointer">{{notice.file.name}}</span>
+        <!--<div class="c_img">
+          <img *ngIf="(notice$ | async)?.get('image').get('key')" [src]="'https://s3.ap-northeast-2.amazonaws.com/freeze-media/image/'+ (notice$ | async)?.get('image').get('key')"
+               alt="NoticeImage" style="width: 80%;">
+        </div>-->
+        <br/>
+        <a class="link" *ngIf="!!notice.link" href="{{notice.link}}" target="_blank" style="text-decoration: none;">{{notice.link}}</a>
+      </div>
+    </div>
+  </div>
+</div>

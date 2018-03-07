@@ -1,0 +1,59 @@
+/**
+ * Date : 2017. 12. 05.
+ * Create : Dong Gyu
+ */
+@import "typography";
+
+table {
+  border-collapse : collapse;
+  table-layout: fixed;
+  thead {
+    background-color: $color-grey-2;
+    color: $color-grey-8;
+    min-height: 54px;
+    height: 54px;
+    tr {
+      height: inherit;
+      text-align: left;
+      td{
+        @include font(body-2);
+        padding-left: 30px;
+      }
+    }
+  }
+  tbody {
+    color: $color-grey-8;
+    min-height: 54px;
+    height: 54px;
+    tr {
+      height: inherit;
+      text-align: left;
+      border-bottom: 1px solid $color-grey-4;
+      &:last-child {
+        border-bottom: none;
+      }
+      td{
+        @include font(body-1);
+        padding-left: 30px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  &.hover {
+    tbody {
+      tr {
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(244, 246, 251, 0.6);
+        }
+      }
+    }
+  }
+  &.border {
+    border: 1px solid $color-grey-4;
+    tbody {
+      color: $color-grey-8;
+    }
+  }
+}

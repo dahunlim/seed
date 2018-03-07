@@ -1,0 +1,64 @@
+/**
+ * Date : 2017. 12. 11.
+ * Create : Dong Gyu
+ */
+@import "component";
+
+.inquiry-container {
+  .content-answer {
+    .text {
+      min-height: 295px;
+      width: 100%;
+      textarea {
+        @include font(body-1);
+        @include placeholder {
+          color: $color-grey-6;
+        }
+        border: none;
+        min-height: inherit;
+        resize: none;
+        width: inherit;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .content-sub {
+    display: table;
+    height: 60px;
+    width: 100%;
+    .file-title {
+      display: table-cell;
+      height: 60px;
+      min-width: 200px;
+      text-align: center;
+      vertical-align: middle;
+      width: 200px;
+    }
+    .file-input {
+      display: table-cell;
+      width: inherit;
+      input[type=text] {
+        padding: 10px 20px;
+        width: calc(100% - 42px);
+        @include placeholder {
+          color: $color-grey-7;
+        }
+      }
+    }
+    .file-search {
+      display: table-cell;
+      padding-left: 16px;
+      button {
+        width: 140px;
+      }
+    }
+  }
+
+  .link {
+    @include font(body-1);
+    color: $color-blue-1;
+  }
+}

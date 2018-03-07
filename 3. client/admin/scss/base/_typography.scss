@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/*
+ * Hangeul NanumSquare Font
+ */
+@font-face {
+  font-family: 'NanumSquare';
+  src: url(../font/NanumSquareR.eot);
+  src: url(../font/NanumSquareR.eot?#iefix) format('embedded-opentype'),
+  url(../font/NanumSquareR.woff) format('woff'),
+  url(../font/NanumSquareR.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquareBold';
+  src: url(../font/NanumSquareB.eot);
+  src: url(../font/NanumSquareB.eot?#iefix) format('embedded-opentype'),
+  url(../font/NanumSquareB.woff) format('woff'),
+  url(../font/NanumSquareB.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'CharisSILI';
+  src: url(../font/CharisSILBI.eot);
+  src: url(../font/CharisSILBI.eot?#iefix) format('embedded-opentype'),
+  url(../font/CharisSILBI.woff) format('woff'),
+  url(../font/CharisSILBI.ttf) format('truetype');
+}
+
+$typoinfos:(
+        title: (
+              family: 'NanumSquare',
+              size: 26px,
+              font-weight: bold
+        ),
+        heading: (
+                family: 'NanumSquare',
+                size: 20px,
+                font-weight: bold
+        ),
+        sub-heading-1: (
+                family: 'NanumSquare',
+                size: 16px
+        ),
+        sub-heading-2: (
+                family: 'NanumSquare',
+                size: 16px,
+                font-weight: bold
+        ),
+        body-1: (
+                family: 'NanumSquare',
+                size: 14px
+        ),
+        body-2: (
+                family: 'NanumSquare',
+                size: 14px,
+                font-weight: bold
+        ),
+        caption: (
+                family: 'NanumSquare',
+                size: 12px
+        )
+);
+
+@mixin font($type){
+  font-family: map-get(map-get($typoinfos, $type), family);
+  font-size: map-get(map-get($typoinfos, $type), size);
+  font-weight: map-get(map-get($typoinfos, $type), font-weight);
+  line-height: map-get(map-get($typoinfos, $type), line-height);
+  height: map-get(map-get($typoinfos, $type), height);
+}
+
+@mixin table-height{
+  height:40px;
+  line-height:40px;
+}
+

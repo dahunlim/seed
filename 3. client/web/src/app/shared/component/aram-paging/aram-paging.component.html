@@ -1,0 +1,17 @@
+<ul class="paging-container">
+  <li class="left-arrow" [ngStyle]="curPage == 1 && {'cursor': 'not-allowed'}">
+    <a><</a>
+  </li>
+  <li class="left-dot" [ngStyle]="curPage > 10 ? {'display': 'inline-block'} : {'display': 'none'}">
+    <a>...</a>
+  </li>
+  <li class="number" *ngFor="let i of pageObj">
+    <a (click)="goToPage(i)" [ngStyle]="i == curPage && {'background-color': '#f4f6fb', 'color': '#323e4c', 'cursor': 'text' }">{{i}}</a>
+  </li>
+  <li class="right-dot"[ngStyle]="lastPage - curPage >= maxSize ? {'display': 'inline-block'} : {'display': 'none'}">
+    <a>...</a>
+  </li>
+  <li class="right-arrow" [ngStyle]="curPage == lastPage && {'cursor': 'not-allowed', 'margin-left': '-4.5px'}">
+    <a>></a>
+  </li>
+</ul>

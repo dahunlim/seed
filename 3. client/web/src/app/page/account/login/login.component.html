@@ -1,0 +1,30 @@
+<div class="account-container">
+  <div class="inner-layout">
+    <div class="banner">
+      <img src="../../../assets/images/menu-logo.svg">
+    </div>
+    <div>
+      <input type="text" class="input primary" name="name" required
+             [(ngModel)]="model.id" #id="ngModel" placeholder="아이디"/>
+      <div *ngIf="id.invalid && (id.dirty || id.touched)" [@aramSlideUpDown]>
+        <div *ngIf="id.errors.required" class="error-message" >
+          아이디를 입력해주세요.
+        </div>
+      </div>
+    </div>
+    <div>
+      <input type="password" class="input primary" name="pass" required
+             [(ngModel)]="model.pass" #pass="ngModel" placeholder="패스워드"/>
+      <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [@aramSlideUpDown]>
+        <div *ngIf="pass.errors.required" class="error-message" >
+          패스워드를 입력해주세요.
+        </div>
+      </div>
+    </div>
+    <button class="md primary" (click)="login()">로그인</button>
+    <div class="help">
+      비밀번호를 잊으셨나요? <span routerLink="/forgot">비밀번호찾기</span>
+    </div>
+    <button class="md" routerLink="/join">회원가입</button>
+  </div>
+</div>

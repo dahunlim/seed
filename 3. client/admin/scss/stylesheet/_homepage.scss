@@ -1,0 +1,35 @@
+.homepage-board-write-container, .homepage-board-list-container, .homepage-board-detail-container{
+  max-width: 1180px;
+  margin:50px;
+
+  .board-detail-contents{
+    .article-header{
+      border-bottom: 2px solid grey;
+      height: 50px;
+      line-height: 50px;
+      position: relative;
+      p{
+        position: absolute;
+        left: 0;
+        right: 200px;
+        height: 100%;
+        font-size: 20px;
+        margin: 0;
+      }
+      span{
+        float: right;
+      }
+    }
+
+    .article-body{
+      font-size: 15px;
+      line-height: 26px;
+      padding: 20px 0;
+      border-bottom: 1px solid grey;
+    }
+  }
+
+  .page-footer{
+    padding: 15px 0;
+  }
+}

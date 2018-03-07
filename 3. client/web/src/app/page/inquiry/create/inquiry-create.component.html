@@ -1,0 +1,42 @@
+<div class="common-container inquiry-container">
+  <div class="form-layout">
+    <div class="form-content">
+      <div class="page-title">
+        <span class="page-name">1:1 문의하기</span>
+        <div class="page-right">
+          <button class="md white cancel" (click)="cancel()">취소</button>
+          <button class="md success" (click)="setInquiry()" >완료</button>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="content-layout">
+          <div class="content-title">
+            <input [(ngModel)]="inquiry.title" type="text" placeholder="제목을 입력해주세요.">
+          </div>
+          <div class="content-main">
+            <textarea [(ngModel)]="inquiry.question" placeholder="내용을 입력해주세요."></textarea>
+          </div>
+          <div class="content-sub">
+            <div class="file-title">첨부파일</div>
+            <div class="file-input">
+              <input type="text" class="input none" [value]="!!inquiry.file ? inquiry.file.name : null" placeholder="jpg,png 파일 가능" [disabled]="true"/>
+            </div>
+            <div class="file-search">
+              <button class="md primary" (click)="addFile()">파일찾기</button>
+              <input type="file" id="inquiry-create-file" style="display: none;"/>
+            </div>
+          </div>
+          <div class="content-sub">
+            <div class="file-title">url</div>
+            <div class="file-input">
+              <input type="text" id="link" class="input none" placeholder="홈페이지, 영상 url" [(ngModel)]="inquiry.link"/>
+            </div>
+            <div class="file-search">
+              <button class="md" style="visibility: hidden"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

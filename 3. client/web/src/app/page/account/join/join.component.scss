@@ -1,0 +1,81 @@
+@import "component";
+
+.inner-layout {
+  button{
+    &.md{
+      height:44px;
+    }
+  }
+
+  .title {
+    @include font(display);
+    height: 60px;
+    text-align: center;
+    width: inherit;
+  }
+  .switch-container {
+    padding: 33px 104px;
+    .switch-box {
+      display: inline-flex;
+      min-height: 24px;
+      width: 100%;
+      > div {
+        display: inline;
+      }
+      .dot {
+        width: 24px;
+        div {
+          background-color: $color-grey-4;
+          border-radius: 25px;
+          height: 6px;
+          margin: 9px;
+          width: 6px;
+        }
+      }
+    }
+  }
+
+  .tap-layout {
+    //background-color: $color-grey-2;
+    .guide {
+      @include font(medium-button);
+      color: $color-grey-7;
+      height: 56px;
+      margin-bottom: 30px;
+      text-align: center;
+      .text {
+        padding-top: 18px;
+      }
+    }
+    input {
+      //width: calc(100% - 22px);
+      width: 306px;
+    }
+    .bottom-container {
+      margin-top: 30px;
+      button {
+        margin: 8px 0;
+        width: 100%;
+      }
+    }
+  }
+
+  /* 회원가입 첫번째 */
+  .first-layout {
+
+  }
+
+  /* 회원가입 두번째 */
+  .second-layout {
+
+  }
+
+  /* 회원가입 세번째 */
+  .third-layout {
+    .guide {
+      .text {
+        padding-top: 8px;
+      }
+    }
+  }
+}

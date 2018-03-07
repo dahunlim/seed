@@ -1,0 +1,95 @@
+@import "variable";
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/assets/fonts/NotoSansCJKkr-Light-subset.woff) format('woff'),
+  url(/assets/fonts/NotoSansCJKkr-Light-subset.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/fonts/NotoSansCJKkr-Regular-subset.woff) format('woff'),
+  url(/assets/fonts/NotoSansCJKkr-Regular-subset.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  src: url(/assets/fonts/NotoSansCJKkr-Medium-subset.woff) format('woff'),
+  url(/assets/fonts/NotoSansCJKkr-Medium-subset.otf) format('opentype');
+}
+
+/* Text styles */
+$typographyBreakPoint: (
+  display: (
+    size: 40px,
+    weight: 300,
+  ),
+  title: (
+    size: 24px,
+    weight: 500,
+  ),
+  subheading: (
+    size: 20px,
+    weight: 400,
+  ),
+  body-2: (
+    size: 16px,
+    weight: 500,
+  ),
+  body-1: (
+
+    size: 16px,
+    weight: 400,
+  ),
+  caption-2: (
+    size: 12px,
+    weight: 500,
+  ),
+  caption: (
+    size: 12px,
+    weight: 400,
+  ),
+  large-button: (
+    size: 16px,
+    weight: 400,
+    text-align: center
+  ),
+  medium-button: (
+    size: 14px,
+    weight: 500,
+    text-align: center
+  ),
+  button3:(
+    size: 14px,
+    text-align:center,
+    line-heigt: 1.5,
+    weight: 300,
+    color: $color-grey-7
+  ),
+  button2: (
+    size: 16px,
+    text-align:center,
+    line-heigt: 1.5,
+    weight: 300,
+    color: $color-grey-8
+  ),
+  button1: (
+    size: 14px,
+    text-align:center,
+    line-heigt: 1.5,
+    weight: 300,
+    color: $color-grey-8
+  )
+);
+
+@mixin font($type) {
+  font-family: 'Noto Sans KR';
+  font-size: map-get(map-get($typographyBreakPoint, $type), size);
+  font-weight: map-get(map-get($typographyBreakPoint, $type), weight);
+  //line-height: map-get(map-get($typographyBreakPoint, $type), line-height);
+}

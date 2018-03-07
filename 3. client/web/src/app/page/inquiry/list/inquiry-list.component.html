@@ -1,0 +1,49 @@
+<div class="list-container inquiry-container">
+  <div class="title1">
+    1:1 문의
+    <button class="lg left-icon primary" appGrantDirective="[1,2]" routerLink="/inquiry/create">
+      <div class="icon">
+        <i class="material-icons">create</i>
+      </div>
+      <div class="text">
+        문의하기
+      </div>
+    </button>
+  </div>
+  <div class="table-layout">
+    <div class="no-data" *ngIf="!(totalCount$ | async)">
+      <div>
+        <i class="material-icons">wb_incandescent</i>
+        <div>1:1 문의 내역이 없습니다.</div>
+      </div>
+    </div>
+    <div *ngIf="!!(totalCount$ | async)">
+      <table class="border hover">
+        <thead>
+        <tr>
+          <td style="width: 69px">번호</td>
+          <td>제목</td>
+          <td style="width: 169px">질문자</td>
+          <td style="width: 169px">등록일</td>
+          <td style="width: 109px">답변상태</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let inquiry of inquiry$ | async;let idx = index" (click)="goToDetail(inquiry.state, inquiry._id)" >
+          <td>{{((totalCount$ | async) - (step * (currentPage-1))) - idx}}</td>
+          <td>{{inquiry.title}}</td>
+          <td>{{inquiry._u.name}}</td>
+          <td>{{inquiry.date | date : 'yyyy. MM. dd'}}</td>
+          <td>
+            <button class="board primary" *ngIf="inquiry.state === 0">답변중</button>
+            <button class="board default" *ngIf="inquiry.state === 1">답변완료</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="paging-layout">
+        <app-aram-paging [curPage]="currentPage" [total]="totalCount$" [step]="step" [maxSize]="10" [URL]="'/inquiry/list/'" ></app-aram-paging>
+      </div>
+    </div>
+  </div>
+</div>

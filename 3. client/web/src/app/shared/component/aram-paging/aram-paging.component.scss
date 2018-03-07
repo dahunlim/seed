@@ -1,0 +1,98 @@
+/**
+ * Date : 2017. 12. 04.
+ * Edit : 2017. 12. 08.
+ * Create : Dong Gyu
+ */
+@import "variable";
+@import "typography";
+
+.paging-container {
+  @include font(large-button);
+  box-sizing: inherit;
+  display: inline-block;
+  height: 42px;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  > li {
+    display: inline-block;
+    box-sizing: inherit;
+    width: 42px;
+    height: inherit;
+    background-color: $color-grey-1;
+    border: 1px solid $color-grey-4;
+    color: $color-grey-6;
+    margin-left: -1px;
+    cursor: pointer;
+    &.left-arrow {
+      margin-right: -6px;
+      border-radius: 25px 0 0 25px;
+    }
+    &.left-dot {
+      margin-right: -6px;
+    }
+    &.right-dot {
+      margin-left: -7px;
+    }
+    &.right-arrow {
+      margin-left: -7px;
+      border-radius: 0 25px 25px 0;
+    }
+    &:hover {
+      background-color: $color-grey-2;
+      color: $color-grey-8;
+    }
+    a {
+      display: table-cell;
+      height: inherit;
+      position: relative;
+      width: inherit;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+
+  /*display: inline-block;
+  padding-left: 0;
+  margin: 10px 0;
+  cursor: pointer;
+  list-style-type: disc;
+  > li {
+    display: inline;
+    > a {
+      width: 30px;
+      height: 30px;
+      padding: 6px;
+      text-align: center;
+      font-size: 16px;
+      position: relative;
+      float: left;
+      text-decoration: none;
+      font-family: NotoSansCJKkr;
+      letter-spacing: -0px;
+      background-color: $color-grey-1;
+      border: 1px solid $color-grey-4;
+      color: $color-grey-5;
+    }
+    a:hover {
+      background-color: $color-grey-2;
+      color: $color-grey-8;
+    }
+  }
+  .side {
+    a {
+      line-height: 1.8;
+    }
+    .left {
+      border-radius: 25px 0 0 25px;
+    }
+    .right {
+      border-radius: 0 25px 25px 0;
+    }
+  }
+  .number {
+    a {
+      line-height: 2;
+    }
+  }*/
+}

@@ -1,0 +1,36 @@
+/* account 공통 레이아웃 */
+.account-container {
+  align-items: center;
+  background-color: $color-grey-3;
+  display: flex;
+  height: 100%;
+  justify-items: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  .inner-layout {
+    margin: auto;
+    width: 328px;
+  }
+
+  /* 한줄에 인풋 + 버튼 */
+  .inline-layout {
+    display: inline-block;
+    div:nth-child(1) {
+      display: inline;
+      input {
+        width: 170px;
+      }
+    }
+    div:nth-child(2) {
+      display: inline;
+      margin-left: 10px;
+      button {
+        margin: 8px 0;
+        width: 120px;
+      }
+    }
+  }
+}
+
