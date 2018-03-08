@@ -1,9 +1,15 @@
 module.exports = {
 
+    /**
+     * App Name
+     */
     APP: {
-        NAME: ''
+        NAME: 'Aram Seed WAS'
     },
-    
+
+    /**
+     * Database Information
+     */
     DATABASE : {
         POOL_SIZE: 10,
         HOST : '52.78.112.87',
@@ -13,11 +19,17 @@ module.exports = {
         USER_PASS: 'interactive1!'
     },
 
+    /**
+     * S3 BUCKET
+     */
     S3: {
         TEMP: 'afun-mobile-temp',
         MEDIA: 'afun-mobile-media'
     },
 
+    /**
+     * SMS SERVER
+     */
     SMS_DATABASE : {
         HOST : '1.aram-in.com',
         PORT : '3306',
@@ -27,6 +39,9 @@ module.exports = {
         SMS_CALLBACK : '18005681'
     },
 
+    /**
+     * SESSION INFORMATION
+     */
     SESSION : {
         DOMAIN: 'afunmobile.com',
         SECRET: 'afun',
@@ -35,6 +50,9 @@ module.exports = {
         COLLECTION: 'Session'
     },
 
+    /**
+     * EMAIL INFORMATION, (MAILER)
+     */
     EMAIL: {
         HOST: 'smtp.gmail.com',
         POST: 465,
@@ -42,6 +60,9 @@ module.exports = {
         USER_PASS: 'interactive4'
     },
 
+    /**
+     * USER
+     */
     USER: {
         STATE: {
             NEWER: 0,
@@ -57,6 +78,9 @@ module.exports = {
         }
     },
 
+    /**
+     * MEDIA
+     */
     MEDIA: {
         SIZE: {
             MOBILE: 320
@@ -67,27 +91,9 @@ module.exports = {
         }
     },
 
-    INQUIRY: {
-        STATE: {
-            UNCOMPLETED: 0,
-            COMPLETED: 1
-        }
-    },
-
-    TOUR: {
-        STATE: {
-            STOP: 0,
-            ON: 1
-        }
-    },
-
-    EXCHANGE: {
-        STATE: {
-            RESERVED: 0,
-            EXCHANGED: 1
-        }
-    },
-
+    /**
+     * Authentication Setting
+     */
     AUTHENTICATION: {
         TEMP_PASSWORD_VALID_TIME: 3600000,
         LOGIN_TRY_MAX_COUNT: 5,
