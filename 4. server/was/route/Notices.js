@@ -6,8 +6,9 @@ const Router = require('express').Router()
     , Response = require('../middleware/Response')
     , NoticeCtrl = require('../controller/Notice');
 
+
 Router.post('', [Auth.isLogined(), Grant(Constant.USER.LEVEL.ADMIN), Request.isValidParameter(['title', 'contents'])], Response(NoticeCtrl.));
-Router.get('', [Auth.isL]);
+Router.get('', [Auth.isLogined()], Response(NoticeCtrl.add(dfdfd)f));
 Router.get('/:notice_id');
 Router.put('/:notice_id');
 Router.delete('/:notice_id');
