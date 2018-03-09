@@ -1,22 +1,20 @@
 var DB = require('../core/Database')
-    , Config = require('../common/Config')
     , BaseModel = require('./BaseModel')
     , Util = require('util');
 
 function InquiryModel(){
-    console.log('InquiryModel Constructor!');
     BaseModel.call(this, 'Inquiry');
     return this;
 }
 Util.inherits(InquiryModel, BaseModel);
-InquiryModel.prototype.schema = function(userId, userName, title, question){
+InquiryModel.prototype.schema = function(user_id, user_name, title, contents){
     return {
         user: {
-            _id: userId,
-            name: userName
+            _id: user_id,
+            name: user_name
         },
         title: title,
-        question: question,
+        contents: contents,
         date: new Date()
     }
 }

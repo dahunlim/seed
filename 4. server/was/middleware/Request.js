@@ -3,7 +3,12 @@ var RESPONSE = require('../core/Response')
 
 
 module.exports = {
-    isValidParameter: function (params) {
+    /**
+     *
+     * @param params String Array
+     * @returns {Function}
+     */
+    hasParams: function (params) {
         return function (req, res, next) {
             var body = {};
             var isValid = true;
