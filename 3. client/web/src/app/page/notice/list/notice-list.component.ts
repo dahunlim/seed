@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/Observable';
 import * as NoticeActions from '../redux/notice.action';
 import {Notice} from '../../../core/model/notice';
 import {AppStore} from '../../../app-store.interface';
-import {getNotices, getNoticeTotalCount} from '../redux/notice.selector';
+import {getNoticeTotalCount} from '../redux/notice.selector';
+import * as RouterActions from '../../../core/router/router.action';
 
 @Component({
   selector: 'app-notice-list',
@@ -15,29 +16,33 @@ import {getNotices, getNoticeTotalCount} from '../redux/notice.selector';
 export class NoticeListComponent implements OnInit, OnDestroy {
 
   private static COUNT_PER_PAGE = 10;
-  private notice$: Observable<Notice[]>;
-  private totalCount$: Observable<number>;
-  private currentPage: number;
-  private step: number;
-  private sub: any;
+  private notice$: any;
 
   constructor(private store: Store<AppStore>, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.step = NoticeListComponent.COUNT_PER_PAGE;
-    this.sub = this.route.params.subscribe(params => {
-      this.currentPage = params['pageNumber'];
-      const offset = (this.currentPage - 1) * NoticeListComponent.COUNT_PER_PAGE;
-      this.store.dispatch(new NoticeActions.NoticeGetList(offset, NoticeListComponent.COUNT_PER_PAGE));
-
-      /* 2018. 01. 22. Edit */
-      this.notice$ = this.store.select(getNotices);
-      this.totalCount$ = this.store.select(getNoticeTotalCount);
-      this.notice$.subscribe(rs => {
+    /*this.store.dispatch(new NoticeActions.NoticeGetList(0, 10));
+    this.notice$ = this.store
+      .filter((data) => {
+        if (!!data) { return true } else { return false }
       })
-    });
+      .subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+
+      },
+      () => {
+        console.log('complete');
+        this.notice$.unsubscribe();
+      })*/
   }
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+  }
+
+  goCreate() {
+    console.log('Go Create Page')
+    this.store.dispatch(new RouterActions.Go({path: ['/notice/create']}));
   }
 }

@@ -23,19 +23,11 @@ export class NoticeCreateComponent implements OnInit {
   constructor(private store: Store<AppStore>, private router: Router) { }
 
   ngOnInit() {
-    const file = document.getElementById('notice-create-file');
+    /*const file = document.getElementById('notice-create-file');
     Observable.fromEvent(file, 'change')
       .subscribe((event: any) => {
         this.file = event.target.files[0];
-      });
-
-    const link = document.getElementById('link');
-    Observable.fromEvent(link, 'click')
-      .subscribe((event: any) => {
-        if (!event.target.value) {
-          this.link = 'https://www.'
-        }
-      })
+      });*/
   }
 
   addFile() {
@@ -43,13 +35,6 @@ export class NoticeCreateComponent implements OnInit {
   }
 
   save() {
-    const notice = new Notice(this.title, this.content, this.file, this.link);
 
-    if (!this.title || !this.content) {
-      alert('제목 또는 내용이 입력되어 있지 않습니다.');
-      return false;
-    }
-
-    this.store.dispatch(new NoticeActions.NoticeAdd(notice));
   }
 }

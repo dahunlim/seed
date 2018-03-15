@@ -1,8 +1,8 @@
-import {Map, Record} from "immutable";
+import {List, Map, Record} from 'immutable';
 import {Notice} from "../../../core/model/notice";
 
 export interface INoticeState extends Map<string, any> {
-  list: Notice[];
+  list: List<Notice>;
   selectedNotice: Notice;
   pageNumber: number;
   totalCount: number;
@@ -10,7 +10,7 @@ export interface INoticeState extends Map<string, any> {
 }
 
 export const NoticeState = Record({
-  list: [],
+  list: null,
   selectedNotice: null,
   pageNumber: 1,
   totalCount: 0,
