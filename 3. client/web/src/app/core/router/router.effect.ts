@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {Effect, Actions} from '@ngrx/effects';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 import * as RouterActions from './router.action';

@@ -14,6 +14,7 @@ import {DialogModule} from './dialog/dialog.module';
 import {HttpService} from './service/http.service';
 import {SessionService} from './service/session.service';
 import {DaumService} from './service/daum.service';
+import {DialogService} from "./service/dialog";
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {DaumService} from './service/daum.service';
     HttpService,
     SessionService,
     DaumService,
+    DialogService,
     CanActiveViaAuthGuard
   ]
 })

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
+import { Location } from '@angular/common';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 import {AppStore} from '../../../app-store.interface';
 import * as AccountActions from '../redux/account.action';
+
 import {aramSlideUpDown} from 'app/shared/animation';
 import {SessionService} from '../../../core/service/session.service';
 
@@ -9,23 +13,48 @@ import {SessionService} from '../../../core/service/session.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations: [ aramSlideUpDown ]
 })
 export class LoginComponent implements OnInit {
 
-  model = {
-    id: '',
-    pass: ''
-  };
+  loginFormErrors: any;
+  loginForm: FormGroup;
 
-  constructor(private store: Store<AppStore>, private sessionService: SessionService) { }
+  id: string;
+  pass: string;
+
+  constructor(private formBuilder: FormBuilder, private store: Store<AppStore>, private location: Location) {
+    this.loginFormErrors = {
+      id: {},
+      pass: {},
+      name: {},
+      phone: {}
+    };
+
+    this.loginForm = this.formBuilder.group({
+      id: ['', [Validators.required]],
+      pass: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit() {
-    this.sessionService.destory();
   }
 
   login() {
-    this.store.dispatch(new AccountActions.AccountLogin(this.model.id, this.model.pass));
+    this.store.dispatch(new AccountActions.AccountLogin(this.id, this.pass));
+  }
+
+  goToPage(page) {
+    switch (page) {
+      case 'join':
+        this.location.go('join');
+        break;
+      case 'find':
+        this.location.go('find');
+        break;
+      default:
+    }
   }
 
 }

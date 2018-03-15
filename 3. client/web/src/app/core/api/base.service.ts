@@ -1,10 +1,8 @@
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 
-import {HttpService} from "../service/http.service";
-import {IResponse} from "../service/response.service";
-import {IModel} from "../model/interface";
-import {HttpResponse} from '@angular/common/http';
-import {Converter} from '../helper/converter';
+import {HttpService} from '../service/http.service';
+import {IResponse} from '../service/response.service';
+import {IModel} from '../model/interface';
 
 export class BaseService {
 

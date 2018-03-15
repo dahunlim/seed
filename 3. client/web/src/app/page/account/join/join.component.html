@@ -1,155 +1,187 @@
 <div class="account-container">
-  <div class="inner-layout">
-    <div class="title">회원가입</div>
-    <div class="switch-container">
-      <div class="switch-box">
-        <div class="circle-icon number" [ngClass]="{'select': isStep(1)}">
-          <div>
-            1
-          </div>
-        </div>
-        <div class="dot">
-          <div></div>
-        </div>
-        <div class="circle-icon number" [ngClass]="{'select': isStep(2)}">
-          <div>
-            2
-          </div>
-        </div>
-        <div class="dot">
-          <div> </div>
-        </div>
-        <div class="circle-icon number" [ngClass]="{'select': isStep(3)}">
-          <div>
-            3
-          </div>
-        </div>
-      </div>
-    </div>
-    <div [ngSwitch]="step">
-      <!--  1  -->
-      <div class="tap-layout first-layout" *ngSwitchCase="1">
-        <div class="guide">
-          <div class="text">사용하실 아이디와 비밀번호를 입력해주세요.</div>
-        </div>
-        <form #joinForm1="ngForm">
-          <div>
-            <input type="text" class="input primary" name="id" required [(ngModel)]="user._id" #id="ngModel" placeholder="아이디"
-                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
-            <div *ngIf="id.invalid && (id.dirty || id.touched)" [@aramSlideUpDown]>
-              <div *ngIf="id.errors.required" class="error-message" >
-                이메일을 입력해 주세요.
-              </div>
-              <div *ngIf = "id.errors.pattern" class="error-message">
-                이메일 형식에 맞지 않습니다.
-              </div>
-            </div>
-          </div>
-          <div>
-            <input type="password" class="input primary" name="pass" placeholder="패스워드" #pass="ngModel" [(ngModel)]="model.pass" required/>
-            <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [@aramSlideUpDown]>
-              <div *ngIf="pass.errors.required" class="error-message">
-                패스워드를 입력해 주세요.
-              </div>
-            </div>
-          </div>
-          <div>
-            <input type="password" class="input primary" name="passConfirm" placeholder="패스워드 재입력" #confirmPass="ngModel" [(ngModel)]="model.confirmPass" required (keyup)="confirmPassword()"/>
-            <div *ngIf="confirmPass.invalid && (confirmPass.dirty || confirmPass.touched)" [@aramSlideUpDown]>
-              <div *ngIf="confirmPass.errors.required" class="error-message">
-                패스워드를 입력해 주세요.
-              </div>
-            </div>
-            <div *ngIf="!confirmPass.invalid" [@aramSlideUpDown]>
-              <div *ngIf="!check" class="error-message">
-                비밀번호가 다릅니다. 확인해주세요
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="bottom-container">
-          <button class="md primary" [disabled]="!check || joinForm1.invalid" (click)="setStep(2)" >다음</button>
-          <button class="md" routerLink="/login">로그인</button>
-        </div>
-      </div>
 
-      <!--  2  -->
-      <div class="tap-layout second-layout" *ngSwitchCase="2">
-        <div class="guide">
-          <div class="text">개인정보를 정확히 입력해주세요 :)</div>
-        </div>
-        <div>
-          <input type="text" class="input primary" name="name" placeholder="이름" required #name="ngModel" [(ngModel)]="user.name"/>
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" [@aramSlideUpDown]>
-            <div *ngIf="name.errors.required" class="error-message">
-              이름을 입력해주세요.
-            </div>
-          </div>
-        </div>
-        <div>
-          <input type="text" class="input primary" name="phone" [(ngModel)]="user.phone" placeholder="휴대폰 번호" required #phone="ngModel"/>
-          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" [@aramSlideUpDown]>
-            <div *ngIf="phone.errors.required" class="error-message">
-              핸드폰번호를 입력해주세요.
-            </div>
-          </div>
-        </div>
-        <div class="inline-layout">
-          <div>
-            <input type="text" class="input primary" name="code" placeholder="인증번호" [(ngModel)]="model.code" />
-          </div>
-          <div>
-            <button class="md" (click)="sendMobileCode()" *ngIf="!timerStart">인증번호받기</button>
-            <button class="md" *ngIf="timerStart" (click)="checkMobileCode()">확인 {{timer | minuteSeconds}}</button>
-          </div>
-        </div>
-        <div class="bottom-container">
-          <button class="md primary" (click)="nextPage( )">다음</button>
-          <button class="md" routerLink="/login">로그인</button>
-        </div>
-      </div>
+  <!--<form name="joinForm" [formGroup]="joinForm">-->
+    <!--<input type="text" formControlName="id" required [(ngModel)]="join._id" placeholder="아이디"/>-->
+    <!--<div *ngIf="!joinFormErrors.id.valid">-->
+      <!--<p class="" *ngIf="joinFormErrors.id.required">-->
+        <!--아이디를 입력해주세요.-->
+      <!--</p>-->
+    <!--</div>-->
+    <!--<input type="password" formControlName="pass" required [(ngModel)]="join.pass" placeholder="패스워드" />-->
+    <!--<div *ngIf="!joinFormErrors.pass.valid">-->
+      <!--<p class="" *ngIf="joinFormErrors.pass.required">-->
+        <!--패스워드를 입력해주세요.-->
+      <!--</p>-->
+      <!--<p class="" *ngIf="joinFormErrors.pass.minlength">-->
+        <!--비밀번호는 6자리 이상 입력해주세요.-->
+      <!--</p>-->
+    <!--</div>-->
+    <!--<input type="text" formControlName="name" required [(ngModel)]="join.name" placeholder="이름" />-->
+    <!--<div *ngIf="!joinFormErrors.name.valid">-->
+      <!--<p class="" *ngIf="joinFormErrors.name.required">-->
+        <!--이름을 입력해주세요.-->
+      <!--</p>-->
+    <!--</div>-->
+    <!--<input type="text" formControlName="phone" required [(ngModel)]="join.phone" placeholder="전화번호" />-->
+    <!--<div *ngIf="!joinFormErrors.phone.valid">-->
+      <!--<p class="" *ngIf="joinFormErrors.phone.required">-->
+        <!--전화번호를 입력해주세요.-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</form>-->
 
-      <!--  3  -->
-      <div class="tap-layout third-layout" *ngSwitchCase="3">
-        <div class="guide">
-          <div class="text">중간관리자의 아이디를 정확히 입력해주세요.<br>
-            이 정보는 회원님의 창고와 연결됩니다. </div>
-        </div>
-        <div>
-          <input type="text" class="input primary" name="company" placeholder="업체명" [(ngModel)]="user.company" required #company="ngModel"/>
-          <div *ngIf="company.invalid && (company.dirty || company.touched)" [@aramSlideUpDown]>
-            <div *ngIf="company.errors.required" class="error-message">
-              업체명을 입력해주세요.
-            </div>
-          </div>
-        </div>
-        <div class="inline-layout">
-          <div>
-            <input type="text" class="input primary" name="name" readonly placeholder="우편번호" [(ngModel)]="user.postcode" readonly/>
-          </div>
-          <div>
-            <button class="md" (click)="postcodeClick()" > 우편번호 찾기</button>
-          </div>
-        </div>
-        <div>
-          <input type="text" class="input primary" readonly placeholder="주소" [(ngModel)]="model.address" readonly/>
-        </div>
-        <div>
-          <input type="text" class="input primary" placeholder="나머지 주소" [(ngModel)]="model.address2" />
-        </div>
-        <div>
-          <input type="text" class="input primary" placeholder="연결된 중간관리자 아이디" required #manager="ngModel" [(ngModel)]="user.manager"/>
-          <div *ngIf="manager.invalid && (manager.dirty || manager.touched)" [@aramSlideUpDown]>
-            <div *ngIf="manager.errors.required" class="error-message">
-              중간 관리자를 입력해주세요.
-            </div>
-          </div>
-        </div>
-        <div class="bottom-container">
-          <button class="md success" (click)="join()">회원가입완료!</button>
-          <button class="md" routerLink="/login">로그인</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <button (click)="register()">회원가입</button>
+  <!--<div class="inner-layout">-->
+  <!--<div class="title">회원가입</div>-->
+  <!--<div class="switch-container">-->
+  <!--<div class="switch-box">-->
+  <!--<div class="circle-icon number" [ngClass]="{'select': isStep(1)}">-->
+  <!--<div>-->
+  <!--1-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="dot">-->
+  <!--<div></div>-->
+  <!--</div>-->
+  <!--<div class="circle-icon number" [ngClass]="{'select': isStep(2)}">-->
+  <!--<div>-->
+  <!--2-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="dot">-->
+  <!--<div> </div>-->
+  <!--</div>-->
+  <!--<div class="circle-icon number" [ngClass]="{'select': isStep(3)}">-->
+  <!--<div>-->
+  <!--3-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div [ngSwitch]="step">-->
+  <!--&lt;!&ndash;  1  &ndash;&gt;-->
+  <!--<div class="tap-layout first-layout" *ngSwitchCase="1">-->
+  <!--<div class="guide">-->
+  <!--<div class="text">사용하실 아이디와 비밀번호를 입력해주세요.</div>-->
+  <!--</div>-->
+  <!--<form #joinForm1="ngForm">-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" name="id" required [(ngModel)]="user._id" #id="ngModel" placeholder="아이디"-->
+  <!--pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>-->
+  <!--<div *ngIf="id.invalid && (id.dirty || id.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="id.errors.required" class="error-message" >-->
+  <!--이메일을 입력해 주세요.-->
+  <!--</div>-->
+  <!--<div *ngIf = "id.errors.pattern" class="error-message">-->
+  <!--이메일 형식에 맞지 않습니다.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="password" class="input primary" name="pass" placeholder="패스워드" #pass="ngModel" [(ngModel)]="model.pass" required/>-->
+  <!--<div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="pass.errors.required" class="error-message">-->
+  <!--패스워드를 입력해 주세요.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="password" class="input primary" name="passConfirm" placeholder="패스워드 재입력" #confirmPass="ngModel" [(ngModel)]="model.confirmPass" required (keyup)="confirmPassword()"/>-->
+  <!--<div *ngIf="confirmPass.invalid && (confirmPass.dirty || confirmPass.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="confirmPass.errors.required" class="error-message">-->
+  <!--패스워드를 입력해 주세요.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div *ngIf="!confirmPass.invalid" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="!check" class="error-message">-->
+  <!--비밀번호가 다릅니다. 확인해주세요-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</form>-->
+  <!--<div class="bottom-container">-->
+  <!--<button class="md primary" [disabled]="!check || joinForm1.invalid" (click)="setStep(2)" >다음</button>-->
+  <!--<button class="md" routerLink="/login">로그인</button>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash;  2  &ndash;&gt;-->
+  <!--<div class="tap-layout second-layout" *ngSwitchCase="2">-->
+  <!--<div class="guide">-->
+  <!--<div class="text">개인정보를 정확히 입력해주세요 :)</div>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" name="name" placeholder="이름" required #name="ngModel" [(ngModel)]="user.name"/>-->
+  <!--<div *ngIf="name.invalid && (name.dirty || name.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="name.errors.required" class="error-message">-->
+  <!--이름을 입력해주세요.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" name="phone" [(ngModel)]="user.phone" placeholder="휴대폰 번호" required #phone="ngModel"/>-->
+  <!--<div *ngIf="phone.invalid && (phone.dirty || phone.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="phone.errors.required" class="error-message">-->
+  <!--핸드폰번호를 입력해주세요.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="inline-layout">-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" name="code" placeholder="인증번호" [(ngModel)]="model.code" />-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<button class="md" (click)="sendMobileCode()" *ngIf="!timerStart">인증번호받기</button>-->
+  <!--<button class="md" *ngIf="timerStart" (click)="checkMobileCode()">확인 {{timer | minuteSeconds}}</button>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="bottom-container">-->
+  <!--<button class="md primary" (click)="nextPage( )">다음</button>-->
+  <!--<button class="md" routerLink="/login">로그인</button>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash;  3  &ndash;&gt;-->
+  <!--<div class="tap-layout third-layout" *ngSwitchCase="3">-->
+  <!--<div class="guide">-->
+  <!--<div class="text">중간관리자의 아이디를 정확히 입력해주세요.<br>-->
+  <!--이 정보는 회원님의 창고와 연결됩니다. </div>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" name="company" placeholder="업체명" [(ngModel)]="user.company" required #company="ngModel"/>-->
+  <!--<div *ngIf="company.invalid && (company.dirty || company.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="company.errors.required" class="error-message">-->
+  <!--업체명을 입력해주세요.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="inline-layout">-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" name="name" readonly placeholder="우편번호" [(ngModel)]="user.postcode" readonly/>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<button class="md" (click)="postcodeClick()" > 우편번호 찾기</button>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" readonly placeholder="주소" [(ngModel)]="model.address" readonly/>-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" placeholder="나머지 주소" [(ngModel)]="model.address2" />-->
+  <!--</div>-->
+  <!--<div>-->
+  <!--<input type="text" class="input primary" placeholder="연결된 중간관리자 아이디" required #manager="ngModel" [(ngModel)]="user.manager"/>-->
+  <!--<div *ngIf="manager.invalid && (manager.dirty || manager.touched)" [@aramSlideUpDown]>-->
+  <!--<div *ngIf="manager.errors.required" class="error-message">-->
+  <!--중간 관리자를 입력해주세요.-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="bottom-container">-->
+  <!--<button class="md success" (click)="join()">회원가입완료!</button>-->
+  <!--<button class="md" routerLink="/login">로그인</button>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
 </div>

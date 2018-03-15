@@ -1,5 +1,5 @@
-import {IModel} from "./interface";
-import {Serializable} from "../helper/serializable";
+import {IModel} from './interface';
+import {Serializable} from '../helper/serializable';
 
 export class Login extends Serializable implements IModel {
   _id: string;

@@ -1,5 +1,5 @@
-import {Serializable} from "../helper/serializable";
-import {IModel} from "./interface";
+import {Serializable} from '../helper/serializable';
+import {IModel} from './interface';
 
 export class Alarm extends Serializable implements IModel {
   _id: string;

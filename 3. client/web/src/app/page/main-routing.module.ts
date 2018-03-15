@@ -10,6 +10,7 @@ const mainRoutes: Routes = [
     component: MainComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'account', loadChildren: 'app/page/account/account.module#AccountModule' },
       { path: 'notice', loadChildren: 'app/page/notice/notice.module#NoticeModule' },
       { path: 'inquiry', loadChildren: 'app/page/inquiry/inquiry.module#InquiryModule' },
       { path: 'board', loadChildren: 'app/page/board/board.module#BoardModule' },

@@ -1,10 +1,8 @@
-import {Injectable} from "@angular/core";
-import {HttpService} from "../service/http.service";
-import {BaseService} from "./base.service";
-import {Observable} from "rxjs/Observable";
-import {User} from "../model/user";
-import {IResponse} from "../service/response.service";
-import {Converter} from "../helper/converter";
+import {Injectable} from '@angular/core';
+import {HttpService} from '../service/http.service';
+import {BaseService} from './base.service';
+import {Observable} from 'rxjs/Observable';
+import {IResponse} from '../service/response.service';
 
 @Injectable()
 export class UserService extends BaseService {
@@ -24,9 +22,5 @@ export class UserService extends BaseService {
     };
 
     return this.http.get(`${this.controllerName}`, params)
-  }
-
-  public userAllow(id: string, level: number): Observable<any> {
-    return this.http.put(`${this.controllerName}/` + id + '/auth', {level: level})
   }
 }

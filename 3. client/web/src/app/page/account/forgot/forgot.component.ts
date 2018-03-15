@@ -1,9 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
-import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 import {AppStore} from '../../../app-store.interface';
+import {AuthService} from '../../../core/api/auth.service';
 import {RESPONSE_CODE} from '../../../core/service/response.service';
+import {DialogService} from '../../../core/service/dialog';
+import {FormHelper} from '../../../core/helper/form';
+
+import * as AccountActions from '../redux/account.action';
 
 @Component({
   selector: 'app-forgot',
@@ -13,24 +18,33 @@ import {RESPONSE_CODE} from '../../../core/service/response.service';
 
 export class ForgotComponent implements OnInit, OnDestroy {
 
-  private code: string;
-  private pass: string;
-  private check: boolean;
-  private checkCode: boolean;
-  private id: string;
-  private confirmPass: string;
-  private timerStart: boolean;
-  private countTimer: any;
-  private timer: number = 180;
-  private minute: number = 3;
-  private second: number = 0;
-  private isAuthenticated: boolean;
-  private viewChange: boolean;
-  private codeSend$: Observable<any>;
-  private codeCheck$: Observable<any>;
+  isAuthenticated: boolean;
+  countTimer: any;
+  timerStart: boolean;
+  timer: number = 180;
 
+  checkCode: boolean;
 
-  constructor(private store: Store<AppStore>, private router: Router) {
+  id: string;
+  code: string;
+  pass: string;
+  passConfirm: string;
+
+  viewChange: boolean;
+
+  forgotFormErrors: any;
+  forgotForm: FormGroup;
+
+  constructor(private authService: AuthService, private dialog: DialogService, private formBuilder: FormBuilder, private store: Store<AppStore>) {
+    this.forgotFormErrors = {
+      pass: {},
+      passConfirm: {}
+    };
+
+    this.forgotForm = this.formBuilder.group({
+      pass: ['', [Validators.required, Validators.minLength(6)]],
+      passConfirm: ['', Validators.required]
+    }, {validator: FormHelper.confirmPassword('pass', 'passConfirm')});
   }
 
   ngOnInit() {
@@ -41,32 +55,54 @@ export class ForgotComponent implements OnInit, OnDestroy {
 
   }
 
-  sendPassCode() {
-
-  }
-
-  checkPassCode() {
-
-
-  }
-
-  resetPassword() {
-
+  authcode(type) {
+    switch (type) {
+      case 'send':
+        this.isAuthenticated = true;
+        this.authService.mobileSend(this.id).subscribe(
+          data => {
+            switch (data.code) {
+              case RESPONSE_CODE.SUCCESS:
+                this.dialog.alert('인증번호가 전송되었습니다.');
+                this.timerStart = true;
+                this.countTimer = setInterval(() => {
+                  this.timer = this.timer - 1;
+                  if (this.timer === 0) {
+                    clearInterval(this.countTimer);
+                  }
+                }, 1000);
+                break;
+              default:
+                this.checkCode = false;
+            }
+          });
+        break;
+      case 'confirm' :
+        this.authService.mobileCheck(this.code).subscribe(
+          data => {
+            switch (data.code) {
+              case RESPONSE_CODE.SUCCESS:
+                this.dialog.alert('인증번호가 확인되었습니다.');
+                this.checkCode = true;
+                break;
+              default:
+                this.checkCode = false;
+            }
+          });
+    }
   }
 
   changeReset() {
     if (this.checkCode) {
       this.viewChange = true;
     } else {
-      alert('인증번호를 입력 후 확인해주세요.');
+      alert('인증번호 입력 후 확인버튼을 눌러주세요.');
     }
   }
 
-  checkPassword() {
-    if (this.pass === this.confirmPass) {
-      this.check = true;
-    } else {
-      this.check = false;
+  resetPassword() {
+    if (this.forgotForm.valid) {
+      this.store.dispatch(new AccountActions.AccountResetPw(this.pass));
     }
   }
 }

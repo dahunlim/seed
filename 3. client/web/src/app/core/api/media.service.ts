@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
-import {BaseService} from "./base.service";
-import {HttpService} from "../service/http.service";
-import {IResponse} from "../service/response.service";
+import {BaseService} from './base.service';
+import {HttpService} from '../service/http.service';
+import {IResponse} from '../service/response.service';
 
 @Injectable()
 export class MediaService extends BaseService {

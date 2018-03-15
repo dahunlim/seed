@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
 
 import {environment} from '../../../environments/environment';
-import {IResponse} from "./response.service";
+import {IResponse} from './response.service';
 import {Router} from '@angular/router';
 
 @Injectable()
@@ -54,7 +54,7 @@ export class HttpService {
       });
     }
 
-    if (method === "GET" || method === "DELETE") {
+    if (method === 'GET' || method === 'DELETE') {
         options['params'] = this.getHttpParams(parameter);
     } else if (withFileUpload) {
       const formData = new FormData();

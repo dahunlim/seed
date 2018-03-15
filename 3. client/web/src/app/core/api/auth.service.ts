@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {HttpService} from '../service/http.service';
 import {BaseService} from './base.service';
-import {AppStore} from "../../app-store.interface";
-import {Store} from "@ngrx/store";
+import {AppStore} from '../../app-store.interface';
+import {Store} from '@ngrx/store';
 
 @Injectable()
 export class AuthService extends BaseService {
