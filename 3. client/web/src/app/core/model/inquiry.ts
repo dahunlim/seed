@@ -1,4 +1,4 @@
-import {IModel} from "./interface";
+import {IModel} from './interface';
 import {Serializable} from '../helper/serializable';
 
 export class Inquiry extends Serializable implements IModel {

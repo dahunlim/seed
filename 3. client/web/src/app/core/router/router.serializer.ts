@@ -1,6 +1,6 @@
-import {RouterStateSerializer} from "@ngrx/router-store";
-import {IRouterStateUrl} from "./router.state";
-import {RouterStateSnapshot} from "@angular/router";
+import {RouterStateSerializer} from '@ngrx/router-store';
+import {IRouterStateUrl} from './router.state';
+import {RouterStateSnapshot} from '@angular/router';
 
 export class CustomSerializer implements RouterStateSerializer<IRouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): IRouterStateUrl {

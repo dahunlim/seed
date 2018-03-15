@@ -6,8 +6,6 @@ import {LoginService} from './login.service';
 import {MediaService} from './media.service';
 import {NoticeService} from './notice.service';
 import {UserService} from './user.service';
-import {HttpClientModule} from '@angular/common/http';
-import {BaseService} from './base.service';
 
 @NgModule({
   imports: [],

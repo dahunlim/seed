@@ -50,10 +50,8 @@ export class NoticeEffect {
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             return new RouterActions.Go({path: ['/notice/list/1']});
-          }else {
-            return {type: 'NO_ACTION'};
           }
-          // return new NoticeActions.NoticeCommonResponse(res, res.code);
+          return {type: 'NO_ACTION'};
         })
     });
 
@@ -69,7 +67,6 @@ export class NoticeEffect {
             default:
               return {type: 'NO_ACTION'};
           }
-          // return new NoticeActions.NoticeCommonResponse(res, res.code);
         })
     });
 
@@ -81,10 +78,8 @@ export class NoticeEffect {
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             return new RouterActions.Go({path: [`/notice/detail/${action.notice._id}`]});
-          }else {
-            return {type: 'NO_ACTION'};
           }
-          // return new NoticeActions.NoticeCommonResponse(res, res.code);
+          return {type: 'NO_ACTION'};
         })
     });
 
@@ -97,7 +92,7 @@ export class NoticeEffect {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             window.open(res.data);
           }
-          return new NoticeActions.NoticeCommonResponse(res, res.code);
+          return {type: 'NO_ACTION'};
         })
     });
 

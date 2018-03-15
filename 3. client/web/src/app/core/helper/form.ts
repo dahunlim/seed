@@ -4,23 +4,36 @@ import {IModel} from '../model/interface';
 
 export class FormHelper {
 
-  static confirmPassword(errorField: string, targetName: string): ValidateFn<any> {
-    return (control: AbstractControl): any => {
-      if (!control.parent || !control) {
-        return;
-      }
-      const password = control.parent.get(targetName);
+  // static confirmPassword(errorField: string, targetName: string): ValidateFn<any> {
+  //   return (control: AbstractControl): any => {
+  //     if (!control.parent || !control) {
+  //       return;
+  //     }
+  //     const password = control.parent.get(targetName);
+  //
+  //     if (!password) {
+  //       return;
+  //     }
+  //
+  //     if (password.value !== control.value) {
+  //       const rs = {};
+  //       rs[errorField] = true;
+  //       return rs;
+  //     }
+  //   };
+  // }
 
-      if (!password) {
-        return;
-      }
+  static confirmPassword(passwordKey: string, confirmPasswordKey: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      const password = group.controls[passwordKey];
+      const confirmPassword = group.controls[confirmPasswordKey];
 
-      if (password.value !== control.value) {
-        const rs = {};
-        rs[errorField] = true;
-        return rs;
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
       }
-    };
+    }
   }
 
   static setValueFromInstance (form: FormGroup, instance: IModel){

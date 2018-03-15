@@ -1,13 +1,13 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 import {AppStore} from '../../app-store.interface';
 import {Store} from '@ngrx/store';
-import {SessionService} from "../service/session.service";
-import {MatDialog} from "@angular/material";
+import {SessionService} from '../service/session.service';
+import {MatDialog} from '@angular/material';
 
 import * as RouterActions from '../../core/router/router.action';
-import {AppDialogAlertComponent} from "../dialog/alert/alert.component";
+import {AppDialogAlertComponent} from '../dialog/alert/alert.component';
 
 @Injectable()
 export class CanActiveViaAuthGuard implements CanActivate {

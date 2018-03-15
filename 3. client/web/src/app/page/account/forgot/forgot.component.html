@@ -3,44 +3,44 @@
     <div class="forgot" *ngIf="!viewChange">
       <div class="title">비밀번호찾기</div>
       <div>
-        <input type="text" class="input primary" name="id" placeholder="아이디를 입력하세요." [(ngModel)]="id" />
+        <input type="text" class="input primary" name="id" placeholder="아이디를 입력하세요." [(ngModel)]="id"/>
       </div>
       <div class="inline-layout">
         <div>
-          <input type="text" class="input primary" name="code" placeholder="인증번호" [(ngModel)]="code"  />
+          <input type="text" class="input primary" name="code" placeholder="인증번호" [(ngModel)]="code"/>
         </div>
         <div>
-          <button class="md" (click)="sendPassCode()" *ngIf="!isAuthenticated">인증번호받기</button>
-          <button class="md" (click)="checkPassCode()" *ngIf="isAuthenticated">{{timer | minuteSeconds: 'mm:ss'}} 확인</button>
+          <button class="md" (click)="authcode('send')" *ngIf="!isAuthenticated">인증번호받기</button>
+          <button class="md" (click)="authcode('confirm')" *ngIf="isAuthenticated">{{timer | minuteSeconds: 'mm:ss'}} 확인</button>
         </div>
       </div>
       <div class="bottom-container">
-        <button class="md primary" (click)="changeReset()" [disabled]="!checkCode" >비밀번호 초기화</button>
+        <button class="md primary" (click)="changeReset()">비밀번호 초기화</button>
       </div>
     </div>
     <div class="change" *ngIf="viewChange">
       <div class="title">비밀번호 재설정</div>
-      <div>
-        <input type="password" class="input primary" name="password" #password="ngModel" required placeholder="새로운 패스워드 입력" [(ngModel)]="pass" />
-        <div *ngIf="password.invalid && (password.dirty || password.touched)">
-          <div *ngIf="password.errors.required" class="error-message">
-            비밀번호를 입력해주세요.
-          </div>
+      <form name="forgotForm" [formGroup]="forgotForm">
+        <input type="password" class="input primary" formControlName="pass" required placeholder="새로운 패스워드 입력" [(ngModel)]="pass" />
+        <div *ngIf="!joinFormErrors.pass.valid">
+          <p class="" *ngIf="forgotFormErrors.pass.required">
+            패스워드를 입력해주세요.
+          </p>
+          <p class="" *ngIf="forgotFormErrors.pass.minlength">
+            비밀번호는 6자리 이상 입력해주세요.
+          </p>
         </div>
-      </div>
-      <div>
-        <input type="password" class="input primary" name="confirmPass" required placeholder="새로운 패스워드 재입력" [(ngModel)]="confirmPass" #confirmPassword="ngModel" (keyup)="checkPassword()"/>
-        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
-          <div *ngIf="confirmPassword.errors.required" class="error-message">
-            비밀번호를 입력해주세요.
-          </div>
+        <input type="password" class="input primary" formControlName="passConfirm" required placeholder="새로운 패스워드 재입력" [(ngModel)]="passConfirm"/>
+        <div *ngIf="!joinFormErrors.passConfirm.valid">
+          <p class="" *ngIf="forgotFormErrors.passConfirm.required">
+            확인 패스워드를 입력해주세요.
+          </p>
+          <p class="error-text" *ngIf="forgotForm.hasError('mismatchedPasswords')">
+            비밀번호가 일치하지 않습니다
+          </p>
         </div>
-        <div *ngIf="!confirmPassword.invalid">
-          <div *ngIf="!check" class="error-message">
-            비밀번호가 다릅니다. 확인해주세요
-          </div>
-        </div>
-      </div>
+      </form>
+
       <div class="bottom-container">
         <button class="md primary" (click)="resetPassword()">비밀번호 변경완료</button>
       </div>

@@ -1,7 +1,6 @@
 var DB = require('../core/Database')
     , BaseModel = require('./BaseModel')
-    , Util = require('util')
-    , Config = require('../common/Config');
+    , Util = require('util');
 
 function UserModel(){
     BaseModel.call(this, 'User');
@@ -14,8 +13,8 @@ UserModel.prototype.schema = function(id, name, pass, salt, level, state){
         name: name,
         pass: pass,
         salt: salt,
-        level: Number(level),
-        state: Number(state),
+        level: level,
+        state: state,
         vcode: 0,
         vdate: null,
         tcnt: 0,

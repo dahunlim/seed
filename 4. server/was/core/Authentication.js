@@ -57,6 +57,4 @@ module.exports = {
     createPassword: function(password, salt){
         return Crypto.createHash("sha512").update(password + salt).digest("hex");
     }
-
-
 };
