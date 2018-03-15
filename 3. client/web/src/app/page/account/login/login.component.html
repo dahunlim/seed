@@ -1,13 +1,13 @@
 <div class="account-container">
   <div class="inner-layout">
     <form name="loginForm" [formGroup]="loginForm">
-      <input type="text" formControlName="id" required [(ngModel)]="login._id" placeholder="아이디"/>
+      <input type="text" formControlName="id" required [(ngModel)]="id" placeholder="아이디"/>
       <div *ngIf="!loginFormErrors.id.valid">
         <p class="" *ngIf="loginFormErrors.id.required">
           아이디를 입력해주세요.
         </p>
       </div>
-      <input type="password" formControlName="pass" required [(ngModel)]="login.pass" placeholder="패스워드" />
+      <input type="password" formControlName="pass" required [(ngModel)]="pass" placeholder="패스워드" />
       <div *ngIf="!loginFormErrors.pass.valid">
         <p class="" *ngIf="loginFormErrors.pass.required">
           패스워드를 입력해주세요.

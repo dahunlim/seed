@@ -8,6 +8,7 @@ import * as AccountActions from '../redux/account.action';
 
 import {aramSlideUpDown} from 'app/shared/animation';
 import {SessionService} from '../../../core/service/session.service';
+import {FormHelper} from "../../../core/helper/form";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ import {SessionService} from '../../../core/service/session.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
+  change$: any;
 
   loginFormErrors: any;
   loginForm: FormGroup;
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.change$ = FormHelper.formChangeHandler(this.loginForm, this.loginFormErrors);
   }
 
   login() {

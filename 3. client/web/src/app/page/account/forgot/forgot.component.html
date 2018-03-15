@@ -11,7 +11,7 @@
         </div>
         <div>
           <button class="md" (click)="authcode('send')" *ngIf="!isAuthenticated">인증번호받기</button>
-          <button class="md" (click)="authcode('confirm')" *ngIf="isAuthenticated">{{timer | minuteSeconds: 'mm:ss'}} 확인</button>
+          <button class="md" (click)="authcode('confirm')" *ngIf="isAuthenticated">{{timer}} 확인</button>
         </div>
       </div>
       <div class="bottom-container">
@@ -22,7 +22,7 @@
       <div class="title">비밀번호 재설정</div>
       <form name="forgotForm" [formGroup]="forgotForm">
         <input type="password" class="input primary" formControlName="pass" required placeholder="새로운 패스워드 입력" [(ngModel)]="pass" />
-        <div *ngIf="!joinFormErrors.pass.valid">
+        <div *ngIf="!forgotFormErrors.pass.valid">
           <p class="" *ngIf="forgotFormErrors.pass.required">
             패스워드를 입력해주세요.
           </p>
@@ -31,7 +31,7 @@
           </p>
         </div>
         <input type="password" class="input primary" formControlName="passConfirm" required placeholder="새로운 패스워드 재입력" [(ngModel)]="passConfirm"/>
-        <div *ngIf="!joinFormErrors.passConfirm.valid">
+        <div *ngIf="!forgotFormErrors.passConfirm.valid">
           <p class="" *ngIf="forgotFormErrors.passConfirm.required">
             확인 패스워드를 입력해주세요.
           </p>

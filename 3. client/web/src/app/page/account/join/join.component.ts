@@ -6,6 +6,7 @@ import {AppStore} from '../../../app-store.interface';
 import * as AccountActions from '../redux/account.action';
 
 import {Join} from '../../../core/model/join';
+import {FormHelper} from "../../../core/helper/form";
 
 @Component({
   selector: 'app-join',
@@ -14,12 +15,15 @@ import {Join} from '../../../core/model/join';
 })
 export class JoinComponent implements OnInit {
 
+  change$: any;
+
   joinFormErrors: any;
   joinForm: FormGroup;
 
   join: Join;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppStore>) {
+    this.join = new Join();
     this.joinFormErrors = {
       id: {},
       pass: {},
@@ -36,7 +40,7 @@ export class JoinComponent implements OnInit {
   }
 
   ngOnInit () {
-
+    this.change$ = FormHelper.formChangeHandler(this.joinForm, this.joinFormErrors);
   }
 
   register() {
