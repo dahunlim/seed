@@ -1,6 +1,5 @@
 import {Action} from "@ngrx/store";
 import {Notice} from "../../../core/model/notice";
-import {IResponse} from "../../../core/service/response.service";
 
 
 export const NOTICE_GET_LIST = "NOTICE_GET_LIST";
@@ -45,23 +44,11 @@ export class NoticeDelete implements Action {
   constructor(public notice_id: string) {}
 }
 
-export const NOTICE_COMMON_RESPONSE = 'NOTICE_COMMON_RESPONSE';
-export class NoticeCommonResponse implements Action {
-  readonly type = NOTICE_COMMON_RESPONSE;
-  constructor(public response: IResponse<Notice>, public code: number) {}
-}
-
 export const NOTICE_FILE_DOWNLOAD = 'NOTICE_FILE_DOWNLOAD';
 export class NoticeFileDownload implements Action {
   readonly type = NOTICE_FILE_DOWNLOAD;
   constructor(public key: string, public name: string) {}
 }
-
-/*export const NOTICE_FILE_DOWNLOAD_SUCCESS = 'NOTICE_FILE_DOWNLOAD_SUCCESS';
-export class NoticeFileDownloadSuccess implements Action {
-  readonly type = NOTICE_FILE_DOWNLOAD_SUCCESS;
-  constructor()
-}*/
 
 export type All =
   NoticeGetList |
@@ -71,5 +58,4 @@ export type All =
   NoticeAdd |
   NoticeModify |
   NoticeDelete |
-  NoticeFileDownload |
-  NoticeCommonResponse;
+  NoticeFileDownload;
