@@ -24,6 +24,7 @@ export class ForgotComponent implements OnInit, OnDestroy {
   timer: number = 180;
 
   checkCode: boolean;
+  change$: any;
 
   id: string;
   code: string;
@@ -48,7 +49,7 @@ export class ForgotComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.change$ = FormHelper.formChangeHandler(this.forgotForm, this.forgotFormErrors);
   }
 
   ngOnDestroy() {

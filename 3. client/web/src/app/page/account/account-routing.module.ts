@@ -3,15 +3,18 @@ import {NgModule} from '@angular/core';
 import {JoinComponent} from './join/join.component';
 import {LoginComponent} from './login/login.component';
 import {ForgotComponent} from './forgot/forgot.component';
+import {AccountComponent} from "./account.component";
 
 
 const accountRoutes: Routes = [
   {
+    path: '',
+    component: AccountComponent,
     children: [
       { path: 'join', component: JoinComponent },
       { path: 'login', component: LoginComponent},
       { path: 'forgot', component: ForgotComponent},
-      { path: '**', redirectTo: '/login' }
+      { path: '**', redirectTo: 'login' }
     ]
   }
 ];
