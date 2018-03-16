@@ -59,7 +59,7 @@ export class NoticeEffect {
     .ofType(NoticeActions.NOTICE_ADD)
     .switchMap((action: NoticeActions.NoticeAdd) => {
       return this.noticeService
-        .add<Notice>(action.notice, true)
+        .add<Notice>(action.notice, false)
         .map((res: IResponse<Notice>) => {
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:

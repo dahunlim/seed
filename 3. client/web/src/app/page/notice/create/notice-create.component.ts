@@ -16,7 +16,7 @@ import {getResponse} from '../redux/notice.selector';
 })
 export class NoticeCreateComponent implements OnInit {
   title: string;
-  content: string;
+  contents: string;
   file: File;
   link: string;
 
@@ -35,6 +35,6 @@ export class NoticeCreateComponent implements OnInit {
   }
 
   save() {
-
+    this.store.dispatch(new NoticeActions.NoticeAdd(new Notice(this.title, this.contents)));
   }
 }
