@@ -1,0 +1,43 @@
+<ion-content class="signin-container">
+  <div class="mark">
+    <img src="assets/imgs/signin-logo.svg">
+  </div>
+  <div class="input-container">
+    <form name="loginForm" [formGroup]="loginForm">
+      <ion-item>
+        <ion-input type="text" formControlName="id" placeholder="아이디"></ion-input>
+        <button item-right clear>
+          <ion-icon name="ios-person-outline"></ion-icon>
+        </button>
+      </ion-item>
+      <div *ngIf="!loginFormErrors.id.valid">
+        <p class="error-text" *ngIf="loginFormErrors.id.required" [@aramSlideUpDown]>
+          이메일을 입력해주세요
+        </p>
+        <p class="error-text" *ngIf="loginFormErrors.id.email" [@aramSlideUpDown]>
+          이메일 형식에 맞지 않습니다.
+        </p>
+      </div>
+      <ion-item>
+        <ion-input type="password" formControlName="password" placeholder="비밀번호"></ion-input>
+        <button item-right clear>
+          <ion-icon name="ios-unlock"></ion-icon>
+        </button>
+      </ion-item>
+      <div *ngIf="!loginFormErrors.password.valid">
+        <p class="error-text" *ngIf="loginFormErrors.password.required" [@aramSlideUpDown]>
+          비밀번호를 입력해주세요
+        </p>
+        <p class="error-text" *ngIf="loginFormErrors.password.minlength" [@aramSlideUpDown]>
+          비밀번호는 3글자 이상 입력해주세요
+        </p>
+      </div>
+      <div class="empty-container"></div>
+    </form>
+  </div>
+  <div class="btn-container">
+    <button class="signin-btn" (click)="login()">로그인</button>
+  </div>
+  <div class="search-text">비밀번호를 잊으셨나요? <span (click)="goToPage('password')">비밀번호 찾기</span></div>
+  <div class="signup-text">아직 계정이 없으신가요? <span (click)="goToPage('signup')">회원가입</span></div>
+</ion-content>

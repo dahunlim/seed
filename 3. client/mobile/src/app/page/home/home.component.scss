@@ -1,0 +1,134 @@
+.home-container {
+  background: linear-gradient(to bottom, #a0e9f0 0, #5f97db 18rem, $color-grey-2 18rem);
+  .home-header {
+    padding: 1.9rem 0.4rem;
+    > div {
+      display: inline-block;
+      height: 4.8rem;
+      min-width: 4.8rem;
+    }
+
+    .text {
+      @include font(caption3);
+      color: $color-grey-1;
+      height: inherit;
+      vertical-align: top;
+      padding-top: 1.5rem;
+    }
+
+    .right {
+      cursor: pointer;
+      float: right;
+      padding: 1.2rem;
+      text-align: center;
+      ion-icon {
+        font-size: 24px;
+        color: $color-grey-1;
+      }
+    }
+  }
+
+  .list-container {
+    padding: 0 0.8rem;
+    /* Component */
+    .list-box {
+      @include boxshadow(1px, 2px, 6px, rgba(0, 0, 0,0.2));
+      border-radius: 5px;
+      cursor: pointer;
+      height: 11rem;
+      margin-bottom: 1.6rem;
+      width: inherit;
+      .color-label {
+        border-radius: 5px 0 0 5px;
+        float: left;
+        height: inherit;
+        width: 1rem;
+        &.normal {
+          background-color: $color-green-1;
+        }
+        &.warning {
+          background-color: $color-orange-1;
+        }
+        &.danger {
+          background-color: $color-red-1;
+        }
+      }
+
+      .info-area {
+        background-color: $color-grey-1;
+        float: left;
+        height: inherit;
+        padding-left: 1.6rem;
+        padding-top: 2.1rem;
+        width: calc(100% - 15rem);
+        .name {
+          @include font(subheading);
+          color: $color-grey-6;
+        }
+        .address-icon {
+          width: 2.4rem;
+          height: 2.4rem;
+          display: inline-block;
+          text-align: center;
+          vertical-align: top;
+          ion-icon {
+            font-size: 20px;
+            color: $color-grey-4;
+          }
+        }
+        .address {
+          @include font(body1);
+          width: calc(100% - 4.4rem);
+          display: inline-block;
+          color: $color-grey-4;
+        }
+      }
+      .state-area {
+        background-color: $color-grey-1;
+        border-radius: 0 5px 5px 0;
+        float: left;
+        text-align: right;
+        height: inherit;
+        padding: 2rem;
+        width: 14rem;
+        .temperature {
+          @include font(display2);
+          display: inline-block;
+          //color: $color-blue-2;
+          text-align: right;
+          height: 5rem;
+          &.normal {
+            color: $color-green-1;
+          }
+          &.warning {
+            color: $color-orange-1;
+          }
+          &.danger {
+            color: $color-red-1;
+          }
+        }
+        .degree {
+          @include font(subheading);
+          //color: $color-blue-2;
+          display: inline-block;
+          height: 2.7rem;
+          width: 1.8rem;
+          &.normal {
+            color: $color-green-1;
+          }
+          &.warning {
+            color: $color-orange-1;
+          }
+          &.danger {
+            color: $color-red-1;
+          }
+        }
+        .text {
+          @include font(body1);
+          color: $color-grey-4;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
