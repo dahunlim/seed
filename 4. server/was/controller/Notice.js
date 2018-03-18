@@ -2,7 +2,7 @@ const NoticeService = require('../service/Notice');
 
 
 module.exports = {
-    add: function(title, contents) {
+    add: async function(title, contents) {
         return NoticeService.add(title, contents);
     },
 
