@@ -1,5 +1,7 @@
 <div>
-  <div (click)="test()" style="cursor: pointer;text-decoration: none;">공지사항</div>
+  <div (click)="goToPage('home')" style="cursor: pointer;text-decoration: none;margin-bottom: 10px">Home</div>
+  <div (click)="goToPage('notice')" style="cursor: pointer;text-decoration: none;margin-bottom: 10px">Notice</div>
+  <div (click)="goToPage('Inquiry')" style="cursor: pointer;text-decoration: none;margin-bottom: 10px">Inquiry</div>
   <div id="page-container" >
     <div class="page-inner">
       <router-outlet ></router-outlet>

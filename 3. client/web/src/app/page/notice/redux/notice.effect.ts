@@ -59,8 +59,16 @@ export class NoticeEffect {
     .ofType(NoticeActions.NOTICE_ADD)
     .switchMap((action: NoticeActions.NoticeAdd) => {
       return this.noticeService
-        .add<Notice>(action.notice, true)
+        .add<Notice>(action.notice, false)
+        .filter(data => {
+          if (!!data) {
+            return true
+          } else {
+            return false
+          }
+        })
         .map((res: IResponse<Notice>) => {
+          console.log(res);
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:
               return new RouterActions.Go({path: ['/notice/list/1']});

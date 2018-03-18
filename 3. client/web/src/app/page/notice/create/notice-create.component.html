@@ -1,5 +1,6 @@
 <div class="common-container notice-container">
   <div>공지사항 작성</div>
-  <input type="text">
-  <textarea>ㅇㅇ</textarea>
+  <input type="text" [(ngModel)]="title" placeholder="제목">
+  <textarea [(ngModel)]="contents" placeholder="본문"></textarea>
+  <button (click)="save()">저장</button>
 </div>
