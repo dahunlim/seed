@@ -9,8 +9,8 @@ export function noticeReducer(state: INoticeState = initState, action: Action) {
   switch (action.type) {
     case NoticeAction.NOTICE_GET_LIST_SUCCESS:
       return state.merge({
-        list: (action as NoticeGetListSuccess).list,
-        totalCount: (action as NoticeGetListSuccess).total
+        list: action.list,
+        totalCount: action.total
       });
     case NoticeAction.NOTICE_GET_DETAIL_SUCCESS:
       return state.merge({

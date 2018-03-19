@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
@@ -7,7 +7,6 @@ import 'rxjs/Rx';
 import * as NoticeActions from '../redux/notice.action';
 import {Notice} from '../../../core/model/notice';
 import {AppStore} from '../../../app-store.interface';
-import {getResponse} from '../redux/notice.selector';
 
 @Component({
   selector: 'app-notice-create',

@@ -8,7 +8,7 @@ import {AccountService} from '../../../core/api/account.service';
 import {LoginService} from '../../../core/api/login.service';
 import {SessionService} from '../../../core/service/session.service';
 import {IResponse, RESPONSE_CODE} from '../../../core/service/response.service';
-import {DialogService} from 'app/core/service/dialog';
+import {DialogService} from 'app/core/service/dialog.service';
 
 @Injectable()
 export class AccountEffect {
@@ -53,22 +53,7 @@ export class AccountEffect {
               return {type: 'NO_ACTION'};
             }
           })
-      )
-
-  // @Effect() accountLogout$ = this.actions$
-  //   .ofType(AccountActions.ACCOUNT_LOGOUT)
-  //   .switchMap((action: AccountActions.AccountLogout) => {
-  //     return this.loginService
-  //       .loginDelete()
-  //       .map((res: IResponse<any>) => {
-  //         if (res.code === RESPONSE_CODE.SUCCESS) {
-  //           this.sessionService.destory();
-  //           return new RouterActions.Go({path: ['/login']})
-  //         } else {
-  //           return {type: 'NO_ACTION'};
-  //         }
-  //       });
-  //   });
+      );
 
   constructor(private actions$: Actions, private accountService: AccountService, private authService: AuthService,
               private loginService: LoginService, private sessionService: SessionService, private dialog: DialogService) {}

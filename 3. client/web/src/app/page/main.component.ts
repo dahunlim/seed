@@ -15,13 +15,13 @@ export class MainComponent {
   goToPage(str: string) {
     switch (str) {
       case 'home' :
-        this.store.dispatch(new RouterActions.Go({path: ['']}));
+        this.store.dispatch(new RouterActions.Go({path: ['/main/']}));
         break;
       case 'notice' :
-        this.store.dispatch(new RouterActions.Go({path: ['/notice']}));
+        this.store.dispatch(new RouterActions.Go({path: ['/main/notice']}));
         break;
       case 'Inquiry' :
-        this.store.dispatch(new RouterActions.Go({path: ['/inquiry']}));
+        this.store.dispatch(new RouterActions.Go({path: ['/main/inquiry']}));
         break;
       default :
         break;

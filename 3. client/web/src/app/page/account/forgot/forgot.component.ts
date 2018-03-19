@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppStore} from '../../../app-store.interface';
 import {AuthService} from '../../../core/api/auth.service';
 import {RESPONSE_CODE} from '../../../core/service/response.service';
-import {DialogService} from '../../../core/service/dialog';
+import {DialogService} from '../../../core/service/dialog.service';
 import {FormHelper} from '../../../core/helper/form';
 
 import * as AccountActions from '../redux/account.action';

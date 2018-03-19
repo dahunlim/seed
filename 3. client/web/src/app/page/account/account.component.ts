@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-  selector: 'app-notice',
+  selector: 'app-account',
   template: '<router-outlet></router-outlet>'
 })
 

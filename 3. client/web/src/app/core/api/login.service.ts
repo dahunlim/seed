@@ -15,12 +15,4 @@ export class LoginService extends BaseService {
   public login(id: string, pass: string): Observable<IResponse<Login[]>> {
     return this.http.post(`${this.controllerName}`, {id: id, pass: pass});
   }
-
-  public loginGet(): Observable<IResponse<Login[]>> {
-    return this.http.get(`${this.controllerName}`, {})
-  }
-
-  public loginDelete(): Observable<IResponse<Login[]>> {
-    return this.http.delete(`${this.controllerName}`, {});
-  }
 }

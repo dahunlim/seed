@@ -19,21 +19,7 @@ export class NoticeService extends BaseService {
       count: count,
       filter: filter
     };
-
     return this.http.get(`${this.controllerName}`, params)
-      /*.map(function (res) {
-        const notices: Notice[] = [];
-        if (res.data.list !== undefined) {
-          for (const i of Object.keys(res.data.list)) {
-            const notice: Notice = new Notice();
-            notice.fromJson(res.data.list[i]);
-            notices.push(notice);
-          }
-        }
-
-        res.data.list = notices;
-        return res.data
-      });*/
   }
 
   /*public content(id: string): Observable<Notice[]> {

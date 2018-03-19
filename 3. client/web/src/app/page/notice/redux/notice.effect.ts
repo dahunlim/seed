@@ -16,8 +16,7 @@ export class NoticeEffect {
   @Effect() NoticeGetList$ = this.actions$
     .ofType(NoticeActions.NOTICE_GET_LIST)
     .switchMap((action: NoticeActions.NoticeGetList) => {
-      return this.noticeService
-        .list(action.offset, action.count)
+      return this.noticeService.list(action.offset, action.count)
         .map((res: any) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             const list: Array<Notice> = Converter.jsonToInstance(Notice, res.data.list);

@@ -7,7 +7,7 @@ import {Store} from '@ngrx/store';
 @Injectable()
 export class AuthService extends BaseService {
 
-  constructor(http: HttpService, private store: Store<AppStore>) {
+  constructor(http: HttpService) {
     super('auth', http);
   }
 

@@ -20,7 +20,7 @@ import {appEffects} from './app.effect';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     StoreModule.forRoot(reducers),
@@ -31,7 +31,7 @@ import {appEffects} from './app.effect';
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    StoreRouterConnectingModule
+    StoreRouterConnectingModule,
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: CustomSerializer},

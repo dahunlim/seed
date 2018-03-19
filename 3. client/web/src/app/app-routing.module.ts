@@ -2,7 +2,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 
 const appRoutes: Routes = [
-  {path: '', loadChildren: 'app/page/main.module#MainModule'}
+  {path: 'main', loadChildren: 'app/page/main.module#MainModule'},
+  {path: '', loadChildren: 'app/page/account/account.module#AccountModule'},
 ];
 
 @NgModule({

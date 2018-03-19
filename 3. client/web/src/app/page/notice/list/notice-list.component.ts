@@ -42,7 +42,6 @@ export class NoticeListComponent implements OnInit, OnDestroy {
   }
 
   goCreate() {
-    console.log('Go Create Page')
     this.store.dispatch(new RouterActions.Go({path: ['/notice/create']}));
   }
 }
