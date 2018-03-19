@@ -1,22 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import {EffectsModule} from "@ngrx/effects";
 
 import { MyApp } from './app.component';
 import {effects} from './app.effect';
+import {EffectsModule} from "@ngrx/effects";
 
 @NgModule({
   declarations: [
     MyApp
   ],
   imports: [
-    EffectsModule.forRoot(effects),
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    EffectsModule.forRoot(effects)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
