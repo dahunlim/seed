@@ -8,10 +8,10 @@ const accountRoutes: Routes = [
   {
     path: '',
     children: [
-      { path: '', redirectTo: 'login' },
       { path: 'join', component: JoinComponent },
       { path: 'login', component: LoginComponent},
-      { path: 'forgot', component: ForgotComponent}
+      { path: 'forgot', component: ForgotComponent},
+      { path: '**', redirectTo: 'login' },
     ]
   }
 ];
