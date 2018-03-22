@@ -13,6 +13,7 @@ export class LoginService extends BaseService {
   }
 
   public login(id: string, pass: string): Observable<IResponse<any>> {
+    console.log(id);
     const params = {
       id: id,
       pass: pass

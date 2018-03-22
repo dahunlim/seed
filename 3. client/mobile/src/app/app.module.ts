@@ -10,6 +10,7 @@ import {reducers} from "./app.reducer";
 import {CoreModule} from "./core/core.module";
 import {HttpClientModule} from "@angular/common/http";
 import {effects} from "./app.effect";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,9 @@ import {effects} from "./app.effect";
     IonicModule.forRoot(MyApp),
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 5
+    }),
     CoreModule
   ],
   bootstrap: [IonicApp],
