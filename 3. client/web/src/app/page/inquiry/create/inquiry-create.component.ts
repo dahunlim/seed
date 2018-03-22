@@ -6,6 +6,8 @@ import {Store} from '@ngrx/store';
 import {Inquiry} from '../../../core/model/inquiry';
 import {AppStore} from '../../../app-store.interface';
 
+import * as InquiryActions from '../redux/inquiry.action';
+
 @Component({
   selector: 'app-inquiry-create',
   templateUrl: './inquiry-create.component.html',
@@ -21,5 +23,10 @@ export class InquiryCreateComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  save() {
+    console.log(this.inquiry);
+    this.store.dispatch(new InquiryActions.InquiryAdd(this.inquiry));
   }
 }

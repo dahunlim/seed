@@ -14,7 +14,3 @@ export const getInquiryTotalCount = createSelector(baseInquiry, (state: IInquiry
 export const getSelectedInquiry = createSelector(baseInquiry, (state: IInquiryState) => {
   return state.selectedInquiry;
 });
-
-export const getResponse = createSelector(baseInquiry, (state: IInquiryState) => {
-  return state.code;
-});

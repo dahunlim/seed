@@ -35,7 +35,6 @@ export class NoticeDetailComponent implements OnInit, OnDestroy {
       this.notice$ = this.store.select(getSelectedNotice);
 
       this.detailSub = this.notice$.subscribe( notice => {
-        console.log(notice);
         if (!!notice && notice._id === params['noticeID']) {
           this.notice = notice;
         }

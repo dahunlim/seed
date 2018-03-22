@@ -61,7 +61,6 @@ export class NoticeFormComponent implements OnInit, OnDestroy {
       alert('제목 또는 내용이 입력되어 있지 않습니다.');
       return false;
     }
-    console.log(this.notice);
     this.store.dispatch(new NoticeActions.NoticeModify(this.notice));
   }
 

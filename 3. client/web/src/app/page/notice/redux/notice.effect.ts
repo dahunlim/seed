@@ -48,7 +48,7 @@ export class NoticeEffect {
         .delete(action.notice_id)
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
-            return new RouterActions.Go({path: ['/notice/list/1']});
+            return new RouterActions.Go({path: ['/main/notice/list/1']});
           }
           return {type: 'NO_ACTION'};
         })
@@ -67,10 +67,9 @@ export class NoticeEffect {
           }
         })
         .map((res: IResponse<Notice>) => {
-          console.log(res);
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:
-              return new RouterActions.Go({path: ['/notice/list/1']});
+              return new RouterActions.Go({path: ['/main/notice/list/1']});
             default:
               return {type: 'NO_ACTION'};
           }
@@ -84,7 +83,7 @@ export class NoticeEffect {
         .modify<Notice>(action.notice, true)
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
-            return new RouterActions.Go({path: [`/notice/detail/${action.notice._id}`]});
+            return new RouterActions.Go({path: [`/main/notice/detail/${action.notice._id}`]});
           }
           return {type: 'NO_ACTION'};
         })
