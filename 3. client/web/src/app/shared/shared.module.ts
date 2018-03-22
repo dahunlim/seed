@@ -19,7 +19,13 @@ import {PipeModule} from './pipe/pipe.module';
     PipeModule
   ],
   exports: [
-    MaterialModule
+    RouterModule,
+    CommonModule,
+    FormsModule,
+    DirectiveModule,
+    MaterialModule,
+    ComponentModule,
+    PipeModule
   ],
   providers: [],
   declarations: []
