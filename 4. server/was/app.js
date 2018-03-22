@@ -46,10 +46,10 @@ app.use(function (req, res, next) {
     next();
 });
 
-var files = fs.readdirSync('controllers');
+var files = fs.readdirSync('route');
 for(var i = 0; i < files.length; i++){
     var fileNameArr = files[i].split('.');
-    app.use('/' + fileNameArr[0].toLowerCase(), require('./controller/' + files[i]));
+    app.use('/' + fileNameArr[0].toLowerCase(), require('./route/' + files[i]));
 }
 
 
@@ -62,8 +62,8 @@ if(fs.existsSync('./tasks')){
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
+    // var err = new Error('Not Found');
+    // err.status = 404;
     next(err);
 });
 

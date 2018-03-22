@@ -1,42 +1,9 @@
 <ion-content class="home-container">
-
-
-  <div class="home-header">
-    <div class="icon">
-      <div class="lds-flickr">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-    <div class="text">실시간 조회중</div>
-    <div class="icon right" (click)="goToPage('mypage')">
-      <ion-icon name="ios-person-outline"></ion-icon>
-    </div>
-    <div class="icon right" (click)="goToPage('alarm')">
-      <ion-icon name="ios-notifications-outline"></ion-icon>
-    </div>
-  </div>
-
-  <!-- freezer List-->
-  <div class="list-container">
-    <div class="list-box" *ngFor="let freezer of freezers$ | async;" (click)="goToPage('detail', freezer._id)">
-      <div class="color-label" [ngClass]="setStateColor(freezer.state.state)"></div>
-      <div class="info-area">
-        <div class="name">{{freezer.name}}</div>
-        <div class="address-icon">
-          <ion-icon name="ios-pin"></ion-icon>
-        </div>
-        <div class="address">
-          {{freezer.address.replace('^%%_', ' ')}}
-        </div>
-      </div>
-      <div class="state-area">
-        <div class="temperature" [ngClass]="setStateColor(freezer.state.state)">{{freezer.state.temperature}}</div>
-        <div class="degree" [ngClass]="setStateColor(freezer.state.state)">℃</div>
-        <div class="text">현재온도</div>
-      </div>
-    </div>
-  </div>
-
+  <button ion-button block (click)="test()" style="width: 200px">test</button>
+  <br>
+  <hr/>
+  <button ion-button block (click)="goToPage('signin')" style="width: 200px">cccc</button>
+  <br>
+  <hr/>
+  <button ion-button block (click)="goToPage('tabs')" style="width: 200px">test</button>
 </ion-content>

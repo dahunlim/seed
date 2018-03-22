@@ -15,14 +15,18 @@ import {HttpService} from './service/http.service';
 import {SessionService} from './service/session.service';
 import {DaumService} from './service/daum.service';
 import {DialogService} from "./service/dialog.service";
+import {SpinnerModule} from "./module/spinner/spinner.module";
 
 @NgModule({
   imports: [
     HttpClientModule,
     ApiModule,
-    DialogModule
+    DialogModule,
+    SpinnerModule
   ],
-  exports: [],
+  exports: [
+    SpinnerModule
+  ],
   declarations: [],
   entryComponents: [],
   providers: [

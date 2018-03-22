@@ -10,7 +10,7 @@ export class RouterEffect {
   navigate$ = this.actions$
     .ofType(RouterActions.GO)
     .do((action: RouterActions.Go) => {
-      this.app.getActiveNavs()[0].push(action.pageName, action.data);
+      this.app.getRootNav().push(action.pageName, action.data);
     });
 
   @Effect({dispatch: false})
