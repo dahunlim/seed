@@ -6,7 +6,6 @@ export interface IInquiryState extends Map<string, any> {
     selectedInquiry: Inquiry;
     pageNumber: number;
     totalCount: number;
-    code: number;
 }
 
 export const InquiryState = Record({
@@ -14,5 +13,4 @@ export const InquiryState = Record({
   selectedInquiry: null,
   pageNumber: 1,
   totalCount: 0,
-  code: null
 });

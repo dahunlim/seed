@@ -20,8 +20,12 @@ export class InquiryEffect {
       return this.inquiryService
         .list(action.offset, action.count)
         .map((res: any) => {
-          const list: Array<Inquiry> = Converter.jsonToInstance<Inquiry>(Inquiry, res.data.list);
-          return new InquiryActions.InquiryGetListSuccess(res.data.total, list)
+          if (res.code === RESPONSE_CODE.SUCCESS) {
+            const list: Array<Inquiry> = Converter.jsonToInstance<Inquiry>(Inquiry, res.data.list);
+            return new InquiryActions.InquiryGetListSuccess(res.data.total, list)
+          } else {
+            return {type: 'NO_ACTION'};
+          }
         })
     });
 
@@ -36,7 +40,7 @@ export class InquiryEffect {
             const inquiry: Inquiry = Converter.jsonToInstance<Inquiry>(Inquiry, res.data);
             return new InquiryActions.InquiryGetDetailSuccess(inquiry);
           } else {
-            return Observable.of({type: 'NO_ACTION'});
+            return {type: 'NO_ACTION'};
           }
         })
     });
@@ -49,9 +53,9 @@ export class InquiryEffect {
         .map((res: IResponse<Inquiry>) => {
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:
-              return new RouterActions.Go({path: [`/inquiry/detail/${action.inquiry._id}`]});
+              return new RouterActions.Go({path: [`/main/inquiry/detail/${action.inquiry._id}`]});
             default:
-              return Observable.of({type: 'NO_ACTION'});
+              return {type: 'NO_ACTION'};
           }
         })
     });
@@ -59,13 +63,12 @@ export class InquiryEffect {
   @Effect() InquiryAdd$ = this.action$
     .ofType(InquiryActions.INQUIRY_ADD)
     .switchMap((action: InquiryActions.InquiryAdd) => {
-      return this.inquiryService
-        .add<Inquiry>(action.inquiry, true)
+      return this.inquiryService.add<Inquiry>(action.inquiry, true)
         .map((res: IResponse<Inquiry>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
-            return new RouterActions.Go({path: ['/inquiry/list/1']});
+            return new RouterActions.Go({path: ['/main/inquiry/list/1']});
           } else {
-            return Observable.of({type: 'NO_ACTION'});
+            return {type: 'NO_ACTION'};
           }
         })
     });
@@ -79,7 +82,7 @@ export class InquiryEffect {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             window.open(res.data);
           }
-          return Observable.of({type: 'NO_ACTION'});
+          return {type: 'NO_ACTION'};
         })
     });
 

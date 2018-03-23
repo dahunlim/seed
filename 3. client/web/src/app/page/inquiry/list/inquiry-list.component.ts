@@ -16,16 +16,26 @@ import * as RouterActions from '../../../core/router/router.action';
 })
 export class InquiryListComponent implements OnInit, OnDestroy {
 
-  constructor(private store: Store<AppStore>, private route: ActivatedRoute, private router: Router) {
-  }
+  inquiry$: any;
+
+  constructor(private store: Store<AppStore>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-
+    this.store.dispatch(new InquiryActions.InquiryGetList(0, 10));
+    this.inquiry$ = this.store.select(getInquiry);
   }
 
   goCreate() {
-    console.log('Go Create Page');
-    this.store.dispatch(new RouterActions.Go({path: ['/inquiry/create']}));
+    this.store.dispatch(new RouterActions.Go({path: ['/main/inquiry/create']}));
+  }
+
+  goToDetail(state, id) {
+    // console.log('state 값 : ' + state + ' state 타입 : ' + typeof state);
+    if (state === 0) { // 미답변
+      this.router.navigate(['/main/inquiry/reply/' + id, {}]);
+    } else if (state === 1) { // 답변완료
+      this.router.navigate(['/main/inquiry/detail/' + id, {}]);
+    }
   }
 
   ngOnDestroy(): void {

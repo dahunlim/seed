@@ -8,8 +8,6 @@ import {IResponse, RESPONSE_CODE} from '../../../core/service/response.service';
 import {MediaService} from '../../../core/api/media.service';
 import * as RouterActions from '../../../core/router/router.action';
 import {Converter} from '../../../core/helper/converter';
-import {AppDialogAlertComponent} from "../../../core/dialog/alert/alert.component";
-import {DialogService} from "../../../core/service/dialog.service";
 
 
 @Injectable()
@@ -50,7 +48,7 @@ export class NoticeEffect {
         .delete(action.notice_id)
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
-            return new RouterActions.Go({path: ['/notice/list/1']});
+            return new RouterActions.Go({path: ['/main/notice/list/1']});
           }
           return {type: 'NO_ACTION'};
         })
@@ -61,7 +59,6 @@ export class NoticeEffect {
     .switchMap((action: NoticeActions.NoticeAdd) => {
       return this.noticeService
         .add<Notice>(action.notice, false)
-        // 확인 필요 2018.03.22
         .filter(data => {
           if (!!data) {
             return true
@@ -72,7 +69,7 @@ export class NoticeEffect {
         .map((res: IResponse<Notice>) => {
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:
-              return this.dialogService.routeAfterAlert('등록 성공', new RouterActions.Go({path: ['/notice/list/1']}));
+              return new RouterActions.Go({path: ['/main/notice/list/1']});
             default:
               return {type: 'NO_ACTION'};
           }
@@ -86,7 +83,7 @@ export class NoticeEffect {
         .modify<Notice>(action.notice, true)
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
-            return new RouterActions.Go({path: [`/notice/detail/${action.notice._id}`]});
+            return new RouterActions.Go({path: [`/main/notice/detail/${action.notice._id}`]});
           }
           return {type: 'NO_ACTION'};
         })
@@ -105,11 +102,5 @@ export class NoticeEffect {
         })
     });
 
-  constructor(
-    private actions$: Actions,
-    private noticeService: NoticeService,
-    private mediaService: MediaService,
-    private router: Router,
-    private dialogService: DialogService
-  ) { }
+  constructor( private actions$: Actions, private noticeService: NoticeService, private mediaService: MediaService, private router: Router ) { }
 }

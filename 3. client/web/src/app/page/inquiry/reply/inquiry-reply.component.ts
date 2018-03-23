@@ -7,7 +7,7 @@ import {Inquiry} from '../../../core/model/inquiry';
 import {AppStore} from '../../../app-store.interface';
 
 import * as InquiryActions from '../redux/inquiry.action';
-import {getResponse, getSelectedInquiry} from '../redux/inquiry.selector';
+import {getSelectedInquiry} from '../redux/inquiry.selector';
 
 @Component({
   selector: 'app-inquiry-reply',

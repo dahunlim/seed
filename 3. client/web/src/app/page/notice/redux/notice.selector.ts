@@ -3,9 +3,9 @@ import {INoticeState} from "./notice.state";
 import {createSelector} from "@ngrx/store";
 
 export const baseNotice = (state: AppStore) => state.notice;
-/*export const getNoticeList = createSelector(baseNotice, (state: INoticeState) => {
+export const getNoticeList = createSelector(baseNotice, (state: INoticeState) => {
   return state.list;
-});*/
+});
 
 export const getNoticeTotalCount = createSelector(baseNotice, (state: INoticeState) => {
   return state.totalCount;

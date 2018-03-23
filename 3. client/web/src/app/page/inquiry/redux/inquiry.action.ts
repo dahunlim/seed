@@ -1,6 +1,5 @@
 import {Action} from "@ngrx/store";
 import {Inquiry} from "../../../core/model/inquiry";
-import {IResponse} from "../../../core/service/response.service";
 
 export const INQUIRY_GET_LIST = "INQUIRY_GET_LIST";
 export class InquiryGetList implements Action {
@@ -50,12 +49,6 @@ export class InquiryFileDownload implements Action {
   constructor(public key: string, public name: string) {}
 }
 
-export const INQUIRY_COMMON_RESPONSE = 'INQUIRY_COMMON_RESPONSE';
-export class InquiryCommonResponse implements Action {
-  readonly type = INQUIRY_COMMON_RESPONSE;
-  constructor(public response: IResponse<Inquiry>, public code: number) {}
-}
-
 export type All =
   InquiryGetList |
   InquiryGetListSuccess |
@@ -64,5 +57,5 @@ export type All =
   InquiryAdd |
   InquiryModify |
   InquiryDelete |
-  InquiryFileDownload |
-  InquiryCommonResponse;
+  InquiryFileDownload
+;
