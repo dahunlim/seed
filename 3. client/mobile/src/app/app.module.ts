@@ -18,7 +18,9 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
   ],
   imports: [
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      statusbarPadding: true,
+    }),
     EffectsModule.forRoot(effects),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({

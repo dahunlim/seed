@@ -13,20 +13,21 @@ import {LoginService} from "../../../core/api/login.service";
 import {SessionService} from "../../../core/service/session.service";
 import {Login} from "../../../core/model/login";
 import {UserService} from "../../../core/api/user.service";
-import {Firebase} from "@ionic-native/firebase";
+// import {Firebase} from "@ionic-native/firebase";
 
 @Injectable()
 export class AccountEffect {
 
-  constructor(private toastCtrl: ToastController,
-              private actions$: Actions,
-              private accountService: AccountService,
-              private loginService: LoginService,
-              private sessionService: SessionService,
-              private authService: AuthService,
-              private userService: UserService,
-              private firebase: Firebase,
-              private platform: Platform,) {
+  constructor(
+    private toastCtrl: ToastController,
+    private actions$: Actions,
+    private accountService: AccountService,
+    private loginService: LoginService,
+    private sessionService: SessionService,
+    private authService: AuthService,
+    private userService: UserService,
+    // private firebase: Firebase,
+    private platform: Platform,) {
   }
 
   toast(msg: string = 'null', position: string = 'top') {
@@ -41,16 +42,23 @@ export class AccountEffect {
     .ofType(AccountActions.ACCOUNT_LOGIN)
     .switchMap((action: AccountActions.AccountLogin) =>
       this.loginService.login(action.id, action.pass)
+        .filter(res => {
+          if(res) {
+            return true
+          } else {
+            return false
+          }
+        })
         .map((res: IResponse<any>) => {
           console.log(res);
           if (res.code === RESPONSE_CODE.SUCCESS) {
             this.sessionService.init(res.data);
             // Cordova Check;
-            if(this.platform.is('cordova')) {
+            /*if(this.platform.is('cordova')) {
               this.firebase.getToken().then(token => {
                 this.userService.putToken(token);
               });
-            }
+            }*/
             return new RouterActions.Go('HomeComponent');
           } else {
             this.toast(res.msg);

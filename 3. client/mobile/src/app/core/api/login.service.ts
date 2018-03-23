@@ -13,12 +13,7 @@ export class LoginService extends BaseService {
   }
 
   public login(id: string, pass: string): Observable<IResponse<any>> {
-    console.log(id);
-    const params = {
-      id: id,
-      pass: pass
-    };
-    return this.http.post(`${this.controllerName}`, params);
+    return this.http.post(`${this.controllerName}`, {id: id, pass: pass});
   }
 
   public loginGet(): Observable<IResponse<Login[]>> {

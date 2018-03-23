@@ -4,6 +4,8 @@ import {Store} from "@ngrx/store";
 
 import {AppStore} from "../../app-store.interface";
 import * as RouterActions from '../../core/router/router.action';
+import {AuthGuard} from "../../core/guard/auth.guard";
+import {SessionService} from "../../core/service/session.service";
 
 @IonicPage({
   name: 'HomeComponent',
@@ -14,9 +16,10 @@ import * as RouterActions from '../../core/router/router.action';
   templateUrl: 'home.component.html'
 })
 
-export class HomeComponent {
+export class HomeComponent extends AuthGuard{
 
-  constructor(private store: Store<AppStore>) {
+  constructor(protected store: Store<AppStore>, protected sessionService: SessionService) {
+    super(store, sessionService)
   }
 
   ionViewDidLoad() {

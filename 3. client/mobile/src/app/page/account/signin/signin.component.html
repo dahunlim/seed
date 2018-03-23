@@ -1,38 +1,28 @@
-<ion-content class="signin-container">
-  <div class="mark">
-    <img src="assets/imgs/signin-logo.svg">
-  </div>
+<ion-content class="signin-container top-margin-container">
   <div class="input-container">
     <form name="loginForm" [formGroup]="loginForm">
       <ion-item>
         <ion-input type="text" formControlName="id" placeholder="아이디"></ion-input>
-        <button item-right clear>
-          <ion-icon name="ios-person-outline"></ion-icon>
-        </button>
       </ion-item>
-      <div *ngIf="!loginFormErrors.id.valid">
+      <!--<div *ngIf="!loginFormErrors.id.valid">
         <p class="error-text" *ngIf="loginFormErrors.id.required" [@aramSlideUpDown]>
           이메일을 입력해주세요
         </p>
         <p class="error-text" *ngIf="loginFormErrors.id.email" [@aramSlideUpDown]>
           이메일 형식에 맞지 않습니다.
         </p>
-      </div>
+      </div>-->
       <ion-item>
         <ion-input type="password" formControlName="password" placeholder="비밀번호"></ion-input>
-        <button item-right clear>
-          <ion-icon name="ios-unlock"></ion-icon>
-        </button>
       </ion-item>
-      <div *ngIf="!loginFormErrors.password.valid">
+      <!--<div *ngIf="!loginFormErrors.password.valid">
         <p class="error-text" *ngIf="loginFormErrors.password.required" [@aramSlideUpDown]>
           비밀번호를 입력해주세요
         </p>
         <p class="error-text" *ngIf="loginFormErrors.password.minlength" [@aramSlideUpDown]>
           비밀번호는 3글자 이상 입력해주세요
         </p>
-      </div>
-      <div class="empty-container"></div>
+      </div>-->
     </form>
   </div>
   <div class="btn-container">

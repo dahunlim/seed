@@ -40,7 +40,6 @@ export class MyApp {
   }
 
   back() {
-    console.log('check;')
     this.store.dispatch(new RouterActions.Back());
   }
 }

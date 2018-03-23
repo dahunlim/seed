@@ -10,6 +10,7 @@ export class RouterEffect {
   navigate$ = this.actions$
     .ofType(RouterActions.GO)
     .do((action: RouterActions.Go) => {
+      // this.app.getActiveNavs()[0].push(action.pageName, action.data);
       this.app.getRootNav().push(action.pageName, action.data);
     });
 
@@ -22,7 +23,8 @@ export class RouterEffect {
       } else {
         // this.navCtrl.setRoot(HomeComponent); // Root Module Set
         // this.app.getActiveNavs()[0].push(this.app.getRootNav().root, {});
-        this.app.getActiveNavs()[0].push('HomeComponent', {});
+        // this.app.getActiveNavs()[0].push('HomeComponent', {});
+        this.app.getRootNav().push('HomeComponent', {});
       }
     });
 
