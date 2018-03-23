@@ -59,13 +59,13 @@ export class NoticeEffect {
     .switchMap((action: NoticeActions.NoticeAdd) => {
       return this.noticeService
         .add<Notice>(action.notice, false)
-        .filter(data => {
-          if (!!data) {
-            return true
-          } else {
-            return false
-          }
-        })
+        // .filter(data => {
+        //   if (!!data) {
+        //     return true
+        //   } else {
+        //     return false
+        //   }
+        // })
         .map((res: IResponse<Notice>) => {
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:

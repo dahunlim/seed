@@ -42,13 +42,6 @@ export class AccountEffect {
     .ofType(AccountActions.ACCOUNT_LOGIN)
     .switchMap((action: AccountActions.AccountLogin) =>
       this.loginService.login(action.id, action.pass)
-        .filter(res => {
-          if(res) {
-            return true
-          } else {
-            return false
-          }
-        })
         .map((res: IResponse<any>) => {
           console.log(res);
           if (res.code === RESPONSE_CODE.SUCCESS) {

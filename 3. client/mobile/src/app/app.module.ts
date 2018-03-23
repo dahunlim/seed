@@ -8,9 +8,10 @@ import {EffectsModule} from "@ngrx/effects";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./app.reducer";
 import {CoreModule} from "./core/core.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {effects} from "./app.effect";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {ResponseInterceptor} from "./core/interceptor/response.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}
   ]
 })
 export class AppModule {}
