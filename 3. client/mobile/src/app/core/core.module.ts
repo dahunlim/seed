@@ -11,7 +11,6 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 
 import {HttpService} from "./service/http.service";
-import {DaumService} from "./service/daum.service";
 import {SessionService} from './service/session.service';
 import {AccountService} from './api/account.service';
 import {LoginService} from './api/login.service';
@@ -19,6 +18,8 @@ import {AuthService} from "./api/auth.service";
 import {UserService} from "./api/user.service";
 import {NoticeService} from "./api/notice.service";
 import {InquiryService} from "./api/inquiry.service";
+import {MediaService} from "./api/media.service";
+import {DaumService} from "./service/daum.service";
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {InquiryService} from "./api/inquiry.service";
     BrowserAnimationsModule,
     CommonModule
   ],
-  exports: [],
+  exports: [
+  ],
   declarations: [],
   entryComponents: [],
   providers: [
@@ -38,6 +40,7 @@ import {InquiryService} from "./api/inquiry.service";
     UserService,
     NoticeService,
     InquiryService,
+    MediaService,
     DaumService
   ]
 })

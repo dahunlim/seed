@@ -1,9 +1,10 @@
+<ng-progress [speed]="500" [color]="'blue'" [ease]="'linear'"></ng-progress>
 <ion-header>
   <ion-toolbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title (click)="back()">Seed-Project</ion-title>
+    <ion-title>Seed-Project</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-menu [content]="content">
@@ -22,6 +23,12 @@
       </button>
       <button ion-item menuToggle (click)="goToPage('signup')">
         SignUp
+      </button>
+      <button ion-item menuToggle (click)="goToPage('notice')">
+        Notice
+      </button>
+      <button ion-item menuToggle (click)="goToPage('inquiry')">
+        Inquiry
       </button>
       <button ion-item menuToggle (click)="null">
         Close Menu

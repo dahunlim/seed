@@ -1,0 +1,13 @@
+.address-container {
+  .scroll-content {
+    overflow-y: hidden;
+  }
+  #wrap {
+    display:none;
+    border-top: 1px solid #bcbcbc;
+    position:relative;
+    width: inherit;
+    height: 100%;
+    margin: 0;
+  }
+}

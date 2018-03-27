@@ -62,7 +62,7 @@ export class AccountAddressResetCode implements Action {
   readonly type = ACCOUNT_ADDRESS_RESET_CODE;
   constructor() {}
 }
-
+/* 주소 끝 */
 export const ACCOUNT_PASSWORD_SEND_CODE = 'ACCOUNT_PASSWORD_SEND_CODE';
 export class AccountPasswordSendCode implements Action  {
   readonly type = ACCOUNT_PASSWORD_SEND_CODE;

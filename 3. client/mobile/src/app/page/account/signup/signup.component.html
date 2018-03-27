@@ -1,149 +1,66 @@
-<ion-content class="signup-container" [ngSwitch]="true">
-  <ion-grid class="header">
-    <ion-row>
-      <!-- back -->
-      <ion-col col-auto>
-        <div class="icon-box" *ngSwitchCase="step === 2 || step === 3" (click)="prevStep()">
-          <ion-icon name="md-arrow-back"></ion-icon>
-        </div>
-      </ion-col>
-      <!-- back -->
-      <ion-col>
-        <div class="header-title">회원가입</div>
-      </ion-col>
-      <ion-col col-auto>
-        <div class="btn-box">
-          <button class="button btn-cancel" ion-button clear (click)="back()">취소</button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <div class="step-container">
-    <ion-grid class="inner-container">
-      <ion-row>
-        <ion-col>
-          <div class="step-number" [ngClass]="{'select': isActive(1)}">1</div>
-        </ion-col>
-        <ion-col>
-          <div class="step-divider">
-            <span></span>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div class="step-number" [ngClass]="{'select': isActive(2)}">2</div>
-        </ion-col>
-        <ion-col>
-          <div class="step-divider">
-            <span></span>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div class="step-number" [ngClass]="{'select': isActive(3)}">3</div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-  <div class="step-info">
-    사용하실 아이디와 비밀번호를 입력해주세요.
-  </div>
-  <!-- 1 -->
+<ion-content class="signup-container top-margin-container">
   <form name="userForm" [formGroup]="userForm">
-    <div class="common-container first-container" *ngSwitchCase="step === 1" [@aramStep]="'in'">
-      <ion-item>
-        <ion-input type="text" formControlName="id" placeholder="아이디" required></ion-input>
-      </ion-item>
-      <div *ngIf="!userFormErrors.id.valid">
-        <p class="error-text" *ngIf="userFormErrors.id.required" [@aramSlideUpDown]>
-          이메일을 입력해주세요
-        </p>
-        <p class="error-text" *ngIf="userFormErrors.id.email" [@aramSlideUpDown]>
-          이메일 형식에 맞지 않습니다
-        </p>
-      </div>
-      <ion-item>
-        <ion-input type="password" formControlName="pass" placeholder="비밀번호" required></ion-input>
-      </ion-item>
-      <div *ngIf="!userFormErrors.pass.valid">
-        <p class="error-text" *ngIf="userFormErrors.pass.required" [@aramSlideUpDown]>
-          비밀번호를 입력해주세요
-        </p>
-        <p class="error-text" *ngIf="userFormErrors.pass.minlength" [@aramSlideUpDown]>
-          비밀번호는 6글자 이상 입력해주세요
-        </p>
-      </div>
-      <ion-item>
-        <ion-input type="password" formControlName="confirmPass" placeholder="비밀번호 재입력" required></ion-input>
-      </ion-item>
-      <div *ngIf="!userFormErrors.confirmPass.valid && userForm.get('confirmPass').touched">
-        <p class="error-text" *ngIf="userFormErrors.confirmPass.required" [@aramSlideUpDown]>
-          비밀번호를 다시 입력해주세요
-        </p>
-        <p class="error-text" *ngIf="userForm.hasError('mismatchedPasswords')" [@aramSlideUpDown]>
-          비밀번호가 일치하지 않습니다
-        </p>
-      </div>
-      <div class="empty-container"></div>
+    <ion-item>
+      <ion-input type="text" formControlName="id" placeholder="아이디" required></ion-input>
+    </ion-item>
+    <div *ngIf="!userFormErrors.id.valid">
+      <p class="error-text" *ngIf="userFormErrors.id.required" >
+        이메일을 입력해주세요
+      </p>
+      <p class="error-text" *ngIf="userFormErrors.id.email" >
+        이메일 형식에 맞지 않습니다
+      </p>
     </div>
-    <!-- 2 -->
-    <div class="common-container second-container" *ngSwitchCase="step === 2" [@aramStep]="'in'">
-      <ion-item>
-        <ion-input type="text" formControlName="name" placeholder="이름"></ion-input>
-      </ion-item>
-      <ion-item class="item-left">
-        <ion-input type="text" formControlName="phone" placeholder="핸드폰번호"></ion-input>
-      </ion-item>
-      <button class="item-right" item-right ion-button outline (click)="sendPassCode()" [disabled]="allowStep === 3">
-        {{authBtn()}}
-      </button>
-      <ion-item>
-        <ion-input type="text" formControlName="code" placeholder="인증번호 입력"></ion-input>
-        <button class="timer" item-right clear>
-          {{(limitTime | aramConvertPipe)}}
-        </button>
-      </ion-item>
-      <div class="empty-container"></div>
+    <ion-item>
+      <ion-input type="password" formControlName="pass" placeholder="비밀번호" required></ion-input>
+    </ion-item>
+    <div *ngIf="!userFormErrors.pass.valid">
+      <p class="error-text" *ngIf="userFormErrors.pass.required" >
+        비밀번호를 입력해주세요
+      </p>
+      <p class="error-text" *ngIf="userFormErrors.pass.minlength" >
+        비밀번호는 6글자 이상 입력해주세요
+      </p>
     </div>
-    <!-- 3 -->
-    <div class="common-container third-container" *ngSwitchCase="step === 3" [@aramStep]="'in'">
-      <ion-item>
-        <ion-input type="text" formControlName="company" placeholder="업체명" required></ion-input>
-      </ion-item>
-      <div *ngIf="!userFormErrors.company.valid">
-        <p class="error-text" *ngIf="userFormErrors.company.required" [@aramSlideUpDown]>
-          업체명을 입력해주세요
-        </p>
-      </div>
-      <ion-item class="item-left">
-        <ion-input type="text" formControlName="postcode" placeholder="우편번호" required></ion-input>
-      </ion-item>
-      <button class="item-right" item-right ion-button outline (click)="findPostcode()">
-        우편번호 찾기
-      </button>
-      <ion-item>
-        <ion-input type="text" formControlName="address1" placeholder="주소" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" formControlName="address2" placeholder="나머지주소" required></ion-input>
-      </ion-item>
-      <div *ngIf="!userFormErrors.address2.valid">
-        <p class="error-text" *ngIf="userFormErrors.address2.required" [@aramSlideUpDown]>
-          상세주소를 입력해주세요
-        </p>
-      </div>
-      <ion-item>
-        <ion-input type="text" formControlName="manager" placeholder="연결된 중간관리자 아이디" required></ion-input>
-      </ion-item>
-      <div *ngIf="!userFormErrors.manager.valid">
-        <p class="error-text" *ngIf="userFormErrors.manager.required" [@aramSlideUpDown]>
-          중간관리자 아이디를 입력해주세요
-        </p>
-      </div>
-      <div class="empty-container"></div>
+    <ion-item>
+      <ion-input type="password" formControlName="confirmPass" placeholder="비밀번호 재입력" required></ion-input>
+    </ion-item>
+    <div *ngIf="!userFormErrors.confirmPass.valid && userForm.get('confirmPass').touched">
+      <p class="error-text" *ngIf="userFormErrors.confirmPass.required" >
+        비밀번호를 다시 입력해주세요
+      </p>
+      <p class="error-text" *ngIf="userForm.hasError('mismatchedPasswords')" >
+        비밀번호가 일치하지 않습니다
+      </p>
     </div>
-
-    <div class="btn-container">
-      <button class="signup-btn" (click)="next()" [ngClass]="{'default-step': step !== 3, 'last-step': step === 3}">{{step !== 3 ? '다음' : '회원가입 완료!'}}</button>
+    <ion-item>
+      <ion-input type="text" formControlName="name" placeholder="이름"></ion-input>
+    </ion-item>
+    <ion-item class="item-left">
+      <ion-input type="text" formControlName="phone" placeholder="핸드폰번호"></ion-input>
+    </ion-item>
+    <button class="item-right" item-right ion-button outline (click)="sendPassCode()" [disabled]="allowStep === 3">
+      {{authBtn()}}
+    </button>
+    <ion-item>
+      <ion-input type="text" formControlName="code" placeholder="인증번호 입력"></ion-input>
+    </ion-item>
+    <ion-item class="item-left">
+      <ion-input type="text" formControlName="postcode" placeholder="우편번호" required></ion-input>
+    </ion-item>
+    <button class="item-right" item-right ion-button outline (click)="findPostcode()">
+      우편번호 찾기
+    </button>
+    <ion-item>
+      <ion-input type="text" formControlName="address1" placeholder="주소" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="address2" placeholder="나머지주소" required></ion-input>
+    </ion-item>
+    <div *ngIf="!userFormErrors.address2.valid">
+      <p class="error-text" *ngIf="userFormErrors.address2.required" >
+        상세주소를 입력해주세요
+      </p>
     </div>
   </form>
-  <div style="width: 100%;height: 1.6rem"></div>
 </ion-content>

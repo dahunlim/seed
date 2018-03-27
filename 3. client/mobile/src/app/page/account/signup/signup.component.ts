@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import {Store} from "@ngrx/store";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
-import {IonicPage, LoadingController, ToastController} from "ionic-angular";
+import {IonicPage, ToastController} from "ionic-angular";
 
 import * as RouterActions from "../../../core/router/router.action";
+import * as AccountActions from "../redux/account.action";
 import {AppStore} from "../../../app-store.interface";
 import {User} from "../../../core/model/user";
 import {FormHelper} from "../../../core/helper/form";
-import * as AccountActions from "../redux/account.action";
 import {accountAddress, accountMobileCheckCode} from "../redux/account.selector";
 
 @IonicPage({
@@ -17,10 +17,9 @@ import {accountAddress, accountMobileCheckCode} from "../redux/account.selector"
 })
 @Component({
   selector: 'page-signup-ionic',
-  templateUrl: 'signup.component.html'
+  templateUrl: 'signup.component.html',
 })
 export class SignupComponent {
-  private step: number = 1;
   private change$: any;
   private userForm: FormGroup;
   private userFormErrors: any;
@@ -28,11 +27,8 @@ export class SignupComponent {
 
   /* Mobile Auth */
   private allowStep: number = 1;
-  private authCheck$: any;
-  private limitTime: number = 180;
-  private authInterval: any;
 
-  constructor(private store: Store<AppStore>, private formBuilder: FormBuilder, private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+  constructor(private store: Store<AppStore>, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.user = new User();
     this.userFormErrors = {
       id: {},
@@ -41,28 +37,23 @@ export class SignupComponent {
       name: {},
       phone: {},
       code: {},
-      company: {},
       postcode: {},
       address1: {},
       address2: {},
-      manager: {},
     };
     this.userForm = this.formBuilder.group({
       // 1
       id: ['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPass: ['', [Validators.required], FormHelper.confirmPassword('passwordNotMatch', 'pass')],
-      // confirmPass: ['', [Validators.required]],
+      confirmPass: ['', [Validators.required]],
       // 2
       name: [''],
       phone: [''],
       code: [''],
       // 3
-      company: ['', [Validators.required]],
       postcode: [{value: '', disabled: true}, [Validators.required]],
       address1: [{value: '', disabled: true}, [Validators.required]],
       address2: ['', [Validators.required]],
-      manager: ['', [Validators.required]]
     }, {validator: FormHelper.confirmPassword('pass', 'confirmPass')} );
   }
 
@@ -71,11 +62,11 @@ export class SignupComponent {
   }
 
   ionViewWillEnter() {
-    this.store.select(accountAddress).subscribe(res => {
-      if(!!res) {
+    this.store.select(accountAddress)
+      .filter(data => !!data)
+      .subscribe(res => {
         this.userForm.patchValue({postcode: res.postcode});
         this.userForm.patchValue({address1: res.address});
-      }
     }).unsubscribe();
   }
 
@@ -84,32 +75,8 @@ export class SignupComponent {
     this.store.dispatch(new AccountActions.AccountAddressResetCode());
   }
 
-  next() {
-    switch (this.step) {
-      case 1:
-        this.step = 2;
-        break;
-      case 2:
-        this.step = 3;
-        break;
-      case 3:
-        this.signup();
-        break;
-    }
-  }
-
-  prevStep() {
-    if (this.step !== 1) {
-      this.step = (this.step - 1);
-    }
-  }
-
   back() {
     this.store.dispatch(new RouterActions.Back());
-  }
-
-  isActive(num: number) {
-    return this.step === num;
   }
 
   findPostcode() {
@@ -149,16 +116,7 @@ export class SignupComponent {
       return false;
     }
     this.store.dispatch(new AccountActions.AccountMobileSendCode(this.userForm.getRawValue().phone));
-    this.loadingCtrl.create({
-      content: "잠시만 기다려주세요",
-      duration: 2000
-    }).present();
-
-    setTimeout(() => {
-      this.allowStep = 2;
-      this.limitTime = 180;
-      this.flowTime(true);
-    }, 2000);
+    this.allowStep = 2
   }
 
   step2() {
@@ -168,32 +126,14 @@ export class SignupComponent {
     }
     // 인증번호 확인
     this.store.dispatch(new AccountActions.AccountMobileCheckCode(this.userForm.getRawValue().code));
-    this.authCheck$ = this.store.select(accountMobileCheckCode).subscribe(res => {
-      if(res) {
+    this.store.select(accountMobileCheckCode)
+      .filter(data => !!data)
+      .subscribe(() => {
         // 성공후
         this.allowStep = 3;
-        this.flowTime(false);
         this.userForm.get('phone').disable();
         this.userForm.get('code').disable();
-        this.authCheck$.unsubscribe();
-      }
-    });
-  }
-
-  flowTime(bol: boolean) {
-    if(bol) {
-      this.authInterval = setInterval(() => {
-        if(this.limitTime > 0) {
-          this.limitTime = this.limitTime - 1;
-        } else {
-          this.toast('인증시간이 만료되었습니다.');
-          this.allowStep = 1;
-          clearInterval(this.authInterval);
-        }
-      }, 1000)
-    } else {
-      clearInterval(this.authInterval);
-    }
+      }).unsubscribe();
   }
 
   toast(str: string = '') {
@@ -211,7 +151,7 @@ export class SignupComponent {
     }
 
     const rawValue = this.userForm.getRawValue();
-    const user = new User(rawValue.id, rawValue.pass, rawValue.name, rawValue.phone, rawValue.company, null, rawValue.postcode, rawValue.address1+'^%%_'+rawValue.address2, true, 0, rawValue.manager);
+    const user = new User(rawValue.id, rawValue.pass, rawValue.name, rawValue.phone, 'SeedProject', null, rawValue.postcode, rawValue.address1+'^%%_'+rawValue.address2, true, 0, 'SeedProject');
     this.store.dispatch(new AccountActions.AccountSignup(user));
   }
 }

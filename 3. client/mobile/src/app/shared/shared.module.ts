@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {ComponentModule} from './component/component.module';
 import {DirectiveModule} from './directive/directive.module';
 import {PipeModule} from './pipe/pipe.module';
+import {AnimationModule} from "./animation/animation.module";
 
 @NgModule({
   imports: [
@@ -13,13 +14,15 @@ import {PipeModule} from './pipe/pipe.module';
     MaterialModule,
     ComponentModule,
     DirectiveModule,
-    PipeModule
+    PipeModule,
+    AnimationModule
   ],
   exports: [
     MaterialModule,
     ComponentModule,
     DirectiveModule,
-    PipeModule
+    PipeModule,
+    AnimationModule
   ]
 })
 export class SharedModule {
