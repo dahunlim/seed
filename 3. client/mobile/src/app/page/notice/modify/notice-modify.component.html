@@ -1,0 +1,18 @@
+<ion-content class="notice-modify-container top-margin-container">
+  <div>Notice Detail</div>
+  <hr/>
+  <button ion-button outline (click)="modify()">저장</button>
+  <hr/>
+  <ion-item>
+    <ion-label fixed>TITLE : </ion-label>
+    <ion-input type="text" [ngModel]="notice?.title" (ngModelChange)="notice.title = $event"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>CONTENT : </ion-label>
+    <ion-input type="text" [ngModel]="notice?.contents" (ngModelChange)="notice.contents = $event"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>LINK : </ion-label>
+    <ion-input type="text" id="link" [ngModel]="notice?.link" (ngModelChange)="notice.link = $event"></ion-input>
+  </ion-item>
+</ion-content>

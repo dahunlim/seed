@@ -1,8 +1,8 @@
-<ion-content class="notice-list-container top-margin-container">
+<ion-content class="notice-detail-container top-margin-container">
   <div>Notice Detail</div>
   <hr/>
-  <button color="danger" ion-button outline>삭제</button>
-  <button color="secondary" ion-button outline>수정</button>
+  <button color="danger" ion-button outline (click)="delete()">삭제</button>
+  <button color="secondary" ion-button outline (click)="goToModify(noticeId)">수정</button>
   <hr/>
   {{'TITLE : ' + (notice$ | async)?.title}}
   <br/>

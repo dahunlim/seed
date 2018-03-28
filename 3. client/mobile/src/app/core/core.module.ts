@@ -20,12 +20,14 @@ import {NoticeService} from "./api/notice.service";
 import {InquiryService} from "./api/inquiry.service";
 import {MediaService} from "./api/media.service";
 import {DaumService} from "./service/daum.service";
+// import {DialogModule} from "./dialog/dialog.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CommonModule
+    CommonModule,
+    // DialogModule
   ],
   exports: [
   ],
@@ -45,7 +47,5 @@ import {DaumService} from "./service/daum.service";
   ]
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-
-  }
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) { }
 }
