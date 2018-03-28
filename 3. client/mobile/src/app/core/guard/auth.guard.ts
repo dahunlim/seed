@@ -12,6 +12,7 @@ export class AuthGuard {
   constructor(protected store: Store<AppStore>, protected sessionService: SessionService) {
   }
 
+
   ionViewCanEnter(): Observable<boolean> | Promise<boolean> | boolean {
     console.log('AuthGuard');
     return this.sessionService

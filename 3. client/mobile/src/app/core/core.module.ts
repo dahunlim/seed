@@ -20,6 +20,7 @@ import {NoticeService} from "./api/notice.service";
 import {InquiryService} from "./api/inquiry.service";
 import {MediaService} from "./api/media.service";
 import {DaumService} from "./service/daum.service";
+import {DialogModule} from './dialog/dialog.module';
 // import {DialogModule} from "./dialog/dialog.module";
 
 @NgModule({
@@ -27,7 +28,7 @@ import {DaumService} from "./service/daum.service";
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
-    // DialogModule
+    DialogModule
   ],
   exports: [
   ],

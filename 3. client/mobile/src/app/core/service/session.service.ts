@@ -14,15 +14,21 @@ export class SessionService {
   init(data: {data: any, expire: string}): void {
     localStorage.removeItem(this.LOCAL_STORAGE_NAME);
     localStorage.setItem(this.LOCAL_STORAGE_NAME, JSON.stringify(data));
-    this.setTImeout(data.expire);
+    this.setTimeout(data.expire);
   }
 
   isAuthenticated(): Observable<boolean> {
-    const localSession = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME));
-    return Observable.of((localSession && !this.isExpired(localSession['expire'])) ? true : false);
+    let localSession;
+    try {
+      localSession = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME));
+    } catch (err) {
+      console.error(err);
+    }
+    const result: boolean = (localSession && !this.isExpired(localSession['expire'])) ? true : false;
+    return Observable.of(result);
   }
 
-  private setTImeout(expire: string){
+  private setTimeout(expire: string){
     const timeoutCount = Date.parse(expire) - Date.now() - 3600000;
     if (this.timeout) {
       clearTimeout(this.timeout);
@@ -39,7 +45,7 @@ export class SessionService {
       .map((res: IResponse<any>) => {
         if (res && res.code === RESPONSE_CODE.SUCCESS) {
           localStorage.setItem(this.LOCAL_STORAGE_NAME, JSON.stringify(res.data));
-          this.setTImeout(res.data.expire);
+          this.setTimeout(res.data.expire);
           return true;
         } else {
           return false;

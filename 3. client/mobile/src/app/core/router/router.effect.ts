@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Effect, Actions} from '@ngrx/effects';
 
 import * as RouterActions from './router.action';
-import {App} from "ionic-angular";
+import {App, NavController} from "ionic-angular";
+import {HomeComponent} from '../../page/home/home.component';
 
 @Injectable()
 export class RouterEffect {
@@ -12,19 +13,26 @@ export class RouterEffect {
     .do((action: RouterActions.Go) => {
       // this.app.getActiveNavs()[0].push(action.pageName, action.data);
       this.app.getRootNav().push(action.pageName, action.data);
+      console.log(this.app.getRootNav().length());
     });
 
   @Effect({dispatch: false})
   navigateBack$ = this.actions$
     .ofType(RouterActions.BACK)
     .do(() => {
-      if (this.app.getActiveNavs()[0].canGoBack()){
-        this.app.getActiveNavs()[0].pop();
+
+      if (this.app.getRootNav().length() > 1) {
+        this.app.getActiveNavs()
+          .some((nav: NavController) => {
+            if(nav.canGoBack()){
+              nav.pop();
+              return true;
+            } else {
+              return false;
+            }
+          });
       } else {
-        // this.navCtrl.setRoot(HomeComponent); // Root Module Set
-        // this.app.getActiveNavs()[0].push(this.app.getRootNav().root, {});
-        // this.app.getActiveNavs()[0].push('HomeComponent', {});
-        this.app.getRootNav().push('HomeComponent', {});
+        this.app.getRootNav().setRoot('HomeComponent');
       }
     });
 

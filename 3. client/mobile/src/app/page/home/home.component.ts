@@ -6,6 +6,8 @@ import {AppStore} from "../../app-store.interface";
 import * as RouterActions from '../../core/router/router.action';
 import {AuthGuard} from "../../core/guard/auth.guard";
 import {SessionService} from "../../core/service/session.service";
+import {MatDialog} from '@angular/material';
+import {AppDialogAlertComponent} from '../../core/dialog/alert/alert.component';
 
 @IonicPage({
   name: 'HomeComponent',
@@ -16,9 +18,13 @@ import {SessionService} from "../../core/service/session.service";
   templateUrl: 'home.component.html'
 })
 
-export class HomeComponent extends AuthGuard{
+export class HomeComponent extends AuthGuard {
 
-  constructor(protected store: Store<AppStore>, protected sessionService: SessionService) {
+  constructor(
+    protected store: Store<AppStore>,
+    protected sessionService: SessionService,
+    private dialog: MatDialog
+  ) {
     super(store, sessionService)
   }
 
@@ -46,5 +52,9 @@ export class HomeComponent extends AuthGuard{
         this.store.dispatch(new RouterActions.Go('SignupComponent'));
         break;
     }
+  }
+
+  showDialog(): void {
+    this.dialog.open(AppDialogAlertComponent, {data:{message: 'test'}});
   }
 }
