@@ -11,6 +11,12 @@ export const getNoticeTotalCount = createSelector(baseNotice, (state: INoticeSta
   return state.totalCount;
 });
 
-export const getNoticeDetail = createSelector(baseNotice, (state: INoticeState) => {
-  return state.notice;
-});
+export const getNoticeDetail = (noticeId) => {
+  return createSelector(baseNotice, (state: INoticeState) => {
+    return state.notice.get(noticeId);
+  })
+};
+
+  // createSelector(baseNotice, (state: INoticeState) => {
+  // return state.notice;
+  // });

@@ -13,8 +13,6 @@ export function noticeReducer(state: INoticeState = initState, action: Action) {
         totalCount: action.total
       });
     case NoticeAction.NOTICE_GET_DETAIL_SUCCESS:
-      console.log('NOTICE_GET_DETAIL_SUCCESS');
-      console.log(action);
       return state.setIn(
         ['notice', action.notice._id], (action as NoticeGetDetailSuccess).notice
       );

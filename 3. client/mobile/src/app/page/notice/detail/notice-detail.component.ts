@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {IonicPage} from "ionic-angular";
+import {IonicPage, NavParams} from "ionic-angular";
 import * as RouterActions from "../../../core/router/router.action";
 import * as NoticeActions from "../redux/notice.action"
 import {Store} from "@ngrx/store";
 import {AppStore} from "../../../app-store.interface";
 import {getNoticeDetail} from "../redux/notice.selector";
-import { NgProgress } from 'ngx-progressbar';
+import {Observable} from "rxjs/Observable";
+import {Notice} from "../../../core/model/notice";
 
 @IonicPage({
   name: 'NoticeDetailComponent',
@@ -16,16 +17,21 @@ import { NgProgress } from 'ngx-progressbar';
   templateUrl: './notice-detail.component.html'
 })
 export class NoticeDetailComponent {
-  constructor(private store: Store<AppStore>, public ngProgress: NgProgress) {
+  private notice$ : Observable<Notice>;
+  private noticeId : string;
+
+  constructor(private store: Store<AppStore>, private navParams: NavParams) {
 
   }
 
   ionViewDidLoad() {
-    this.ngProgress.start();
-  }
-
-  test() {
-    this.ngProgress.done();
+    if(!!this.navParams.data.noticeId) {
+      this.noticeId = this.navParams.data.noticeId;
+      this.store.dispatch(new NoticeActions.NoticeGetDetail(this.noticeId));
+      this.notice$ = this.store.select(getNoticeDetail(this.noticeId));
+    } else {
+      this.back();
+    }
   }
 
   back() {

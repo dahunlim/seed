@@ -26,8 +26,7 @@ export class NoticeListComponent {
   }
 
   goToDetail(noticeId: string) {
-    console.log(noticeId);
-    this.store.dispatch(new RouterActions.Go('NoticeDetailComponent'));
+    this.store.dispatch(new RouterActions.Go('NoticeDetailComponent', {noticeId : noticeId}));
   }
 
   back() {

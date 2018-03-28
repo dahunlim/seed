@@ -1,5 +1,15 @@
 <ion-content class="notice-list-container top-margin-container">
   <div>Notice Detail</div>
   <hr/>
-  <button (click)="test()">test</button>
+  <button color="danger" ion-button outline>삭제</button>
+  <button color="secondary" ion-button outline>수정</button>
+  <hr/>
+  {{'TITLE : ' + (notice$ | async)?.title}}
+  <br/>
+  {{'DATE : ' + ((notice$ | async)?.date | date : 'yyyy. MM. dd a h:mm' | aramDatePeriodPipe)}}
+  <br/>
+  {{'CONTENT : ' + (notice$ | async)?.contents}}
+  <br/>
+  {{'LINK : ' + (notice$ | async)?.link}}
+  <br/>
 </ion-content>

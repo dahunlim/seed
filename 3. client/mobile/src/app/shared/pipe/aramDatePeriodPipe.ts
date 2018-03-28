@@ -8,6 +8,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class AramDatePeriodPipe implements PipeTransform {
   transform(input: string) {
-    return input.replace('AM', '오전').replace('PM', '오후');
+    if(!!input) {
+      return input.replace('AM', '오전').replace('PM', '오후');
+    }
   }
 }

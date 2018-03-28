@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {NavController, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as RouterActions from "./core/router/router.action";
@@ -11,6 +11,7 @@ import {NgProgress} from "ngx-progressbar";
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild('content') navCtrl: NavController;
   // rootPage:any = 'TabsComponent';
   rootPage:any = 'HomeComponent';
 
@@ -20,6 +21,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
       // splashScreen.hide();
+
+      this.navCtrl.viewWillEnter.subscribe(view => {
+        this.ngProgress.start();
+      });
+      this.navCtrl.viewDidEnter.subscribe(view => {
+        this.ngProgress.done();
+      });
     });
   }
 
