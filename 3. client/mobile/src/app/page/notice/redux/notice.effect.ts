@@ -7,10 +7,19 @@ import {IResponse, RESPONSE_CODE} from '../../../core/service/response.service';
 import {MediaService} from '../../../core/api/media.service';
 import * as RouterActions from '../../../core/router/router.action';
 import {Converter} from '../../../core/helper/converter';
+import {ToastController} from "ionic-angular";
 
 
 @Injectable()
 export class NoticeEffect {
+
+  toast(msg: string = 'null', position: string = 'top') {
+    this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+      position: position
+    }).present();
+  }
 
   @Effect() NoticeGetList$ = this.actions$
     .ofType(NoticeActions.NOTICE_GET_LIST)
@@ -56,7 +65,7 @@ export class NoticeEffect {
     .ofType(NoticeActions.NOTICE_ADD)
     .switchMap((action: NoticeActions.NoticeAdd) => {
       return this.noticeService
-        .add<Notice>(action.notice, false)
+        .add<Notice>(action.notice, true)
         .map((res: IResponse<Notice>) => {
           switch (res.code) {
             case RESPONSE_CODE.SUCCESS:
@@ -74,7 +83,8 @@ export class NoticeEffect {
         .modify<Notice>(action.notice, true)
         .map((res: IResponse<Notice>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
-            // return new RouterActions.Go({path: [`/main/notice/detail/${action.notice._id}`]});
+            this.toast(res.msg);
+            return new RouterActions.Go('NoticeListComponent');
           }
           return {type: 'NO_ACTION'};
         })
@@ -93,5 +103,5 @@ export class NoticeEffect {
         })
     });
 
-  constructor( private actions$: Actions, private noticeService: NoticeService, private mediaService: MediaService) { }
+  constructor( private actions$: Actions, private noticeService: NoticeService, private mediaService: MediaService, private toastCtrl: ToastController) { }
 }

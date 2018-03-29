@@ -8,14 +8,14 @@ import {getNoticeDetail} from "../redux/notice.selector";
 import {Notice} from "../../../core/model/notice";
 
 @IonicPage({
-  name: 'NoticeModifyComponent',
-  segment: 'notice/modify'
+  name: 'NoticeCreateComponent',
+  segment: 'notice/create'
 })
 @Component({
   selector: 'page-notice-ionic',
-  templateUrl: './notice-modify.component.html'
+  templateUrl: './notice-create.component.html'
 })
-export class NoticeModifyComponent {
+export class NoticeCreateComponent {
   private noticeId : string;
   private notice : Notice;
 
@@ -23,14 +23,7 @@ export class NoticeModifyComponent {
   }
 
   ionViewDidLoad() {
-    if(!!this.navParams.data.noticeId) {
-      this.noticeId = this.navParams.data.noticeId;
-      this.store.select(getNoticeDetail(this.noticeId)).subscribe(data => {
-        this.notice = data;
-      }).unsubscribe();
-    } else {
-      this.back();
-    }
+
   }
 
   toast(msg: string = 'null', position: string = 'top') {
@@ -39,15 +32,6 @@ export class NoticeModifyComponent {
       duration: 2000,
       position: position
     }).present();
-  }
-
-  modify() {
-    console.log('modify');
-    if (!this.notice.title || !this.notice.contents) {
-      this.toast('제목 또는 내용이 입력되어 있지 않습니다.');
-      return false;
-    }
-    this.store.dispatch(new NoticeActions.NoticeModify(this.notice));
   }
 
   back() {

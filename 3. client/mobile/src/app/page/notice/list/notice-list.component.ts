@@ -21,12 +21,22 @@ export class NoticeListComponent {
   }
 
   ionViewDidLoad() {
-    this.store.dispatch(new NoticeActions.NoticeGetList(0, 999));
     this.notice$ = this.store.select(getNoticeList);
   }
 
-  goToDetail(noticeId: string) {
-    this.store.dispatch(new RouterActions.Go('NoticeDetailComponent', {noticeId : noticeId}));
+  ionViewDidEnter() {
+    this.store.dispatch(new NoticeActions.NoticeGetList(0, 999));
+  }
+
+  goToPage(str: string, noticeId: string) {
+    switch (str) {
+      case 'detail' :
+        this.store.dispatch(new RouterActions.Go('NoticeDetailComponent', {noticeId : noticeId}));
+        break;
+      case 'create' :
+        this.store.dispatch(new RouterActions.Go('NoticeCreateComponent'));
+        break;
+    }
   }
 
   back() {
