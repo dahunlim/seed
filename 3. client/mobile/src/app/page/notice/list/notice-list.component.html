@@ -4,4 +4,6 @@
   <hr/>
     <!--<app-notice-list *ngFor="let not ice of notice$ | async; let idx = index" [notice]="notice" ></app-notice-list>-->
   <div *ngFor="let notice  of notice$ | async; let idx = index" (click)="goToPage('detail', notice._id)" style="cursor: pointer;margin-bottom: 10px">{{idx + ' . ' + notice.title}}</div>
+  <button ion-button outline (click)="noticePage()">change</button>
+  <button ion-button outline (click)="noticePage()">notice</button>
 </ion-content>

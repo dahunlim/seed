@@ -16,6 +16,7 @@ import {getNoticeList} from "../redux/notice.selector";
 })
 export class NoticeListComponent {
   private notice$: any;
+  private offset: number = 1;
   constructor(private store: Store<AppStore>) {
 
   }
@@ -25,7 +26,12 @@ export class NoticeListComponent {
   }
 
   ionViewDidEnter() {
-    this.store.dispatch(new NoticeActions.NoticeGetList(0, 999));
+    this.store.dispatch(new NoticeActions.NoticeGetList(this.offset, 15));
+  }
+
+  noticePage() {
+    this.offset = this.offset + 1;
+    this.store.dispatch(new NoticeActions.NoticeGetList(this.offset, 15));
   }
 
   goToPage(str: string, noticeId: string) {
