@@ -1,0 +1,14 @@
+<ion-content class="inquiry-create-container top-margin-container">
+  <div>Inquiry Create</div>
+  <hr/>
+  <button ion-button outline (click)="add()">글쓰기</button>
+  <hr/>
+  <ion-item>
+    <ion-label fixed>TITLE : </ion-label>
+    <ion-input type="text" [ngModel]="inquiry?.title" (ngModelChange)="inquiry.title = $event"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>QUESTION : </ion-label>
+    <ion-input type="text" [ngModel]="inquiry?.question" (ngModelChange)="inquiry.question= $event"></ion-input>
+  </ion-item>
+</ion-content>

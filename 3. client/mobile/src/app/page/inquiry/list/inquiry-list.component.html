@@ -1,0 +1,7 @@
+<ion-content class="inquiry-list-container top-margin-container">
+  <div>Inquiry List</div>
+  <button ion-button outline (click)="goToPage('create')">글쓰기</button>
+  <hr/>
+  <!--<app-notice-list *ngFor="let not ice of notice$ | async; let idx = index" [notice]="notice" ></app-notice-list>-->
+  <div *ngFor="let inquiry  of inquiry$ | async; let idx = index" (click)="goToPage('detail', inquiry._id)" style="cursor: pointer;margin-bottom: 10px">{{idx + ' . ' + inquiry.title}}</div>
+</ion-content>

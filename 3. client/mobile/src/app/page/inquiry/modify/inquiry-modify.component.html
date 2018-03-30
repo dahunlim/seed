@@ -1,0 +1,18 @@
+<ion-content class="inquiry-modify-container top-margin-container">
+  <div>Inquiry Detail</div>
+  <hr/>
+  <button ion-button outline (click)="modify()">저장</button>
+  <hr/>
+  <ion-item>
+    <ion-label fixed>TITLE : </ion-label>
+    <ion-input type="text" [ngModel]="inquiry?.title" (ngModelChange)="inquiry.title = $event"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>QUESTIOn : </ion-label>
+    <ion-input type="text" [ngModel]="inquiry?.question" (ngModelChange)="inquiry.question = $event"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>ANSWER : </ion-label>
+    <ion-input type="text" [ngModel]="inquiry?.answer.contents" (ngModelChange)="inquiry.answer.contents = $event"></ion-input>
+  </ion-item>
+</ion-content>

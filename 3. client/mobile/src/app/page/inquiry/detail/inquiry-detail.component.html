@@ -1,0 +1,15 @@
+<ion-content class="inquiry-detail-container top-margin-container">
+  <div>Inquiry Detail</div>
+  <hr/>
+  <button color="danger" ion-button outline (click)="delete()">삭제</button>
+  <button color="secondary" ion-button outline (click)="goToModify(inquiryId)">수정</button>
+  <hr/>
+  {{'TITLE : ' + (inquiry$ | async)?.title}}
+  <br/>
+  {{'DATE : ' + ((inquiry$ | async)?.date | date : 'yyyy. MM. dd a h:mm' | aramDatePeriodPipe)}}
+  <br/>
+  {{'QUESTION : ' + (inquiry$ | async)?.question}}
+  <br/>
+  {{'ANSWER : ' + (inquiry$ | async)?.answer.contents}}
+  <br/>
+</ion-content>

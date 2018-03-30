@@ -29,11 +29,14 @@ export class InquiryReplyComponent implements OnInit, OnDestroy {
       this.store.dispatch(new InquiryActions.InquiryGetDetail(params['inquiryID']));
 
       this.inquiry$ = this.store.select(getSelectedInquiry);
-      this.detailSub = this.inquiry$.subscribe(inquiry => {
-        if (!!inquiry && inquiry._id === params['inquiryID']) {
+      this.detailSub = this.inquiry$
+        .filter(data => !!data)
+        .subscribe(inquiry => {
           this.inquiry = inquiry;
-        }
-      });
+        // if (!!inquiry && inquiry._id === params['inquiryID']) {
+        //   this.inquiry = inquiry;
+        // }
+      }).unsubscribe();
     });
 
     const file = document.getElementById('inquiry-reply-file');
@@ -44,11 +47,10 @@ export class InquiryReplyComponent implements OnInit, OnDestroy {
 
     const link = document.getElementById('link');
     Observable.fromEvent(link, 'click')
+      .filter(data => !data)
       .subscribe((event: any) => {
-        if (!event.target.value) {
           this.inquiry.answer.link = 'https://www.'
-        }
-      });
+      })
   }
 
   addFile(): void {
@@ -66,12 +68,11 @@ export class InquiryReplyComponent implements OnInit, OnDestroy {
       alert('답변 내용을 작성해주세요');
       return false;
     }
-
     this.store.dispatch(new InquiryActions.InquiryModify(this.inquiry));
   }
 
   ngOnDestroy(): void {
-    this.detailSub.unsubscribe();
+    // this.detailSub.unsubscribe();
   }
 }
 
