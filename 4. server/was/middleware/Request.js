@@ -1,4 +1,4 @@
-var RESPONSE = require('../core/Response')
+var Response = require('../core/Response')
     , MultiPart = require('multiparty');
 
 
@@ -8,14 +8,14 @@ module.exports = {
      * @param params String Array
      * @returns {Function}
      */
-    hasParams: function (params) {
-        return function (req, res, next) {
+    hasParams: (params) =>
+        (req, res, next) => {
             var body = {};
             var isValid = true;
             if (req.is('multipart/form-data')) {
                 var form = new MultiPart.Form();
                 form.on('error', function (err) {
-                    next(RESPONSE.FAILED);
+                    next(Response.type.FAILED);
                 });
                 form.on('field', function (name, value) {
                     try {
@@ -55,7 +55,7 @@ module.exports = {
                         }
                     });
                     part.on('error', function (err) {
-                        next(RESPONSE.FAILED);
+                        next(Response.type.FAILED);
                     });
                 });
 
@@ -70,7 +70,7 @@ module.exports = {
                         req.body = body;
                         next();
                     } else {
-                        next(RESPONSE.INVALID_PARAMETER);
+                        next(Response.type.INVALID_PARAMETER);
                     }
                 });
 
@@ -90,9 +90,8 @@ module.exports = {
                 if (isValid) {
                     next();
                 } else {
-                    next(RESPONSE.INVALID_PARAMETER);
+                    next(Response.type.INVALID_PARAMETER);
                 }
             }
         }
-    }
 }

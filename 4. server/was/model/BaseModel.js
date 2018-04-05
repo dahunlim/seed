@@ -1,107 +1,36 @@
-var DB = require('../core/Database');
+const DB = require('../core/Database');
 
-var BaseModel = function (collection){
-    console.log('BaseModel Constructor! with' + collection);
+const BaseModel = function (collection){
     this.collectionName = collection;
 }
 BaseModel.prototype = {
+
     count: function(filter){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).count(filter, function(err, count){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(count);
-                }
-            });
-        });
+        return DB.conn.application.collection(this.collectionName).count(filter);
     },
+
     create: function(object){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).insertOne(object, function(err, rs){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(rs);
-                }
-            });
-        });
-    },
-    get: function(filter, project){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).find(filter).project(project).next(function(err, doc){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(doc);
-                }
-            });
-        });
+        return DB.conn.application.collection(this.collectionName).insertOne(object);
     },
 
-    aggregate: function(pipe){
-        var _this = this;
-        return DB.transaction(function(conn, deferred) {
-            conn.collection(_this.collectionName).aggregate(pipe).toArray(function (err, docs) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(docs);
-                }
-            });
-        });
+    findOne: function(filter, project){
+        return DB.conn.application.collection(this.collectionName).find(filter).limit(1).project(project).next();
     },
 
-    list: function(filter, project, offset, count, sort){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).find(filter).sort(sort).project(project).skip(Number(offset)).limit(Number(count)).toArray(function(err, docs){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(docs);
-                }
-            });
-        });
+    findMany: function(filter, project, offset, count, sort){
+        return DB.conn.application.collection(this.collectionName).find(filter).sort(sort).project(project).skip(Number(offset)).limit(Number(count)).toArray();
     },
+
     update: function(filter, update, options){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).updateOne(filter, update, options, function(err, rs){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(rs);
-                }
-            });
-        });
+        return DB.conn.application.collection(this.collectionName).updateOne(filter, update, options);
     },
+
     delete: function(filter){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).deleteOne(filter, function(err, rs){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(rs);
-                }
-            });
-        });
+        return DB.conn.application.collection(this.collectionName).deleteOne(filter);
     },
+
     deleteMany: function(filter){
-        var _this = this;
-        return DB.transaction(function(conn, deferred){
-            conn.collection(_this.collectionName).deleteMany(filter, function(err, rs){
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(rs);
-                }
-            });
-        });
+        return DB.conn.application.collection(this.collectionName).deleteMany(filter);
     }
 }
 

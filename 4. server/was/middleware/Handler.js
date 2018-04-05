@@ -1,13 +1,30 @@
-const RESPONSE = require('../core/Response');
+const Response = require('../core/Response');
 
-module.exports = (promise, params) => {
-    return async (req, res, next) => {
-        const boundParams = params ? params(req, res, next) : [];
-        try {
-            const result = await promise(...boundParams);
-            res.json({"code": RESPONSE.SUCCESS.code, "msg": '', "data": result});
-        } catch (error) {
-            next(error);
-        }
-    }
+module.exports = {
+
+    request: (promise, params) =>
+        async (req, res, next) => {
+            const boundParams = params ? params(req, res, next) : [];
+            try {
+                const result = await promise(...boundParams);
+                res.json({"code": Response.type.SUCCESS.code, "msg": '', "data": result});
+            } catch (error) {
+                next(error);
+            }
+        },
+
+    /**
+     * Cross-Domain Request Settings
+     */
+    response: () =>
+        (req, res, next) => {
+            res.header('Access-Control-Allow-Credentials', true);
+            res.header('Access-Control-Allow-Origin', req.headers.origin);
+            res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+            res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+            next();
+        },
+
+    error: () =>
+        (err, req, res, next) => res.json(err)
 }

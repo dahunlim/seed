@@ -1,12 +1,24 @@
 #!/usr/bin/env node
-var debug = require('debug')('was:server');
-var http = require('http');
-var port = normalizePort(process.env.PORT || '3000');
-var app = require('../app');
-app.set('port', port);
+const debug = require('debug')('was:server')
+    , http = require('http')
+    , fs = require('fs')
+    , port = normalizePort(process.env.PORT || '3000')
+    , app = require('../app')
+    , DB = require('../core/Database');
 
-var server = http.createServer(app);
-server.listen(port);
+
+app.set('port', port);
+const server = http.createServer(app);
+
+/**
+ * DB initialize
+ */
+DB.initialize().then(() => {
+
+    // Server listen
+    server.listen(port);
+});
+
 server.on('error', (error) => {
     if (error.syscall !== 'listen') {
         throw error;

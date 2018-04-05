@@ -1,15 +1,14 @@
 const Session = require('../core/Session')
-    , RESPONSE = require('../core/Response');
+    , Response = require('../core/Response');
 
 module.exports = {
-    isLogined: function () {
-        return (req, res, next) => {
+    has: () =>
+        (req, res, next) => {
             if (Session.get(req, 'userId') != null) {
                 next();
             } else {
-                next(RESPONSE.NOT_AUTHENTICATION)
+                next(Response.type.INVALID_PARAMETER)
             }
         }
-    }
 }
 

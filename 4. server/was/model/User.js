@@ -7,13 +7,14 @@ function UserModel(){
     return this;
 }
 Util.inherits(UserModel, BaseModel);
-UserModel.prototype.schema = function(id, name, pass, salt, level, state){
+UserModel.prototype.schema = function(id, pass, name, phone, salt, level, state){
     const user = {
         _id: id,
-        name: name,
         pass: pass,
         salt: salt,
-        level: level,
+        name: name,
+        phone: phone,
+        level: Number(level),
         state: state,
         vcode: 0,
         vdate: null,
@@ -25,9 +26,3 @@ UserModel.prototype.schema = function(id, name, pass, salt, level, state){
 };
 
 module.exports = new UserModel();
-
-
-
-
-
-

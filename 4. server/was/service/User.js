@@ -1,11 +1,16 @@
-const UserModel = require('../model/User');
+const User = require('../model/User')
+    , Auth = require('../core/Authentication');
 
 module.exports = {
 
-    create: function (id, name, pass, salt, level, state) {
-        const user = UserModel.schema(id, name, pass, salt, level, state);
-        return UserModel.create(user);
+    create: function (id, pass, name, phone, level, state) {
+        const salt = Auth.createSalt();
+        const authPass = Auth.createPassword(pass, salt);
+        const user = User.schema(id, authPass, name, phone, salt, level, state);
+        return User.create(user);
     },
+
+
 
     list: function (offset, count, field, keyword) {
         const filter = {};
@@ -14,26 +19,43 @@ module.exports = {
         }
         const project = {};
         const sort = {};
-        return UserModel.list(filter, project, offset, count, sort);
+        return User.findMany(filter, project, offset, count, sort);
     },
 
-    modify: function () {
-
+    isExist: async function(id) {
+        const filter = {_id: id};
+        return new Promise((resolve, reject) => {
+            try {
+                const count = User.count(filter)
+                resolve((count > 0) ? true : false);
+            } catch (err) {
+                reject();
+            }
+        });
     },
 
-    remove: function (user_id) {
-        const filter = { _id: user_id };
-        return UserModel.delete(filter);
-    },
-
-
-    getUserById: function (userId) {
+    addTryHistory: function(userId) {
         const filter = {_id: userId};
-        const project = {};
-        return UserModel.get(filter, project);
+        const update = {$set: {tdate: Date.now()}, $inc: {tcnt: 1}};
+        const options = {};
+        return User.update(filter, update, options);
     },
 
-    resetTryHistory: function (userId) {
+    resetTryHistory: function(userId) {
+        const filter = {_id: userId};
+        const update = {$set: {tdate: 0, tcnt: 0}};
+        const options = {};
+        return User.update(filter, update, options);
+    },
 
+    remove: function (id) {
+        const filter = { _id: id };
+        return User.delete(filter);
+    },
+
+    getUserById: function (id) {
+        const filter = {_id: id};
+        const project = {};
+        return User.findOne(filter, project);
     }
 }

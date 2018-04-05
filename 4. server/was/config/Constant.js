@@ -8,23 +8,23 @@ module.exports = {
     },
 
     /**
-     * Database Information
+     * Database Information For MongoDB
      */
     DATABASE : {
         POOL_SIZE: 10,
-        HOST : '52.78.112.87',
+        HOST : '1.aram-in.com',
         PORT : '27017',
-        NAME : 'TreasureIsland',
-        USER_ID: 'afunmobile',
-        USER_PASS: 'interactive1!'
+        NAME : 'Common',
+        USER_ID: 'aram',
+        USER_PASS: 'aram7242456'
     },
 
     /**
      * S3 BUCKET
      */
-    S3: {
+    S3_BUCKET: {
         TEMP: 'afun-mobile-temp',
-        MEDIA: 'afun-mobile-media'
+        FILE: 'afun-mobile-media'
     },
 
     /**

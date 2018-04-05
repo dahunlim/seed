@@ -1,22 +1,27 @@
-var DB = require('../core/Database')
-    , BaseModel = require('./BaseModel')
+const BaseModel = require('./BaseModel')
     , Util = require('util');
 
 function InquiryModel(){
-    BaseModel.call(this, 'Inquiry');
     return this;
 }
 Util.inherits(InquiryModel, BaseModel);
-InquiryModel.prototype.schema = function(user_id, user_name, title, contents){
-    return {
+InquiryModel.prototype.schema = function(id, name, title, contents, files){
+
+    const inquiry = {
         user: {
-            _id: user_id,
-            name: user_name
+            _id: id,
+            name: name
         },
         title: title,
         contents: contents,
         date: new Date()
+    };
+
+    if (typeof files !== 'undefined') {
+        inquiry.files = files;
     }
+
+    return inquiry;
 }
 
 module.exports = new InquiryModel();
