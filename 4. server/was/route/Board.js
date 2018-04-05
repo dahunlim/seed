@@ -18,7 +18,7 @@ Router.post(
         Request.hasParams(['title', 'contents'])
     ],
     Handler.request(
-        NoticeCtrl.add,
+        Ctrl.add,
         (req, res, next) => [req.body.title, req.body.contents]
     ));
 
@@ -32,7 +32,7 @@ Router.get(
         Auth.has()
     ],
     Handler.request(
-        NoticeCtrl.list,
+        Ctrl.list,
         (req, res, next) => [Number(req.query.offset), Number(req.query.count), req.query.field, req.query.keyword]
     ));
 
@@ -43,7 +43,7 @@ Router.get(
         Auth.has()
     ],
     Handler.request(
-        NoticeCtrl.get,
+        Ctrl.get,
         (req, res, next) => [req.params['notice_id']]
     )
 );
@@ -55,7 +55,7 @@ Router.put(
         Grant.has(Constant.USER.LEVEL.ADMIN)
     ],
     Handler.request(
-        NoticeCtrl.modify,
+        Ctrl.modify,
         (req, res, next) => [req.params['notice_id'], req.body.title, req.body.contents]
     )
 );
@@ -67,7 +67,7 @@ Router.delete(
         Grant.has(Constant.USER.LEVEL.ADMIN)
     ],
     Handler.request(
-        NoticeCtrl.remove,
+        Ctrl.remove,
         (req, res, next) => [req.params['notice_id']]
     )
 );

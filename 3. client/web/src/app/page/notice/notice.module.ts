@@ -15,8 +15,7 @@ import {SharedModule} from "../../shared/shared.module";
 @NgModule({
   imports: [
     NoticeRoutingModule,
-    CommonModule,
-    FormsModule,
+
     SharedModule
   ],
   exports: [],

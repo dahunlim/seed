@@ -22,7 +22,11 @@ export class JoinComponent implements OnInit {
 
   join: Join;
 
-  constructor(private formBuilder: FormBuilder, private store: Store<AppStore>) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store<AppStore>
+  ) {
+
     this.join = new Join();
     this.joinFormErrors = {
       id: {},

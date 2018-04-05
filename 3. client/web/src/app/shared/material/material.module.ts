@@ -1,12 +1,15 @@
 import {NgModule} from '@angular/core';
 import {AngularMaterial} from './angular.material';
+import {BMaterial} from "./b.material";
 
 @NgModule({
   imports: [
-    AngularMaterial
+    AngularMaterial,
+    BMaterial
   ],
   exports: [
-    AngularMaterial
+    AngularMaterial,
+    BMaterial
   ]
 })
 export class MaterialModule { }
