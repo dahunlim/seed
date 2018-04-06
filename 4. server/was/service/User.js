@@ -3,6 +3,13 @@ const User = require('../model/User')
 
 module.exports = {
 
+    addTryHistory: function(userId) {
+        const filter = {_id: userId};
+        const update = {$set: {tdate: Date.now()}, $inc: {tcnt: 1}};
+        const options = {};
+        return User.update(filter, update, options);
+    },
+
     create: function (id, pass, name, phone, level, state) {
         const salt = Auth.createSalt();
         const authPass = Auth.createPassword(pass, salt);
@@ -10,16 +17,10 @@ module.exports = {
         return User.create(user);
     },
 
-
-
-    list: function (offset, count, field, keyword) {
-        const filter = {};
-        if (!!!field && !!!keyword) {
-            filter[field] = { $regex: keyword };
-        }
+    getUserById: function (id) {
+        const filter = {_id: id};
         const project = {};
-        const sort = {};
-        return User.findMany(filter, project, offset, count, sort);
+        return User.findOne(filter, project);
     },
 
     isExist: async function(id) {
@@ -34,11 +35,19 @@ module.exports = {
         });
     },
 
-    addTryHistory: function(userId) {
-        const filter = {_id: userId};
-        const update = {$set: {tdate: Date.now()}, $inc: {tcnt: 1}};
-        const options = {};
-        return User.update(filter, update, options);
+    list: function (offset, count, field, keyword) {
+        const filter = {};
+        if (!!!field && !!!keyword) {
+            filter[field] = { $regex: keyword };
+        }
+        const project = {};
+        const sort = {};
+        return User.findMany(filter, project, offset, count, sort);
+    },
+
+    remove: function (id) {
+        const filter = { _id: id };
+        return User.delete(filter);
     },
 
     resetTryHistory: function(userId) {
@@ -48,14 +57,23 @@ module.exports = {
         return User.update(filter, update, options);
     },
 
-    remove: function (id) {
-        const filter = { _id: id };
-        return User.delete(filter);
-    },
+    update: function(userId, name, phone, level, pass) {
+        const filter = {_id: userId};
+        const data = {
+            name: name,
+            phone: phone,
+            level: Number(level)
+        };
 
-    getUserById: function (id) {
-        const filter = {_id: id};
-        const project = {};
-        return User.findOne(filter, project);
+        if (typeof pass !== 'undefined') {
+            data['salt'] = Auth.createSalt();
+            data['pass'] = Auth.createPassword(pass, data['salt']);
+        }
+
+        const update = {$set: data};
+        const options = {};
+
+        return User.update(filter, update, options);
     }
+
 }
