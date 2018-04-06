@@ -4,7 +4,7 @@ const Router = require('express').Router()
     , Request = require('../middleware/Request')
     , Grant = require('../middleware/Grant')
     , Handler = require('../middleware/Handler')
-    , NoticeCtrl = require('../controller/Notice');
+    , Ctrl = require('../controller/Notice');
 
 /**
  * @desc add new post
