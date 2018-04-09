@@ -36,7 +36,7 @@ module.exports = {
         NAME : 'lg_sms',
         USER_ID : 'aram',
         USER_PASS : 'aram7242456',
-        SMS_CALLBACK : '18005681'
+        CALLBACK : '18005681'
     },
 
     /**
@@ -82,8 +82,12 @@ module.exports = {
      * MEDIA
      */
     MEDIA: {
+        RESIZER: {
+            COUNT: 4
+        },
         SIZE: {
-            MOBILE: 320
+            MOBILE: 320,
+            DESKTOP: 1024
         },
         STATE: {
             SOURCE: 0,

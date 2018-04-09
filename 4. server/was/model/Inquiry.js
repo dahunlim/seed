@@ -1,11 +1,14 @@
-const BaseModel = require('./BaseModel')
+const BaseModelForMongo = require('./BaseModelForMongo')
     , Util = require('util');
 
-function InquiryModel(){
+function InquiryModel() {
+    BaseModelForMongo.call(this, 'Inquiries');
     return this;
 }
-Util.inherits(InquiryModel, BaseModel);
-InquiryModel.prototype.schema = function(id, name, title, contents, files){
+
+Util.inherits(InquiryModel, BaseModelForMongo);
+
+InquiryModel.prototype.schema = function (id, name, title, contents, files) {
 
     const inquiry = {
         user: {

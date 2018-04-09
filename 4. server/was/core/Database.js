@@ -28,21 +28,14 @@ module.exports = {
             })
         );
         connectFunc.push(
-            new Promise((resolve, reject) => {
-                var connection = MySQL.createConnection({
+            new Promise((resolve, reject) =>
+                MySQL.createConnection({
                     host: Config.SMS_DATABASE.HOST,
                     user: Config.SMS_DATABASE.USER_ID,
                     password: Config.SMS_DATABASE.USER_PASS,
                     database: Config.SMS_DATABASE.NAME
-                });
-                connection.connect(function (err) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(connection);
-                    }
-                });
-            })
+                })
+            )
         );
 
         try {

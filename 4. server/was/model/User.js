@@ -1,12 +1,11 @@
-var DB = require('../core/Database')
-    , BaseModel = require('./BaseModel')
+const BaseModelForMongo = require('./BaseModelForMongo')
     , Util = require('util');
 
 function UserModel(){
-    BaseModel.call(this, 'User');
+    BaseModelForMongo.call(this, 'Users');
     return this;
 }
-Util.inherits(UserModel, BaseModel);
+Util.inherits(UserModel, BaseModelForMongo);
 UserModel.prototype.schema = function(id, pass, name, phone, salt, level, state){
     const user = {
         _id: id,

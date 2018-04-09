@@ -17,6 +17,8 @@ module.exports = {
         FAILED_GET_DB           : { code: 14, msg: '데이터베이스 연결을 가져오지 못했습니다.'},
         NOT_PHONE_AUTHENTICATION: { code: 15, msg: '핸드폰 인증 미인증 상태입니다.' },
         AWS_S3_FAILED           : { code: 16, msg: 'AWS S3 쿼리가 실패하였습니다.'},
+        IMAGE_PROCESSING_FAILED : { code: 17, msg: '이미지 처리 중 오류가 발생하였습니다.'},
+        FILE_PROCESSING_FAILED  : { code: 18, msg: '파일 처리 중 오류가 발생하였습니다.'},
         INTERNAL_ERROR          : { code: 99, msg: '서버 오류'},
         NOT_SUPPORT             : { code: 100, mag: '지원하지 않는 프로토콜 입니다.'}
     },

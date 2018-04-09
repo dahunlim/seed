@@ -1,7 +1,7 @@
-var Request     = require('request')
-    , Config    = require('../common/Config')
-    , GM        = require('gm')
-    , Q         = require('q');
+var Request = require('request')
+    , Response = require('../core/Response')
+    , Config = require('../config/Constant')
+    , GM = require('gm');
 
 module.exports = {
 
@@ -9,39 +9,37 @@ module.exports = {
      * Create image thumbnail
      * @param image
      */
-    thumbnail: function(image){
-        var deferred = Q.defer();
-        GM(image).format(function(err, format){
-            if (err) {
-                console.log(err);
-                deferred.reject(err);
-            } else {
-                this.resize(Config.MEDIA.MOBILE.SIZE).toBuffer(format, function(err, buffer){
-                    if(err){
-                        deferred.reject({code: 1, msg: 'Create image thumbnail failed!'});
-                    }else{
-                        deferred.resolve(buffer)
-                    }
-                });
-            }
+    thumbnail: function (image) {
+        return new Promise((resolve, reject) => {
+            GM(image).format(function (err, format) {
+                if (err) {
+                    reject(Response.get(Response.type.IMAGE_PROCESSING_FAILED, err.message));
+                } else {
+                    this.resize(Config.MEDIA.SIZE.DESKTOP).toBuffer(format, function (err, buffer) {
+                        if (err) {
+                            reject(Response.get(Response.type.IMAGE_PROCESSING_FAILED, {}));
+                        } else {
+                            resolve(buffer)
+                        }
+                    });
+                }
+            });
         });
-        return deferred.promise;
     },
 
-    getImageBase64: function(url){
-        var deferred = Q.defer();
-        Request({uri : encodeURI(url), encoding: 'binary' }, function(err, res, body){
-            if(!err && res.statusCode == 200){
-                var buf = new Buffer(body, 'binary');
-                var base64Str = 'data:' + res.headers['content-type'] + ';base64,'+buf.toString('base64');
-                deferred.resolve(base64Str);
-            }else{
-                deferred.reject(err);
-            }
+    getImageBase64: function (url) {
+        return new Promise((resolve, reject) => {
+            Request({uri: encodeURI(url), encoding: 'binary'}, function (err, res, body) {
+                if (!err && res.statusCode == 200) {
+                    var buf = new Buffer(body, 'binary');
+                    var base64Str = 'data:' + res.headers['content-type'] + ';base64,' + buf.toString('base64');
+                    resolve(base64Str);
+                } else {
+                    reject(Response.get(Response.type.IMAGE_PROCESSING_FAILED, err.message));
+                }
+            });
         });
-        return deferred.promise;
     },
-
 
 
     /**
@@ -49,43 +47,39 @@ module.exports = {
      * @param urlArr [{url: '', key: ''}]
      * @returns {*}
      */
-    getImageBuffersByUrl : function(images){
-        var deferred = Q.defer();
-        var deferredArr = [];
-        for(var i in images){
-            (function(image){
-                var deferredPart = Q.defer();
-                var tempArr = [];
-                Request(image.url).on('data', function(data){
-                    tempArr.push(data)
-                }).on('error', function(err){
-                    deferredPart.reject(err);
-                }).on('end', function(){
-                    var length = 0;
-                    for(var i in tempArr){
-                        length += tempArr[i].length;
-                    }
-                    var buf = Buffer.concat(tempArr, length);
-                    deferredPart.resolve({key: image.key, data: buf});
-                });
-                deferredArr.push(deferredPart.promise);
-            })(images[i]);
+    getImageBuffersByUrl: function (images) {
+        const promiseArr = [];
+        for (let i = 0; i < images.length; i++) {
+            (function (image){
+                promiseArr.push(new Promise((resolve, reject) => {
+                    var tempArr = [];
+                    Request(image.url).on('data', function (data) {
+                        tempArr.push(data)
+                    }).on('error', function (err) {
+                        reject(Response.get(Response.type.IMAGE_PROCESSING_FAILED, err.message));
+                    }).on('end', function () {
+                        var length = 0;
+                        for (var i in tempArr) {
+                            length += tempArr[i].length;
+                        }
+                        var buf = Buffer.concat(tempArr, length);
+                        resolve({key: image.key, data: buf});
+                    });
+                }));
+            }(images[i]));
         }
-
-        Q.all(deferredArr).then(function(results){
-            deferred.resolve(results);
-        }, function(errors){
-            deferred.reject(errors);
-        });
-
-        return deferred.promise;
+        return Promise.all(promiseArr);
     },
 
-    createMediaKey: function(id){
-        return id + "-" + Date.now() + "-" + Math.floor(Math.random()*900 + 100);
+    createMediaKey: function (id) {
+        return id + "-" + Date.now() + "-" + Math.floor(Math.random() * 900 + 100);
     },
 
-    getWokerProcessNumber: function(){
-        return Math.floor(Math.random() * Config.MEDIA_RESIZER_COUNT) + 1;
+    /**
+     * If use dependent resize
+     * @returns {number}
+     */
+    getWokerProcessNumber: function () {
+        return Math.floor(Math.random() * Config.MEDIA.RESIZER.COUNT) + 1;
     }
 }

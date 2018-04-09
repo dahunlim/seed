@@ -16,7 +16,7 @@ module.exports = {
             }
             s3.putObject(params, function (err, data) {
                 if (err) {
-                    reject(Response.get(Response.type.AWS_S3_FAILED, err));
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
                 } else {
                     resolve(data);
                 }
@@ -36,7 +36,7 @@ module.exports = {
             };
             s3.getSignedUrl('putObject', params, function (err, url) {
                 if (err) {
-                    reject(Response.get(Response.type.AWS_S3_FAILED, err));
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
                 } else {
                     resolve(url);
                 }
@@ -56,7 +56,7 @@ module.exports = {
             };
             s3.getSignedUrl('getObject', params, function (err, url) {
                 if (err) {
-                    reject(Response.get(Response.type.AWS_S3_FAILED, err));
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
                 } else {
                     resolve(url);
                 }
@@ -74,7 +74,7 @@ module.exports = {
             }
             s3.headObject(params, function (err, metadata) {
                 if (err && err.code === 'NotFound') {
-                    reject(Response.get(Response.type.AWS_S3_FAILED, err));
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
                 } else {
                     resolve();
                 }
@@ -93,7 +93,27 @@ module.exports = {
             }
             s3.copyObject(params, function (err, data) {
                 if (err) {
-                    reject(Response.get(Response.type.AWS_S3_FAILED, err));
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
+                } else {
+                    resolve(data);
+                }
+            });
+        });
+    },
+
+    deleteMany: function(bucket, keys) {
+        return new Promise((resolve, reject) => {
+            AWS_SDK.config.loadFromPath(CONFIG_PATH);
+            const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
+            var params = {
+                Bucket: bucket,
+                Delete: {
+                    Objects: keys
+                }
+            }
+            s3.deleteObjects(params, (err, data) => {
+                if (err) {
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
                 } else {
                     resolve(data);
                 }
@@ -111,7 +131,7 @@ module.exports = {
             }
             s3.getObject(params, function (err, data) {
                 if (err) {
-                    reject(Response.get(Response.type.AWS_S3_FAILED, err));
+                    reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
                 } else {
                     resolve(data.Body);
                 }
