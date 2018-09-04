@@ -118,7 +118,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "fuse",
       "aram",

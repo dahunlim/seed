@@ -16,34 +16,29 @@ import {StoreModule} from '@ngrx/store';
 
 import {metaReducers, reducers} from './app.reducer';
 import {EffectsModule} from '@ngrx/effects';
-import {RouterEffect} from './core/router/router.effect';
-import {NoticeEffect} from './main/content/notice/redux/notice.effect';
 import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {CustomSerializer} from './core/router/router.serializer';
 import {CoreModule} from './core/core.module';
 import {ResponseInterceptor} from './core/interceptors/response.interceptor';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {UserEffect} from './main/content/user/redux/user.effect';
+import {AppEffects} from './app.effect';
+import {fuseConfig} from './fuse-config';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25
-    }),
-    EffectsModule.forRoot([
-      UserEffect,
-      NoticeEffect
-    ]),
-    MarkdownModule.forRoot(),
+    AppRoutingModule,
     TranslateModule.forRoot(),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    EffectsModule.forRoot(AppEffects),
+    MarkdownModule.forRoot(),
     StoreRouterConnectingModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule
+    FuseMainModule
   ],
   providers: [
     FuseSplashScreenService,

@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {DaumService} from './services/daum.service';
 import {HttpService} from './services/http.service';
 import {SessionService} from './services/session.service';
@@ -62,5 +62,22 @@ import {FuseMainModule} from '../main/main.module';
   ]
 })
 export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error('FuseModule is already loaded. Import it in the AppModule only!');
+    }
+  }
+
+  // static forRoot(config): ModuleWithProviders {
+  //   return {
+  //     ngModule: CoreModule,
+  //     providers: [
+  //       {
+  //         provide: FUSE_CONFIG,
+  //         useValue: config
+  //       }
+  //     ]
+  //   };
+  // }
 }
 
