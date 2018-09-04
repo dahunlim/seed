@@ -1,51 +1,41 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
-import {IResponse, RESPONSE_CODE} from './response.service';
+import {IResponse, RESPONSE_CODE} from '../helpers/response';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class SessionService {
 
   private LOCAL_STORAGE_NAME: string = 'aram-session';
-  private timeout: any = null;
+  private sub$: any;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
-  init(data: {data: any, expire: string}): void {
+  init(data: { data: any, expire: string }): void {
     localStorage.removeItem(this.LOCAL_STORAGE_NAME);
     localStorage.setItem(this.LOCAL_STORAGE_NAME, JSON.stringify(data));
-    this.setTimeout(data.expire);
+    this.setPing();
   }
 
   isAuthenticated(): Observable<boolean> {
-    let localSession;
-    try {
-      localSession = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME));
-    } catch (err) {
-      console.error(err);
-    }
-    const result: boolean = (localSession && !this.isExpired(localSession['expire'])) ? true : false;
-    return Observable.of(result);
+    const localSession = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME));
+    return Observable.of((localSession && !this.isExpired(localSession['expire'])) ? true : false);
   }
 
-  private setTimeout(expire: string){
-    const timeoutCount = Date.parse(expire) - Date.now() - 3600000;
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-      this.timeout = null;
-    }
-    this.timeout = setTimeout(() => {
-      clearTimeout(this.timeout);
-      this.refresh();
-    }, timeoutCount);
+  public setPing(): void {
+    const expire = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME))['expire'];
+    const timeoutCount = Date.parse(expire) - Date.now() - 60000;
+    this.sub$ = Observable
+      .interval(timeoutCount)
+      .switchMap(() => this.refresh())
+      .subscribe();
   }
 
   public refresh(): Observable<boolean> {
-    return this.http.put<IResponse<any>>(`session`, {})
+    return this.http.put<IResponse<any>>('session', {})
       .map((res: IResponse<any>) => {
         if (res && res.code === RESPONSE_CODE.SUCCESS) {
           localStorage.setItem(this.LOCAL_STORAGE_NAME, JSON.stringify(res.data));
-          this.setTimeout(res.data.expire);
           return true;
         } else {
           return false;
@@ -64,6 +54,9 @@ export class SessionService {
   }
 
   public destory() {
+    if (this.sub$) {
+      this.sub$.unsubscribe();
+    }
     localStorage.removeItem(this.LOCAL_STORAGE_NAME);
     localStorage.clear();
   }

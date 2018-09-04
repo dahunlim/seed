@@ -1,0 +1,33 @@
+@import "src/app/core/scss/fuse";
+
+:host{
+  width: 100%;
+  > div {
+    height: 100%;
+  }
+  .header {
+    .subtitle {
+      margin: 6px 0 0 0;
+    }
+  }
+  .content {
+    .title{
+      font-weight: bold;
+      margin: 15px 0 0 0;
+    }
+    .date{
+      color: grey;
+      font-size: 13px;
+      margin: 5px 0 0 0;
+    }
+    .contents{
+      border-top: 1px solid darkgrey;
+      font-size: 15px;
+      line-height: 25px;
+      margin-top: 5px;
+      padding-top: 30px;
+      word-break: break-word;
+      width: 100%;
+    }
+  }
+}

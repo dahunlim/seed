@@ -1,0 +1,28 @@
+.list-table {
+  flex: 1 1 auto;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  overflow: auto;
+  flex-direction: column;
+
+  .mat-header-row {
+    min-height: 64px;
+  }
+
+  .list-item {
+    position: relative;
+    cursor: pointer;
+    height: 84px;
+  }
+
+  .mat-cell {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .mat-column-select {
+    flex: none;
+    width: 50px;
+    overflow: visible;
+  }
+}

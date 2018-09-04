@@ -1,0 +1,23 @@
+@import "src/app/core/scss/fuse";
+
+:host{
+  width: 100%;
+  #notice{
+    height: 100%;
+  }
+  .header {
+    .subtitle {
+      margin: 6px 0 0 0;
+    }
+  }
+  .content {
+    mat-form-field{
+      width: 100%;
+    }
+
+    textarea{
+      height: 400px;
+      line-height: 25px;
+    }
+  }
+}

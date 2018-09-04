@@ -1,0 +1,19 @@
+:host{
+  .spinner-wrapper{
+    background-color: black;
+    opacity: .7;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    mat-spinner {
+      left: 50%;
+      top: 50%;
+      margin-left: -60px;
+      margin-top: -60px;
+    }
+  }
+}

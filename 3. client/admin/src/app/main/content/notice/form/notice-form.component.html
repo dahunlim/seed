@@ -1,0 +1,46 @@
+<div id="notice" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button class="mr-16" mat-icon-button [routerLink]="'/notice/list'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2">Notice</div>
+          <div class="subtitle secondary-text">
+            <span>notice create form</span>
+          </div>
+        </div>
+      </div>
+      <!-- / APP TITLE -->
+
+      <div>
+        <button mat-raised-button class="mat-accent" [disabled]="form.invalid" (click)="create()">Create</button>
+      </div>
+    </div>
+    <!-- / HEADER -->
+
+    <div class="content-card mat-white-bg">
+      <div class="content" fxLayout="column">
+        <form class="update-status p-24" name="noticeCreateForm" [formGroup]="form" fxLayout="column" fxLayoutAlign="start start">
+          <mat-form-field fxFlex="auto">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="formErrors.title.required">Title is required</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="auto">
+            <textarea matInput placeholder="Contents" formControlName="contents"></textarea>
+            <mat-error *ngIf="formErrors.contents.required">Contents is required</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
