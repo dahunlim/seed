@@ -1,12 +1,12 @@
 const DB = require('../core/Database')
     , Response = require('../core/Response');
 
-const BaseModelForMongo = function (collection){
+const BaseModelForMongo = function (collection) {
     this.collectionName = collection;
 }
 BaseModelForMongo.prototype = {
 
-    count: function(filter){
+    count: function (filter) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).count(filter);
@@ -17,7 +17,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    create: function(object){
+    create: function (object) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).insertOne(object);
@@ -28,7 +28,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    findOne: function(filter, project){
+    findOne: function (filter, project) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).find(filter).limit(1).project(project).next();
@@ -39,7 +39,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    findOneAndUpdate: function(filter, update, project) {
+    findOneAndUpdate: function (filter, update, project) {
         return new Promise(async (resolve, reject) => {
             try {
                 const options = {
@@ -53,7 +53,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    findMany: function(filter, project, offset, count, sort){
+    findMany: function (filter, project, offset, count, sort) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).find(filter).sort(sort).project(project).skip(Number(offset)).limit(Number(count)).toArray();
@@ -64,7 +64,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    update: function(filter, update, options){
+    update: function (filter, update, options) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).updateOne(filter, update, options);
@@ -75,7 +75,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    delete: function(filter){
+    delete: function (filter) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).deleteOne(filter);
@@ -86,7 +86,7 @@ BaseModelForMongo.prototype = {
         });
     },
 
-    deleteMany: function(filter){
+    deleteMany: function (filter) {
         return new Promise(async (resolve, reject) => {
             try {
                 const rs = await DB.conn.application.collection(this.collectionName).deleteMany(filter);

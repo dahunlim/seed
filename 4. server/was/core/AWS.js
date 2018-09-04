@@ -4,16 +4,26 @@ const AWS_SDK = require('aws-sdk')
 
 module.exports = {
 
-    upload: (bucket, key, data) => {
+    upload: (bucket, folder, key, data, encoding, type) => {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
+            const path = (folder)? folder + '/' + key : key;
             const params = {
                 Bucket: bucket,
-                Key: key,
+                Key: path,
                 ACL: 'public-read',
                 Body: data
+            };
+
+            if (typeof encoding !== 'undefined') {
+                params['ContentEncoding'] = encoding;
             }
+
+            if (typeof type !== 'undefined') {
+                params['ContentType'] = type;
+            }
+
             s3.putObject(params, function (err, data) {
                 if (err) {
                     reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
@@ -24,14 +34,15 @@ module.exports = {
         });
     },
 
-    getSignedUploadUrl: (bucket, key) => {
+    getSignedUploadUrl: (bucket, folder, key) => {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
+            const path = (folder)? folder + '/' + key : key;
             const params = {
                 Bucket: bucket,
-                Key: key,
-                Expires: 600,
+                Key: path,
+                Expires: 18000,
                 ACL: 'public-read'
             };
             s3.getSignedUrl('putObject', params, function (err, url) {
@@ -44,13 +55,14 @@ module.exports = {
         });
     },
 
-    getSignedDownloadUrl: (bucket, key, name) => {
+    getSignedDownloadUrl: (bucket, folder, key, name) => {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
+            const path = (folder)? folder + '/' + key : key;
             const params = {
                 Bucket: bucket,
-                Key: key,
+                Key: path,
                 Expires: 600,
                 ResponseContentDisposition: 'attachment; filename=' + encodeURI(name)
             };
@@ -64,14 +76,15 @@ module.exports = {
         });
     },
 
-    isExist: (bucket, key) => {
+    isExist: (bucket, folder, key) => {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
+            const path = (folder)? folder + '/' + key : key;
             const params = {
                 Bucket: bucket,
-                Key: key
-            }
+                Key: path
+            };
             s3.headObject(params, function (err, metadata) {
                 if (err && err.code === 'NotFound') {
                     reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
@@ -82,15 +95,17 @@ module.exports = {
         });
     },
 
-    copy: function (from, to, key) {
+    copy: function (fromBucket, fromFolder, toBucket, toFolder, key) {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
-            var params = {
-                Bucket: to,
-                CopySource: '/' + from + '/' + key,
-                Key: key
-            }
+            const srcPath = (fromFolder)? `/${fromBucket}/${fromFolder}/${key}` : `/${fromBucket}/${key}`;
+            const desPath = (toFolder)? `${toFolder}/${key}` : key;
+            const params = {
+                Bucket: toBucket,
+                CopySource: srcPath,
+                Key: desPath
+            };
             s3.copyObject(params, function (err, data) {
                 if (err) {
                     reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
@@ -101,16 +116,19 @@ module.exports = {
         });
     },
 
-    deleteMany: function(bucket, keys) {
+    deleteMany: function(bucket, folder, keys) {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
-            var params = {
+            const path = (folder)? folder + '/' : '';
+            const keyObjs = [];
+            keys.forEach(key => keyObjs.push({Key: path + key}));
+            const params = {
                 Bucket: bucket,
                 Delete: {
-                    Objects: keys
+                    Objects: keyObjs
                 }
-            }
+            };
             s3.deleteObjects(params, (err, data) => {
                 if (err) {
                     reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
@@ -121,14 +139,15 @@ module.exports = {
         });
     },
 
-    get: (bucket, key) => {
+    get: (bucket, folder, key) => {
         return new Promise((resolve, reject) => {
             AWS_SDK.config.loadFromPath(CONFIG_PATH);
             const s3 = new AWS_SDK.S3({signatureVersion: 'v4'});
-            var params = {
+            const path = (folder)? folder + '/' + key : key;
+            const params = {
                 Bucket: bucket,
-                Key: key
-            }
+                Key: path
+            };
             s3.getObject(params, function (err, data) {
                 if (err) {
                     reject(Response.get(Response.type.AWS_S3_FAILED, err.stack));
@@ -137,9 +156,5 @@ module.exports = {
                 }
             });
         });
-    },
-
-    createKey: function (id) {
-        return id + "-" + Date.now() + "-" + Math.floor(Math.random() * 900 + 100);
-    },
+    }
 }

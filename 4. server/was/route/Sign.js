@@ -14,9 +14,10 @@ Router.delete(
     ],
     Handler.request(
         Ctrl.logout,
-        (req, res, next) => [req]
-    )
-);
+        (req, res, next) => [
+            req
+        ]
+    ));
 
 /**
  * @desc Membership Login
@@ -28,9 +29,12 @@ Router.post(
     ],
     Handler.request(
         Ctrl.login,
-        (req, res, next) => [req, req.body.id, req.body.pass]
-    )
-);
+        (req, res, next) => [
+            req,
+            req.body['id'],
+            req.body['pass']
+        ]
+    ));
 
 /**
  * @desc Membership Join
@@ -38,12 +42,21 @@ Router.post(
 Router.post(
     '/up',
     [
-        Request.hasParams(['id', 'pass', 'name', 'phone'])
+        Request.hasParams([
+            'id',
+            'pass',
+            'name',
+            'phone'
+        ])
     ],
     Handler.request(
         Ctrl.join,
-        (req, res, next) => [req.body.id, req.body.pass, req.body.name, req.body.phone]
-    )
-);
+        (req, res, next) => [
+            req.body['id'],
+            req.body['pass'],
+            req.body['name'],
+            req.body['phone']
+        ]
+    ));
 
 module.exports = Router;

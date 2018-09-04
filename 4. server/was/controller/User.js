@@ -23,22 +23,20 @@ module.exports = {
 
     updateByUser: (userId, name, phone, level, oldPass, newPass) => {
         return new Promise(async (resolve, reject) => {
-
             try {
                 const user = await User.getUserById(userId);
                 if (user) {
-
                     if (Auth.isValidPassword(oldPass, user)) {
                         const rs = await User.update(userId, name, phone, level, newPass);
                         resolve(rs);
                     } else {
-                        reject(Response.get(Response.type.PASSWORD_MISMATCH, {}));
+                        throw Response.get(Response.type.PASSWORD_MISMATCH, {});
                     }
                 } else {
-                    reject(Response.get(Response.type.USER_NOT_FOUND, {}));
+                    throw Response.get(Response.type.USER_NOT_FOUND, {});
                 }
             } catch (err) {
-                reject(Response.get(Response.type.DATABASE_ERROR, err.message));
+                reject(err);
             }
         });
     },

@@ -1,9 +1,5 @@
 module.exports = {
 
-    initialize: function(db){
-
-    },
-
     create: function (req, user) {
         return new Promise((resolve, reject) => {
             req.session.userId = user._id;

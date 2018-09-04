@@ -2,7 +2,7 @@ const BaseModelForMongo = require('./BaseModelForMongo')
     , Util = require('util');
 
 function AlarmModel() {
-    BaseModelForMongo.call(this, 'Alarms');
+    BaseModelForMongo.call(this, 'Alarm');
     return this;
 }
 

@@ -11,12 +11,9 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             try {
                 const user = await User.getUserById(id);
-
                 if (user) {
                     if (!Auth.isExceedFailCount(user)) {
-
                         if (Auth.isValidPassword(pass, user) || Auth.isLostPassword(pass, user)) {
-
                             await User.resetTryHistory(id);
                             await Session.create(req, user);
                             resolve({
@@ -25,22 +22,21 @@ module.exports = {
                                     userName: user.name,
                                     userState: user.state,
                                     userLevel: user.level
-                                }, expire: req.session.cookie.expires
-                            })
-
+                                },
+                                expire: req.session.cookie.expires
+                            });
                         } else {
                             await User.addTryHistory(id);
-                            reject(Response.type.FAILED);
-
+                            throw Response.get(Response.type.FAILED, {});;
                         }
                     } else {
-                        reject(Response.type.EXCEED_TRY_COUNT);
+                        throw Response.get(Response.type.EXCEED_TRY_COUNT, {});
                     }
                 } else {
-                    reject(Response.type.USER_NOT_FOUND);
+                    throw Response.get(Response.type.USER_NOT_FOUND, {});
                 }
             } catch (err) {
-                reject(Response.get(Response.type.FAILED, err.message));
+                reject(err);
             }
         });
     },

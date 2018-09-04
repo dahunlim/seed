@@ -2,12 +2,17 @@ const Response = require('../core/Response');
 
 module.exports = {
 
-    request: (promise, params) =>
+    request: (promise, params, isJson) =>
         async (req, res, next) => {
             const boundParams = params ? params(req, res, next) : [];
             try {
                 const result = await promise(...boundParams);
-                res.json({"code": Response.type.SUCCESS.code, "msg": '', "data": result});
+
+                if (typeof isJson === 'undefined' || isJson) {
+                    res.json({"code": Response.type.SUCCESS.code, "msg": '', "data": result});
+                } else {
+                    res.send(result);
+                }
             } catch (error) {
                 next(error);
             }

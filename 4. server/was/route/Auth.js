@@ -11,19 +11,21 @@ Router.post(
     ],
     Handler.request(
         Ctrl.createAuthCode,
-        (req, res, next) => [req, req.body['phone']]
-    )
-);
+        (req, res, next) => [
+            req,
+            req.body['phone']
+        ]
+    ));
 
 Router.get(
     '/mobile/:code',
     [],
     Handler.request(
         Ctrl.checkAuthCode,
-        (req, res, next) => [req, req.params['code']]
-    )
-);
-
-
+        (req, res, next) => [
+            req,
+            req.params['code']
+        ]
+    ));
 
 module.exports = Router;

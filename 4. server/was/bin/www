@@ -6,49 +6,60 @@ const debug = require('debug')('was:server')
     , app = require('../app')
     , DB = require('../core/Database');
 
-
 app.set('port', port);
-const server = http.createServer(app);
 
 /**
  * DB initialize
  */
-DB.initialize().then(() => {
+(async () => {
+    try {
 
-    // Server listen
-    server.listen(port);
-});
+        DB.conn = await DB.initialize();
 
-server.on('error', (error) => {
-    if (error.syscall !== 'listen') {
-        throw error;
+        /**
+         * Task Init
+         */
+        const tasks = fs.readdirSync('task');
+        tasks.forEach(task => require('../task/' + task)());
+
+        const server = http.createServer(app);
+        server.listen(port);
+
+        server.on('error', (error) => {
+            if (error.syscall !== 'listen') {
+                throw error;
+            }
+            let bind = typeof port === 'string'
+                ? 'Pipe ' + port
+                : 'Port ' + port;
+            switch (error.code) {
+                case 'EACCES':
+                    console.error(bind + ' requires elevated privileges');
+                    process.exit(1);
+                    break;
+                case 'EADDRINUSE':
+                    console.error(bind + ' is already in use');
+                    process.exit(1);
+                    break;
+                default:
+                    throw error;
+            }
+        });
+        server.on('listening', () => {
+            let addr = server.address();
+            let bind = typeof addr === 'string'
+                ? 'pipe ' + addr
+                : 'port ' + addr.port;
+            debug('Listening on ' + bind);
+        });
+    } catch (err) {
+        console.log(err);
+        console.error('Database Initialize Failed!');
     }
-    var bind = typeof port === 'string'
-        ? 'Pipe ' + port
-        : 'Port ' + port;
-    switch (error.code) {
-        case 'EACCES':
-            console.error(bind + ' requires elevated privileges');
-            process.exit(1);
-            break;
-        case 'EADDRINUSE':
-            console.error(bind + ' is already in use');
-            process.exit(1);
-            break;
-        default:
-            throw error;
-    }
-});
-server.on('listening', () => {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
-});
+})();
 
 function normalizePort(val) {
-    var port = parseInt(val, 10);
+    let port = parseInt(val, 10);
     if (isNaN(port)) {
         return val;
     }
@@ -57,3 +68,4 @@ function normalizePort(val) {
     }
     return false;
 }
+

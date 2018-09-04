@@ -1,91 +1,53 @@
 module.exports = {
 
-    /**
-     * App Name
-     */
     APP: {
-        NAME: 'Aram Seed WAS'
+        NAME: 'S-ENGLISH'
     },
 
-    /**
-     * Database Information For MongoDB
-     */
     DATABASE : {
         POOL_SIZE: 10,
-        HOST : '1.aram-in.com',
+        HOST : '13.126.158.196',
         PORT : '27017',
-        NAME : 'Common',
-        USER_ID: 'aram',
-        USER_PASS: 'aram7242456'
+        NAME : 'senglish',
+        USER_ID: 'senglish',
+        USER_PASS: 'senglish12!'
     },
 
-    /**
-     * S3 BUCKET
-     */
     S3_BUCKET: {
-        TEMP: 'afun-mobile-temp',
-        FILE: 'afun-mobile-media'
+        TEMP: 's-english.biz-file-temp',
+        FILE: 's-english.biz-file'
     },
 
-    /**
-     * SMS SERVER
-     */
     SMS_DATABASE : {
         HOST : '1.aram-in.com',
         PORT : '3306',
         NAME : 'lg_sms',
         USER_ID : 'aram',
         USER_PASS : 'aram7242456',
-        CALLBACK : '18005681'
+        SMS_CALLBACK : '18005681'
     },
 
-    /**
-     * SESSION INFORMATION
-     */
     SESSION : {
-        DOMAIN: 'afunmobile.com',
-        SECRET: 'afun',
+        DOMAIN: 'aram-in.com',
+        SECRET: 'aramin',
         TTL: 604800,
         MAX_AGE: 604800000,
         COLLECTION: 'Session'
     },
 
-    /**
-     * EMAIL INFORMATION, (MAILER)
-     */
     EMAIL: {
-        HOST: 'smtp.gmail.com',
+        HOST: '',
         POST: 465,
-        USER_ID: 'afunmobile1@gmail.com',
-        USER_PASS: 'interactive4'
+        USER_ID: '',
+        USER_PASS: ''
     },
 
-    /**
-     * USER
-     */
-    USER: {
-        STATE: {
-            NEWER: 0,
-            NORMAL: 1,
-            EXCEED_COUNT : 7,
-            LOST_PASSWORD: 8,
-            DELETED: 9
-        },
-        LEVEL: {
-            NORMAL: 1,
-            MANAGER: 2,
-            ADMIN: 9
-        }
-    },
-
-    /**
-     * MEDIA
-     */
     MEDIA: {
         RESIZER: {
             COUNT: 4
         },
         SIZE: {
+            ICON: 120,
             MOBILE: 320,
             DESKTOP: 1024
         },
@@ -95,13 +57,37 @@ module.exports = {
         }
     },
 
-    /**
-     * Authentication Setting
-     */
     AUTHENTICATION: {
         TEMP_PASSWORD_VALID_TIME: 3600000,
         LOGIN_TRY_MAX_COUNT: 5,
         LOGIN_FAILED_MAX_COUNT: 5,
         LOGIN_TRY_INTERVAL: 20000
+    },
+
+    /**************************************
+     * Domain Specific Settings
+     **************************************/
+
+    USER: {
+        STATE: {
+            NEWER: 0,
+            NORMAL: 1,
+            EXCEED_COUNT : 7,
+            LOST_PASSWORD: 8,
+            DELETED: 9
+        },
+        LEVEL: {
+            INSTRUCTOR: 1,
+            MANAGER: 5,
+            STAFF: 8,
+            ADMIN: 9
+        }
+    },
+
+    INQUIRY: {
+        STATE: {
+            UNCOMPLETED: 0,
+            COMPLETED: 1
+        }
     }
 }

@@ -1,20 +1,22 @@
 const Router = require('express').Router({})
-    , Session = require('../core/Session')
-    , Auth = require('../middleware/Auth')
+    , Config = require('../config/Constant')
     , Request = require('../middleware/Request')
     , Handler = require('../middleware/Handler')
-    , Ctrl = require('../controller/Alarm');
+    , Auth = require('../middleware/Auth')
+    , Grant = require('../middleware/Grant')
+    , Controller = require('../controller/Alarm');
 
 Router.get(
-    '/me',
+    '',
     [
-        Auth.has(),
-        Request.hasParams(['offset', 'count'])
+        Auth.has()
     ],
     Handler.request(
-        Ctrl.list,
-        (req, res, next) => [Session.get(req, 'userId'), req.query['offset'], req.query['count']]
-    )
-);
+        Controller.getList,
+        (req, res, next) => [
+            Session.get(req, 'userId'),
+            req.query['type']
+        ]
+    ));
 
 module.exports = Router;
