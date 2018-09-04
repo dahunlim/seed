@@ -19,8 +19,8 @@ app.set('port', port);
         /**
          * Task Init
          */
-        const tasks = fs.readdirSync('task');
-        tasks.forEach(task => require('../task/' + task)());
+        // const tasks = fs.readdirSync('task');
+        // tasks.forEach(task => require('../task/' + task)());
 
         const server = http.createServer(app);
         server.listen(port);
