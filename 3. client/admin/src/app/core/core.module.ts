@@ -1,7 +1,4 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-import {DaumService} from './services/aram/daum.service';
-import {HttpService} from './services/aram/http.service';
-import {SessionService} from './services/aram/session.service';
 import {CanActiveViaAuthGuard} from './guards/auth.guard';
 
 import 'rxjs/add/operator/map';
@@ -20,12 +17,12 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/forkJoin';
 
 import {SpinnerModule} from './modules/spinner/spinner.module';
-import {UploadService} from './services/aram/upload.service';
 import {BrowserAnimationsModule} from '../../../node_modules/@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '../../../node_modules/@angular/common/http';
 import {FuseMainModule} from '../main/main.module';
 import {ApiModule} from './apis/api.module';
+import {ServiceModule} from './services/service.module';
 
 
 @NgModule({
@@ -35,17 +32,14 @@ import {ApiModule} from './apis/api.module';
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    FuseMainModule
+    FuseMainModule,
+    ServiceModule
   ],
   exports: [
     SpinnerModule
   ],
   declarations: [],
   providers: [
-    DaumService,
-    HttpService,
-    SessionService,
-    UploadService,
     CanActiveViaAuthGuard
   ]
 })

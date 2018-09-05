@@ -1,21 +1,20 @@
-import {Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation} from "@angular/core";
-import {Subscription} from "rxjs/Subscription";
-import {FuseConfigService} from "../core/services/fuse/config.service";
-import {Platform} from "@angular/cdk/platform";
-import {DOCUMENT} from "@angular/common";
-import {Navigation} from "selenium-webdriver";
-import {FuseNavigationService} from "../core/components/navigation/navigation.service";
+import {Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation} from '@angular/core';
+import {Subscription} from 'rxjs/Subscription';
+import {FuseConfigService} from '../core/services/fuse/config.service';
+import {Platform} from '@angular/cdk/platform';
+import {DOCUMENT} from '@angular/common';
+import {FuseNavigationService} from '../core/components/navigation/navigation.service';
 
 @Component({
-  selector: "fuse-main",
-  templateUrl: "./main.component.html",
-  styleUrls: ["./main.component.scss"],
+  selector: 'fuse-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class FuseMainComponent implements OnInit, OnDestroy {
   onSettingsChanged: Subscription;
   fuseSettings: any;
-  @HostBinding("attr.fuse-layout-mode") layoutMode;
+  @HostBinding('attr.fuse-layout-mode') layoutMode;
 
   constructor(
     private _renderer: Renderer2,
