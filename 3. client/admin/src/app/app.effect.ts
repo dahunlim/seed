@@ -1,6 +1,6 @@
-import {UserEffect} from './main/content/user/redux/user.effect';
-import {NoticeEffect} from './main/content/notice/redux/notice.effect';
 import {RouterEffect} from './core/router/router.effect';
+import {UserEffect} from './core/redux/user/user.effect';
+import {NoticeEffect} from './core/redux/notice/notice.effect';
 
 export const AppEffects = [
   RouterEffect,

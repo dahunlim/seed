@@ -5,7 +5,7 @@ import {fuseAnimations} from '../../../../core/animations';
 import {AppStore} from '../../../../app-store.interface';
 import {Store} from '@ngrx/store';
 
-import * as MembershipActions from '../redux/membership.action';
+import * as MembershipActions from '../../../../core/redux/membership/membership.action';
 import {FormHelper} from '../../../../core/helpers/form';
 
 @Component({

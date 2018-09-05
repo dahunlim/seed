@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-import {IResponse, RESPONSE_CODE} from '../../../../core/helpers/response';
+import {IResponse, RESPONSE_CODE} from '../../helpers/response';
 
 import * as UserActions from './user.action';
-import * as RouterActions from '../../../../core/router/router.action';
-import {Converter} from '../../../../core/helpers/converter';
-import {UserApiService} from '../../../../core/apis/user-api.service';
-import {User} from '../../../../core/models/user';
+import * as RouterActions from '../../router/router.action';
+import {Converter} from '../../helpers/converter';
+import {User} from '../../models/user';
+import {UserApiService} from '../../apis/user-api.service';
 
 @Injectable()
 export class UserEffect {

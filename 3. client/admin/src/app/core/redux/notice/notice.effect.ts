@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
-import {NoticeApiService} from '../../../../core/apis/notice-api.service';
-import {IResponse, RESPONSE_CODE} from '../../../../core/helpers/response';
+import {NoticeApiService} from '../../apis/notice-api.service';
+import {IResponse, RESPONSE_CODE} from '../../helpers/response';
 
 import * as NoticeActions from './notice.action';
-import * as RouterActions from '../../../../core/router/router.action';
-import {Notice} from '../../../../core/models/notice';
-import {Converter} from '../../../../core/helpers/converter';
+import * as RouterActions from '../../router/router.action';
+import {Notice} from '../../models/notice';
+import {Converter} from '../../helpers/converter';
 
 @Injectable()
 export class NoticeEffect {

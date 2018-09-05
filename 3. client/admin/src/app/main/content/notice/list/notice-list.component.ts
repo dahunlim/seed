@@ -4,11 +4,11 @@ import {Notice} from '../../../../core/models/notice';
 import {AppStore} from '../../../../app-store.interface';
 import {Store} from '@ngrx/store';
 
-import * as NoticeActions from '../redux/notice.action';
+import * as NoticeActions from '../../../../core/redux/notice/notice.action';
 import * as RouterActions from '../../../../core/router/router.action';
-import {getNotices, getTotal} from '../redux/notice.selector';
 import {fuseAnimations} from '../../../../core/animations';
 import {SelectionModel} from '@angular/cdk/collections';
+import {getNotices, getTotal} from '../../../../core/redux/notice/notice.selector';
 
 @Component({
   selector: 'notice-list',

@@ -1,17 +1,17 @@
-import {Component} from "@angular/core";
-import {NavigationEnd, NavigationStart, Router} from "@angular/router";
-import {FuseConfigService} from "../../core/services/config.service";
-import {TranslateService} from "@ngx-translate/core";
-import {SessionService} from "../../core/services/session.service";
-import {Store} from "@ngrx/store";
-import {AppStore} from "../../app-store.interface";
+import {Component} from '@angular/core';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {FuseConfigService} from '../../core/services/config.service';
+import {TranslateService} from '@ngx-translate/core';
+import {SessionService} from '../../core/services/session.service';
+import {Store} from '@ngrx/store';
+import {AppStore} from '../../app-store.interface';
 
-import * as MembershipActions from '../content/membership/redux/membership.action';
+import * as MembershipActions from '../../core/redux/membership/membership.action';
 
 @Component({
-  selector: "fuse-toolbar",
-  templateUrl: "./toolbar.component.html",
-  styleUrls: ["./toolbar.component.scss"]
+  selector: 'fuse-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss']
 })
 
 export class FuseToolbarComponent {
@@ -32,42 +32,42 @@ export class FuseToolbarComponent {
 
     this.userStatusOptions = [
       {
-        "title": "Online",
-        "icon": "icon-checkbox-marked-circle",
-        "color": "#4CAF50"
+        'title': 'Online',
+        'icon': 'icon-checkbox-marked-circle',
+        'color': '#4CAF50'
       },
       {
-        "title": "Away",
-        "icon": "icon-clock",
-        "color": "#FFC107"
+        'title': 'Away',
+        'icon': 'icon-clock',
+        'color': '#FFC107'
       },
       {
-        "title": "Do not Disturb",
-        "icon": "icon-minus-circle",
-        "color": "#F44336"
+        'title': 'Do not Disturb',
+        'icon': 'icon-minus-circle',
+        'color': '#F44336'
       },
       {
-        "title": "Invisible",
-        "icon": "icon-checkbox-blank-circle-outline",
-        "color": "#BDBDBD"
+        'title': 'Invisible',
+        'icon': 'icon-checkbox-blank-circle-outline',
+        'color': '#BDBDBD'
       },
       {
-        "title": "Offline",
-        "icon": "icon-checkbox-blank-circle-outline",
-        "color": "#616161"
+        'title': 'Offline',
+        'icon': 'icon-checkbox-blank-circle-outline',
+        'color': '#616161'
       }
     ];
 
     this.languages = [
       {
-        "id": "kr",
-        "title": "한국어",
-        "flag": "kr"
+        'id': 'kr',
+        'title': '한국어',
+        'flag': 'kr'
       },
       {
-        "id": "en",
-        "title": "English",
-        "flag": "us"
+        'id': 'en',
+        'title': 'English',
+        'flag': 'us'
       }
     ];
 
@@ -84,12 +84,12 @@ export class FuseToolbarComponent {
       });
 
     this.fuseConfig.onSettingsChanged.subscribe((settings) => {
-      this.horizontalNav = settings.layout.navigation === "top";
+      this.horizontalNav = settings.layout.navigation === 'top';
     });
 
     this.user = {
-      _id: this.sessionService.getValue("userId"),
-      name: this.sessionService.getValue("userName")
+      _id: this.sessionService.getValue('userId'),
+      name: this.sessionService.getValue('userName')
     };
   }
 

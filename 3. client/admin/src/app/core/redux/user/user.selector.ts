@@ -1,4 +1,4 @@
-import {AppStore} from '../../../../app-store.interface';
+import {AppStore} from '../../../app-store.interface';
 import {IUserState} from './user.state';
 import {createSelector} from '@ngrx/store';
 

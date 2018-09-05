@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {User} from '../../../../core/models/user';
+import {User} from '../../models/user';
 
 export const USER_GET_LIST = 'USER_GET_LIST';
 export class UserGetList implements Action {

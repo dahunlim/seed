@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-import {LoginApiService} from '../../../../core/apis/login-api.service';
 import * as MembershipActions from './membership.action';
-import * as RouterActions from '../../../../core/router/router.action';
-import {JoinApiService} from '../../../../core/apis/join-api.service';
-import {IResponse, RESPONSE_CODE} from '../../../../core/helpers/response';
-import {SessionService} from '../../../../core/services/session.service';
-import {MembershipInitialize} from './membership.action';
+import * as RouterActions from '../../../core/router/router.action';
 import {MatSnackBar} from '@angular/material';
-import {MembershipApiService} from '../../../../core/apis/sign-api.service';
+import {IResponse, RESPONSE_CODE} from '../../helpers/response';
+import {MembershipApiService} from '../../apis/sign-api.service';
+import {SessionService} from '../../services/session.service';
+import {JoinApiService} from '../../apis/join-api.service';
 
 @Injectable()
 export class MembershipEffect {

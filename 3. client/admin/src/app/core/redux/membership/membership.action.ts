@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {User} from '../../../../core/models/user';
+import {User} from '../../../core/models/user';
 
 export const MEMBERSHIP_REGISTER = 'MEMBERSHIP_REGISTER';
 export class MembershipRegister implements Action {

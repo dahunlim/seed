@@ -3,12 +3,10 @@ import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../../app-store.interface';
 import {Notice} from '../../../../core/models/notice';
-import * as NoticeActions from '../redux/notice.action';
-import {getSelectedNotice} from '../redux/notice.selector';
-import {Observable} from 'rxjs/Observable';
 import {fuseAnimations} from '../../../../core/animations';
 
 import * as RouterActions from '../../../../core/router/router.action';
+import {getSelectedNotice} from '../../../../core/redux/notice/notice.selector';
 
 @Component({
   selector: 'notice-view',

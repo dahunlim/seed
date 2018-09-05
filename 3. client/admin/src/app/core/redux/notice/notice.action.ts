@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store';
-import {Notice} from '../../../../core/models/notice';
+import {Notice} from '../../models/notice';
 
-import * as RouterActions from '../../../../core/router/router.action';
+import * as RouterActions from '../../router/router.action';
 
 
 

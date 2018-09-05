@@ -2,13 +2,12 @@ import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../../app-store.interface';
-import {getUsers, getUserTotal} from '../redux/user.selector';
-import * as UserActions from '../redux/user.action';
+import * as UserActions from '../../../../core/redux/user/user.action';
 import * as RouterActions from '../../../../core/router/router.action';
 import {User} from '../../../../core/models/user';
 import {fuseAnimations} from '../../../../core/animations';
 import {SelectionModel} from '@angular/cdk/collections';
-import * as NoticeActions from '../../notice/redux/notice.action';
+import {getUsers, getUserTotal} from '../../../../core/redux/user/user.selector';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import {Record, Map} from 'immutable';
-import {Notice} from '../../../../core/models/notice';
+import {Notice} from '../../models/notice';
 
 export interface INoticeState extends Map<string, any> {
   list: Notice[];

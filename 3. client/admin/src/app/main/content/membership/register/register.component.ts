@@ -5,7 +5,7 @@ import {fuseAnimations} from '../../../../core/animations';
 import {User} from '../../../../core/models/user';
 import {AppStore} from '../../../../app-store.interface';
 import {Store} from '@ngrx/store';
-import * as MembershipActions from '../redux/membership.action';
+import * as MembershipActions from '../../../../core/redux/membership/membership.action';
 
 @Component({
   selector: 'fuse-register',

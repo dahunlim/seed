@@ -1,6 +1,6 @@
 import {Record, Map, List} from 'immutable';
-import {User} from '../../../../core/models/user';
-import {IModel} from '../../../../core/models/interface';
+import {User} from '../../models/user';
+import {IModel} from '../../models/interface';
 
 export interface IUserState extends Map<string, any> {
   list: User[];

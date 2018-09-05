@@ -7,7 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../../app-store.interface';
 
-import * as MembershipActions from '../redux/membership.action';
+import * as MembershipActions from '../../../../core/redux/membership/membership.action';
 
 @Component({
   selector: 'fuse-reset-password',

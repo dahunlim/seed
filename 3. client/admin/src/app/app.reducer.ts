@@ -1,7 +1,7 @@
 import {routerReducer} from '@ngrx/router-store';
-import {noticeReducer} from './main/content/notice/redux/notice.reducer';
 import {storeFreeze} from 'ngrx-store-freeze';
-import {userReducer} from './main/content/user/redux/user.reducer';
+import {noticeReducer} from './core/redux/notice/notice.reducer';
+import {userReducer} from './core/redux/user/user.reducer';
 
 export const reducers = {
   router: routerReducer,

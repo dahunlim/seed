@@ -3,12 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../../app-store.interface';
 
-import * as NoticeActions from '../redux/notice.action';
-import * as RouterActions from '../../../../core/router/router.action';
+import * as NoticeActions from '../../../../core/redux/notice/notice.action';
 import {Notice} from '../../../../core/models/notice';
 import {fuseAnimations} from '../../../../core/animations';
 import {FormHelper} from '../../../../core/helpers/form';
-import {getSelectedNotice} from '../redux/notice.selector';
 
 @Component({
   selector: 'notice-form',
