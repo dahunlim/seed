@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FuseUtils } from '../../core/fuseUtils';
+import { FuseUtils } from '../../core/helpers/fuseUtils';
 
 @Pipe({name: 'filter'})
 export class FilterPipe implements PipeTransform

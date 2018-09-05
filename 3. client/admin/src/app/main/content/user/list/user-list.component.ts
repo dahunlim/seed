@@ -5,7 +5,7 @@ import {AppStore} from '../../../../app-store.interface';
 import * as UserActions from '../../../../core/redux/user/user.action';
 import * as RouterActions from '../../../../core/router/router.action';
 import {User} from '../../../../core/models/user';
-import {fuseAnimations} from '../../../../core/animations';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 import {SelectionModel} from '@angular/cdk/collections';
 import {getUsers, getUserTotal} from '../../../../core/redux/user/user.selector';
 

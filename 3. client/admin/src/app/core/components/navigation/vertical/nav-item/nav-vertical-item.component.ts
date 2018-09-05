@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {SessionService} from '../../../../services/session.service';
+import {SessionService} from '../../../../services/aram/session.service';
 
 @Component({
   selector: 'fuse-nav-vertical-item',

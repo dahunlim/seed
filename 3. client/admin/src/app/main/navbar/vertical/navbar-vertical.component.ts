@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { FuseMatchMedia } from '../../../core/services/match-media.service';
+import { FuseMatchMedia } from '../../../core/services/fuse/match-media.service';
 import { FuseNavbarVerticalService } from './navbar-vertical.service';
 import { ObservableMedia } from '@angular/flex-layout';
 import { FuseMainComponent } from '../../main.component';

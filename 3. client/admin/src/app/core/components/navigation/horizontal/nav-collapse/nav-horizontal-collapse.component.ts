@@ -1,6 +1,6 @@
 import { Component, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
-import { fuseAnimations } from '../../../../animations';
-import { FuseConfigService } from '../../../../services/config.service';
+import { fuseAnimations } from '../../../../../shared/animation/fuse.animations';
+import { FuseConfigService } from '../../../../services/fuse/config.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({

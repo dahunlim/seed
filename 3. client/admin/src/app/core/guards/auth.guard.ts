@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 import {Observable} from 'rxjs/Observable';
 import {AppStore} from '../../app-store.interface';
 import {Store} from '@ngrx/store';
-import {SessionService} from '../services/session.service';
+import {SessionService} from '../services/aram/session.service';
 import {MatDialog} from '@angular/material';
 import {FuseAlertDialogComponent} from '../components/dialog/alert/alert-dialog.component';
 

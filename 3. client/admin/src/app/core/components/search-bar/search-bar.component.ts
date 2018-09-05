@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FuseConfigService } from '../../services/config.service';
+import { FuseConfigService } from '../../services/fuse/config.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({

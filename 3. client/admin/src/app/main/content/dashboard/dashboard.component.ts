@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {fuseAnimations} from '../../../core/animations';
+import {fuseAnimations} from '../../../shared/animation/fuse.animations';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,6 +1,6 @@
 import {Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation} from "@angular/core";
 import {Subscription} from "rxjs/Subscription";
-import {FuseConfigService} from "../core/services/config.service";
+import {FuseConfigService} from "../core/services/fuse/config.service";
 import {Platform} from "@angular/cdk/platform";
 import {DOCUMENT} from "@angular/common";
 import {Navigation} from "selenium-webdriver";

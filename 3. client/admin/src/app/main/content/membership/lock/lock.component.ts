@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FuseConfigService} from '../../../../core/services/config.service';
-import {fuseAnimations} from '../../../../core/animations';
+import {FuseConfigService} from '../../../../core/services/fuse/config.service';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 
 @Component({
   selector: 'fuse-lock',

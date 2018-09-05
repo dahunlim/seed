@@ -5,7 +5,7 @@ import {AppStore} from '../../../../app-store.interface';
 
 import * as NoticeActions from '../../../../core/redux/notice/notice.action';
 import {Notice} from '../../../../core/models/notice';
-import {fuseAnimations} from '../../../../core/animations';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 import {FormHelper} from '../../../../core/helpers/form';
 
 @Component({

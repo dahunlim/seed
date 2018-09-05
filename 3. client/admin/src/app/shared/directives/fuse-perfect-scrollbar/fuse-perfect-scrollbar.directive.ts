@@ -1,6 +1,6 @@
 import {AfterViewInit, Directive, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
-import {FuseConfigService} from '../../../core/services/config.service';
+import {FuseConfigService} from '../../../core/services/fuse/config.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Platform} from '@angular/cdk/platform';
 

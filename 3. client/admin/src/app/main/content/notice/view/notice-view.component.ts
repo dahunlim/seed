@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../../app-store.interface';
 import {Notice} from '../../../../core/models/notice';
-import {fuseAnimations} from '../../../../core/animations';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 
 import * as RouterActions from '../../../../core/router/router.action';
 import {getSelectedNotice} from '../../../../core/redux/notice/notice.selector';

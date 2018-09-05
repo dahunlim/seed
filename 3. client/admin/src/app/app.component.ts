@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {FuseSplashScreenService} from './core/services/splash-screen.service';
+import {FuseSplashScreenService} from './core/services/fuse/splash-screen.service';
 import {TranslateService} from '@ngx-translate/core';
-import {FuseTranslationLoaderService} from './core/services/translation-loader.service';
+import {FuseTranslationLoaderService} from './core/services/fuse/translation-loader.service';
 
 import {FuseNavigationService} from './core/components/navigation/navigation.service';
 import {FuseNavigationModel} from './navigation/navigation.model';

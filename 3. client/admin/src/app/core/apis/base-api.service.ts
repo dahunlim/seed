@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs/Observable';
-import {HttpService} from '../services/http.service';
+import {HttpService} from '../services/aram/http.service';
 import {IResponse} from '../helpers/response';
 import {IModel} from '../models/interface';
 

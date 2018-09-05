@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {FuseConfigService} from '../../../../core/services/config.service';
-import {fuseAnimations} from '../../../../core/animations';
+import {FuseConfigService} from '../../../../core/services/fuse/config.service';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 
 @Component({
   selector: 'fuse-mail-confirm',

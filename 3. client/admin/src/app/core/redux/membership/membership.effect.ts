@@ -5,7 +5,7 @@ import * as RouterActions from '../../../core/router/router.action';
 import {MatSnackBar} from '@angular/material';
 import {IResponse, RESPONSE_CODE} from '../../helpers/response';
 import {MembershipApiService} from '../../apis/sign-api.service';
-import {SessionService} from '../../services/session.service';
+import {SessionService} from '../../services/aram/session.service';
 import {JoinApiService} from '../../apis/join-api.service';
 
 @Injectable()

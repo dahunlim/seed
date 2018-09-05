@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FuseConfigService} from '../../../../core/services/config.service';
-import {fuseAnimations} from '../../../../core/animations';
+import {FuseConfigService} from '../../../../core/services/fuse/config.service';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 import {User} from '../../../../core/models/user';
 import {AppStore} from '../../../../app-store.interface';
 import {Store} from '@ngrx/store';

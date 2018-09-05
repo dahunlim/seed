@@ -6,7 +6,7 @@ import {Store} from '@ngrx/store';
 
 import * as NoticeActions from '../../../../core/redux/notice/notice.action';
 import * as RouterActions from '../../../../core/router/router.action';
-import {fuseAnimations} from '../../../../core/animations';
+import {fuseAnimations} from '../../../../shared/animation/fuse.animations';
 import {SelectionModel} from '@angular/cdk/collections';
 import {getNotices, getTotal} from '../../../../core/redux/notice/notice.selector';
 

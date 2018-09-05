@@ -1,7 +1,7 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-import {DaumService} from './services/daum.service';
-import {HttpService} from './services/http.service';
-import {SessionService} from './services/session.service';
+import {DaumService} from './services/aram/daum.service';
+import {HttpService} from './services/aram/http.service';
+import {SessionService} from './services/aram/session.service';
 import {CanActiveViaAuthGuard} from './guards/auth.guard';
 
 import 'rxjs/add/operator/map';
@@ -20,7 +20,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/forkJoin';
 
 import {SpinnerModule} from './modules/spinner/spinner.module';
-import {UploadService} from './services/upload.service';
+import {UploadService} from './services/aram/upload.service';
 import {BrowserAnimationsModule} from '../../../node_modules/@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '../../../node_modules/@angular/common/http';

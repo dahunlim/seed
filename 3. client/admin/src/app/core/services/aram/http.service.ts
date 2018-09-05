@@ -8,8 +8,8 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
 
-import {environment} from '../../../environments/environment';
-import {IResponse} from '../helpers/response';
+import {environment} from '../../../../environments/environment';
+import {IResponse} from '../../helpers/response';
 import {Form} from '@angular/forms';
 import {Router} from '@angular/router';
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from './http.service';
-import {IResponse, RESPONSE_CODE} from '../helpers/response';
+import {IResponse, RESPONSE_CODE} from '../../helpers/response';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()

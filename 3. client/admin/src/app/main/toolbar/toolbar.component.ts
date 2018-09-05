@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {FuseConfigService} from '../../core/services/config.service';
+import {FuseConfigService} from '../../core/services/fuse/config.service';
 import {TranslateService} from '@ngx-translate/core';
-import {SessionService} from '../../core/services/session.service';
+import {SessionService} from '../../core/services/aram/session.service';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../app-store.interface';
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpService} from '../services/http.service';
+import {HttpService} from '../services/aram/http.service';
 import {BaseApiService} from './base-api.service';
 import {IResponse} from '../helpers/response';
 import {Observable} from 'rxjs';
