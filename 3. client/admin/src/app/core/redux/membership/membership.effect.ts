@@ -32,6 +32,7 @@ export class MembershipEffect {
       return this.membershipApi
         .signin(action.email, action.pass)
         .map((res: IResponse<any>) => {
+          console.log('res', res);
           if (res.code === RESPONSE_CODE.SUCCESS) {
             this.sessionService.init(res.data);
             return new RouterActions.Go({path: ['/dashboard']});

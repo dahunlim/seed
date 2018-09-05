@@ -49,6 +49,7 @@ export class FuseLoginComponent implements OnInit, OnDestroy {
 
   login() {
     const rawValue = this.loginForm.getRawValue();
+    console.log(rawValue);
     this.store.dispatch(new MembershipActions.MembershipLogin(rawValue.email, rawValue.password));
   }
 }
