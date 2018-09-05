@@ -3,10 +3,10 @@ import {FuseSplashScreenService} from './core/services/fuse/splash-screen.servic
 import {TranslateService} from '@ngx-translate/core';
 import {FuseTranslationLoaderService} from './core/services/fuse/translation-loader.service';
 
-import {FuseNavigationService} from './core/components/navigation/navigation.service';
 import {FuseNavigationModel} from './navigation/navigation.model';
 import {locale as navigationEnglish} from './navigation/i18n/en';
 import {locale as navigationKorean} from './navigation/i18n/kr';
+import {FuseNavigationService} from './shared/components/navigation/navigation.service';
 
 @Component({
   selector: 'fuse-root',

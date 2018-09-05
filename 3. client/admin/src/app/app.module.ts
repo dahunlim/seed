@@ -8,7 +8,6 @@ import {AppComponent} from './app.component';
 import {FuseMainModule} from './main/main.module';
 import {FuseSplashScreenService} from './core/services/fuse/splash-screen.service';
 import {FuseConfigService} from './core/services/fuse/config.service';
-import {FuseNavigationService} from './core/components/navigation/navigation.service';
 import {MarkdownModule} from 'angular2-markdown';
 import {TranslateModule} from '@ngx-translate/core';
 import {AppRoutingModule} from './app-routing.module';
@@ -23,6 +22,7 @@ import {ResponseInterceptor} from './core/interceptors/response.interceptor';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppEffects} from './app.effect';
 import {fuseConfig} from './fuse-config';
+import {FuseNavigationService} from './shared/components/navigation/navigation.service';
 
 @NgModule({
   declarations: [

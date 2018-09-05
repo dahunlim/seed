@@ -8,13 +8,13 @@ import { FuseContentComponent } from './content/content.component';
 import { FuseFooterComponent } from './footer/footer.component';
 import { FuseNavbarVerticalComponent } from './navbar/vertical/navbar-vertical.component';
 import { FuseToolbarComponent } from './toolbar/toolbar.component';
-import { FuseNavigationModule } from '../core/components/navigation/navigation.module';
 import { FuseNavbarVerticalToggleDirective } from './navbar/vertical/navbar-vertical-toggle.directive';
 import { FuseNavbarHorizontalComponent } from './navbar/horizontal/navbar-horizontal.component';
 import { FuseQuickPanelComponent } from './quick-panel/quick-panel.component';
-import { FuseThemeOptionsComponent } from '../core/components/theme-options/theme-options.component';
-import { FuseShortcutsModule } from '../core/components/shortcuts/shortcuts.module';
-import { FuseSearchBarModule } from '../core/components/search-bar/search-bar.module';
+import {FuseThemeOptionsComponent} from '../shared/components/theme-options/theme-options.component';
+import {FuseNavigationModule} from '../shared/components/navigation/navigation.module';
+import {FuseShortcutsModule} from '../shared/components/shortcuts/shortcuts.module';
+import {FuseSearchBarModule} from '../shared/components/search-bar/search-bar.module';
 
 @NgModule({
     declarations: [

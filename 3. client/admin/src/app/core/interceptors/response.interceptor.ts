@@ -7,8 +7,8 @@ import {IResponse, RESPONSE_CODE} from '../helpers/response';
 import {AppStore} from '../../app-store.interface';
 import * as RouterActions from '../../core/router/router.action';
 import {MatDialog} from '@angular/material';
-import {FuseAlertDialogComponent} from '../components/dialog/alert/alert-dialog.component';
 import {SpinnerService} from '../modules/spinner/spinner.service';
+import {FuseAlertDialogComponent} from '../../shared/components/dialog/alert/alert-dialog.component';
 
 
 @Injectable()

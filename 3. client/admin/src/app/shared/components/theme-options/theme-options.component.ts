@@ -1,9 +1,9 @@
 import { Component, ElementRef, HostBinding, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { style, animate, AnimationBuilder, AnimationPlayer } from '@angular/animations';
 import { Subscription } from 'rxjs/Subscription';
-import { FuseConfigService } from '../../services/fuse/config.service';
 import { fuseAnimations } from '../../../shared/animation/fuse.animations';
 import { FuseNavigationService } from '../navigation/navigation.service';
+import {FuseConfigService} from '../../../core/services/fuse/config.service';
 
 @Component({
     selector   : 'fuse-theme-options',

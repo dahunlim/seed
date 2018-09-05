@@ -5,9 +5,9 @@ import { FuseNavbarVerticalService } from './navbar-vertical.service';
 import { ObservableMedia } from '@angular/flex-layout';
 import { FuseMainComponent } from '../../main.component';
 import { NavigationEnd, Router } from '@angular/router';
-import { FuseNavigationService } from '../../../core/components/navigation/navigation.service';
 import { FusePerfectScrollbarDirective } from '../../../shared/directives/fuse-perfect-scrollbar/fuse-perfect-scrollbar.directive';
 import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
+import {FuseNavigationService} from '../../../shared/components/navigation/navigation.service';
 
 @Component({
     selector     : 'fuse-navbar-vertical',

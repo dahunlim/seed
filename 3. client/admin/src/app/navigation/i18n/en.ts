@@ -5,18 +5,16 @@ export const locale = {
       'MENU': 'Menu',
       'DASHBOARDS': 'Dashboards',
       'NOTICE': 'Notice',
-      'SCHEDULE': 'Schedule',
-      'REQUEST': 'Request',
       'USER': 'User',
+      'ONE': 'Schedule',
+      'REQUEST': 'Request',
       'MANAGER': 'Manager',
       'INSTRUCTOR': 'Instructor',
       'APPLICANT': 'Applicant',
       'LESSON': 'Lesson',
-      'COMPLAIN': 'Complain',
       'LOG': 'Log',
       'EVENT': 'Event',
-      'DOWNLOAD': 'Download',
-      'CHAT': 'Chat'
+      'DOWNLOAD': 'Download'
     }
   }
 };

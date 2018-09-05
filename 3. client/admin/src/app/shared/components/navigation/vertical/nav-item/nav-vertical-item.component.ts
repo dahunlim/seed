@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {SessionService} from '../../../../services/aram/session.service';
+import {SessionService} from '../../../../../core/services/aram/session.service';
 
 @Component({
   selector: 'fuse-nav-vertical-item',
@@ -7,7 +7,7 @@ import {SessionService} from '../../../../services/aram/session.service';
   styleUrls: ['./nav-vertical-item.component.scss']
 })
 export class FuseNavVerticalItemComponent implements OnInit {
-  @HostBinding("class") classes = "nav-item";
+  @HostBinding('class') classes = 'nav-item';
   @Input() item: any;
 
   constructor(private sessionService: SessionService) {

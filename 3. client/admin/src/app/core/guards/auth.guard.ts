@@ -5,7 +5,6 @@ import {AppStore} from '../../app-store.interface';
 import {Store} from '@ngrx/store';
 import {SessionService} from '../services/aram/session.service';
 import {MatDialog} from '@angular/material';
-import {FuseAlertDialogComponent} from '../components/dialog/alert/alert-dialog.component';
 
 import * as RouterActions from '../../core/router/router.action';
 

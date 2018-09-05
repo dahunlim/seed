@@ -1,5 +1,5 @@
-import {FuseNavigationModelInterface} from '../core/components/navigation/navigation.model';
 import {USER_LEVEL} from '../core/models/user';
+import {FuseNavigationModelInterface} from '../shared/components/navigation/navigation.model';
 
 export class FuseNavigationModel implements FuseNavigationModelInterface {
   public model: any[];
@@ -32,27 +32,18 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
             'grant': [USER_LEVEL.ADMIN, USER_LEVEL.STAFF, USER_LEVEL.MANAGER, USER_LEVEL.INSTRUCTOR]
           },
           {
-            'id': 'chat',
-            'title': 'Chat',
-            'translate': 'NAV.CHAT',
+            'id': 'user',
+            'title': 'User',
+            'translate': 'NAV.USER',
             'type': 'item',
-            'icon': 'chat',
-            'url': '/chat',
-            'grant': [USER_LEVEL.ADMIN, USER_LEVEL.STAFF, USER_LEVEL.MANAGER, USER_LEVEL.INSTRUCTOR]
-          },
-          {
-            'id': 'complain',
-            'title': 'Complain',
-            'translate': 'NAV.COMPLAIN',
-            'type': 'item',
-            'icon': 'question_answer',
+            'icon': 'person',
             'url': '/user/list',
             'grant': [USER_LEVEL.ADMIN, USER_LEVEL.STAFF, USER_LEVEL.MANAGER, USER_LEVEL.INSTRUCTOR]
           },
           {
-            'id': 'schedule',
-            'title': 'Schedule',
-            'translate': 'NAV.SCHEDULE',
+            'id': 'one',
+            'title': 'One',
+            'translate': 'NAV.ONE',
             'type': 'item',
             'icon': 'today',
             'url': '/schedule/list',

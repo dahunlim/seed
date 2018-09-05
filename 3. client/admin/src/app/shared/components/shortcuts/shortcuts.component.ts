@@ -2,9 +2,9 @@ import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '
 import { FuseNavigationService } from '../navigation/navigation.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ObservableMedia } from '@angular/flex-layout';
-import { FuseMatchMedia } from '../../services/fuse/match-media.service';
-import { FuseConfigService } from '../../services/fuse/config.service';
 import { CookieService } from 'ngx-cookie-service';
+import {FuseMatchMedia} from '../../../core/services/fuse/match-media.service';
+import {FuseConfigService} from '../../../core/services/fuse/config.service';
 
 @Component({
     selector   : 'fuse-shortcuts',

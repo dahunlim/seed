@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {FuseConfigService} from '../core/services/fuse/config.service';
 import {Platform} from '@angular/cdk/platform';
 import {DOCUMENT} from '@angular/common';
-import {FuseNavigationService} from '../core/components/navigation/navigation.service';
+import {FuseNavigationService} from '../shared/components/navigation/navigation.service';
 
 @Component({
   selector: 'fuse-main',
