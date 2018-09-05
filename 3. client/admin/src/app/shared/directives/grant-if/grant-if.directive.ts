@@ -1,5 +1,5 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
-import {SessionService} from '../../services/session.service';
+import {SessionService} from '../../../core/services/session.service';
 
 @Directive({
   selector: '[grantIf]'

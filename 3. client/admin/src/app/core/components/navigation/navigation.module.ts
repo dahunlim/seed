@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../modules/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FuseNavigationComponent } from './navigation.component';
 import { FuseNavVerticalItemComponent } from './vertical/nav-item/nav-vertical-item.component';
@@ -9,22 +9,21 @@ import { FuseNavHorizontalItemComponent } from './horizontal/nav-item/nav-horizo
 import { FuseNavHorizontalCollapseComponent } from './horizontal/nav-collapse/nav-horizontal-collapse.component';
 
 @NgModule({
-    imports     : [
-        SharedModule,
-        RouterModule
+    imports : [
+      SharedModule,
+      RouterModule
     ],
-    exports     : [
-        FuseNavigationComponent
+    exports : [
+      FuseNavigationComponent
     ],
-    declarations: [
-        FuseNavigationComponent,
-        FuseNavVerticalGroupComponent,
-        FuseNavVerticalItemComponent,
-        FuseNavVerticalCollapseComponent,
-        FuseNavHorizontalItemComponent,
-        FuseNavHorizontalCollapseComponent
+    declarations : [
+      FuseNavigationComponent,
+      FuseNavVerticalGroupComponent,
+      FuseNavVerticalItemComponent,
+      FuseNavVerticalCollapseComponent,
+      FuseNavHorizontalItemComponent,
+      FuseNavHorizontalCollapseComponent
     ]
 })
-export class FuseNavigationModule
-{
+export class FuseNavigationModule {
 }

@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
-import {SharedModule} from './core/modules/shared.module';
+import {SharedModule} from './shared/shared.module';
 import {AppComponent} from './app.component';
 import {FuseMainModule} from './main/main.module';
 import {FuseSplashScreenService} from './core/services/splash-screen.service';

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {MembershipRoutingModule} from './membership-routing.module';
-import {SharedModule} from '../../../core/modules/shared.module';
+import {SharedModule} from '../../../shared/shared.module';
 import {MembershipComponent} from './membership.component';
 import {FuseLoginComponent} from './login/login.component';
 import {FuseForgotPasswordComponent} from './forgot-password/forgot-password.component';

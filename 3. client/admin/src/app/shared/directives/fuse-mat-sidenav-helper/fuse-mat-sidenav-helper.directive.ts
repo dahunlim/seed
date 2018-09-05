@@ -2,7 +2,7 @@ import { Directive, Input, OnInit, HostListener, OnDestroy, HostBinding } from '
 import { MatSidenav } from '@angular/material';
 import { ObservableMedia } from '@angular/flex-layout';
 import { Subscription } from 'rxjs/Subscription';
-import { FuseMatchMedia } from '../../services/match-media.service';
+import { FuseMatchMedia } from '../../../core/services/match-media.service';
 import { FuseMatSidenavHelperService } from './fuse-mat-sidenav-helper.service';
 
 @Directive({

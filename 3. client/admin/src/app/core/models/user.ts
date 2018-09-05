@@ -1,5 +1,5 @@
 import {IModel} from './interface';
-import {ImageSrc} from '../directives/aws-src/aws-src.directive';
+import {ImageSrc} from '../../shared/directives/aws-src/aws-src.directive';
 import {Serializable} from '../helpers/serializable';
 
 export enum USER_LEVEL {

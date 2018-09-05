@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {NoticeRoutingModule} from './notice-routing.module';
-import {SharedModule} from '../../../core/modules/shared.module';
+import {SharedModule} from '../../../shared/shared.module';
 import {NoticeComponent} from './notice.component';
 import {NoticeListComponent} from './list/notice-list.component';
 import {NoticeFormComponent} from './form/notice-form.component';
