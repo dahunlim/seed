@@ -65,6 +65,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   changePage(event: any): void {
+    console.log(event);
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.store.dispatch(new UserActions.UserGetList(event.pageIndex * event.pageSize, event.pageSize, this.keyword));

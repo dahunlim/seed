@@ -78,9 +78,7 @@
 
         <ng-container matColumnDef="state">
           <mat-header-cell *matHeaderCellDef mat-sort-header> State</mat-header-cell>
-          <mat-cell *matCellDef="let user">
-            <p [ngClass]="user.getStateClass()">{{user.getState()}}</p>
-          </mat-cell>
+          <mat-cell *matCellDef="let user">{{user.getState()}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="date">

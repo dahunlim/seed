@@ -91,6 +91,26 @@ export class User extends Serializable implements IModel {
     return result;
   }
 
+  getLevel() {
+    let userLevel = '';
+    switch (this.level) {
+      case USER_LEVEL.ADMIN: userLevel = 'ADMIN';
+        break;
+      case USER_LEVEL.STAFF: userLevel = 'STAFF';
+        break;
+      case USER_LEVEL.MANAGER: userLevel = 'MANAGER';
+        break;
+      case USER_LEVEL.INSTRUCTOR: userLevel = 'INSTRUCTOR';
+        break;
+      default: userLevel = 'NULL';
+    }
+    return userLevel;
+  }
+
+  getState() {
+    return 'State';
+  }
+
   toObject(): object {
     return {
       _id: this._id,

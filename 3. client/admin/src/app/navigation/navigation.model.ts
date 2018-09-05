@@ -46,7 +46,7 @@ export class FuseNavigationModel implements FuseNavigationModelInterface {
             'translate': 'NAV.COMPLAIN',
             'type': 'item',
             'icon': 'question_answer',
-            'url': '/complain/list',
+            'url': '/user/list',
             'grant': [USER_LEVEL.ADMIN, USER_LEVEL.STAFF, USER_LEVEL.MANAGER, USER_LEVEL.INSTRUCTOR]
           },
           {
