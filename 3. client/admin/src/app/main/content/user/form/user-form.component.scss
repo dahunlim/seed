@@ -1,0 +1,42 @@
+@import "src/scss/fuse";
+
+:host{
+  width: 100%;
+  > div {
+    height: 100%;
+  }
+  .header {
+    .subtitle {
+      margin: 6px 0 0 0;
+    }
+  }
+  .content {
+    .mat-tab-group,
+    .mat-tab-body-wrapper,
+    .tab-content {
+      flex: 1 1 auto;
+      max-width: 100%;
+    }
+
+    .tab-content {
+      flex: 1 1 auto;
+
+      .mat-tab-body-content {
+        display: flex;
+      }
+
+      .mat-tab-label {
+        height: 64px;
+      }
+
+      table {
+        table-layout: fixed;
+
+      }
+    }
+
+    .stamp .exchange{
+      height: 30px;
+    }
+  }
+}

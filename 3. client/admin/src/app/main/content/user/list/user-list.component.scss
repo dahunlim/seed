@@ -1,0 +1,25 @@
+@import "src/scss/fuse";
+
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  min-width: 100%;
+  .header {
+    .search-input-wrapper {
+      max-width: 480px;
+    }
+  }
+  .mat-column-level{
+    flex: none;
+    width: 150px;
+  }
+  .mat-column-state{
+    flex: none;
+    width: 150px;
+  }
+  .mat-column-date {
+    flex: none;
+    width: 150px;
+  }
+}

@@ -1,0 +1,70 @@
+<div id="login" fxLayout="row" fxLayoutAlign="start">
+
+  <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+    <div class="logo" *fuseIfOnDom [@animate]="{value:'*',params:{scale:'0.2'}}">
+      <img src="assets/images/logos/fuse.svg">
+    </div>
+
+    <div class="title" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+      S-Eenglish LMS
+    </div>
+
+    <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+      The LMS is for managing lecture schedules and instructors. <br/>
+      Only training and official instructors can login this system.
+    </div>
+
+  </div>
+
+  <div id="login-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
+       [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+    <div id="login-form">
+      <div class="logo" fxHide.gt-xs>
+        <span>S</span>
+      </div>
+
+      <div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+      <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="loginFormErrors.email.required">Email is required</mat-error>
+          <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">Please enter a valid email
+            address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" formControlName="password">
+          <mat-error *ngIf="loginFormErrors.password.required">Password is required</mat-error>
+          <mat-error *ngIf="loginFormErrors.password.minlength">Password is at least 6 characters</mat-error>
+        </mat-form-field>
+
+        <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+             fxLayoutAlign="space-between center">
+          <mat-checkbox class="remember-me" aria-label="Remember Me">Remember Me</mat-checkbox>
+          <a class="forgot-password" [routerLink]="'/membership/forgot-password'">
+            Forgot Password?
+          </a>
+        </div>
+
+        <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" (click)="login()" [disabled]="loginForm.invalid">
+          LOGIN
+        </button>
+
+      </form>
+
+      <div class="separator">
+        <span class="text">OR</span>
+      </div>
+
+      <div class="register" fxLayout="column" fxLayoutAlign="center center">
+        <span class="text">Don't have an account?</span>
+        <a class="link" href="http://www.s-english.biz/apply">Apply for the S-English instructor.</a>
+      </div>
+    </div>
+  </div>
+</div>

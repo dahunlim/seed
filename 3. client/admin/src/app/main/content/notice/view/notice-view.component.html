@@ -1,0 +1,42 @@
+<div id="notice" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button class="mr-16" mat-icon-button [routerLink]="'/notice/list'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom
+             [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2">Notice</div>
+          <div class="subtitle secondary-text">
+            <span>notice detail</span>
+          </div>
+        </div>
+      </div>
+      <!-- / APP TITLE -->
+
+      <div>
+        <button mat-raised-button class="mat-accent" (click)="modify()" *grantIf="[8, 9]">Modify</button>
+      </div>
+    </div>
+    <!-- / HEADER -->
+
+    <div class="content-card mat-white-bg">
+      <div class="content" fxLayout="column">
+        <div class="update-status p-24" fxLayout="column" fxLayoutAlign="start start">
+          <h1 class="title">{{notice.title}}</h1>
+          <h4 class="date">{{notice.date | date : 'yyyy. MM. dd'}}</h4>
+          <h5 class="contents">{{notice.contents}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
