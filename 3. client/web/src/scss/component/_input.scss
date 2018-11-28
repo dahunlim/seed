@@ -1,0 +1,53 @@
+.aram-text-input {
+  width: 200px;
+  .title {
+    @include font(body-2);
+    color: $color-grey-5;
+    padding-bottom: 7px;
+  }
+  > input {
+    border: 1px solid $color-grey-3;
+    border-radius: 4px;
+    color: $color-grey-6;
+    height: 20px;
+    margin-bottom: 18px;
+    //min-width: 164px;
+    text-align: center;
+    padding: 8px;
+    width: inherit;
+    &::placeholder {
+      color: $color-grey-5;
+    }
+  }
+  .state {
+    height: 18px;
+    margin-top: -18px;
+    padding-left: 8px;
+    //position: absolute;
+    opacity: 1;
+    transform: translateY(0%);
+    &.error {
+      color: $color-red;
+    }
+    &.hint {
+      color: $color-grey-5;
+    }
+  }
+}
+
+/* label on focus colour change */
+.mat-focused .mat-form-field-label {
+  color: $color-green-1 !important;
+}
+.mat-form-field-infix {
+  border-top-width : 0;
+}
+.mat-form-field-outline-gap {
+  border-top-color: currentColor !important;
+}
+.mat-form-field-ripple {
+  background-color: $color-green-1 !important;
+}
+// .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick
+// .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick
+// .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick

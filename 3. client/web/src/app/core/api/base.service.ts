@@ -22,6 +22,23 @@ export class BaseService {
     return this.http.get<IResponse<T>>(`${this.controllerName}/${id}`);
   }
 
+  public list<T>(offset: number, count: number, additional?: any): Observable<IResponse<T>> {
+    const params = {
+      count: count,
+      offset: offset
+    };
+    if (typeof additional !== 'undefined') {
+      Object.keys(additional).forEach(key => {
+        params[key] = additional[key];
+      });
+    }
+    return this.http.get<IResponse<T>>(`${this.controllerName}`, params);
+  }
+
+  public post<T>(item: IModel): Observable<IResponse<T>> {
+    return this.http.post(`${this.controllerName}`, item.toObject());
+  }
+
   public modify<T>(item: IModel, withFile: boolean = false): Observable<IResponse<T>> {
     return this.http.put(`${this.controllerName}/${item._id}`, item.toObject(), withFile);
   }

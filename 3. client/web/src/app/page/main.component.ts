@@ -1,4 +1,4 @@
-import * as RouterActions from '../core/router/router.action';
+import * as RouterActions from '../core/redux/router/action';
 import { Component } from '@angular/core';
 import {AppStore} from '../app-store.interface';
 import {Store} from '@ngrx/store';

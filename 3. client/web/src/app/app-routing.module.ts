@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 const appRoutes: Routes = [
   {path: 'main', loadChildren: 'app/page/main.module#MainModule'},
   {path: '', loadChildren: 'app/page/account/account.module#AccountModule'},
+  // {path: '**', redirectTo: 'main'},
 ];
 
 @NgModule({

@@ -6,12 +6,14 @@ import {LoginService} from './login.service';
 import {MediaService} from './media.service';
 import {NoticeService} from './notice.service';
 import {UserService} from './user.service';
+import {AwsApiService} from "./aws-api.service";
 
 @NgModule({
   imports: [],
   providers: [
     AccountService,
     AuthService,
+    AwsApiService,
     InquiryService,
     LoginService,
     MediaService,

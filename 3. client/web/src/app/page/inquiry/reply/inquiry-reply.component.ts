@@ -6,8 +6,8 @@ import {Store} from '@ngrx/store';
 import {Inquiry} from '../../../core/model/inquiry';
 import {AppStore} from '../../../app-store.interface';
 
-import * as InquiryActions from '../redux/inquiry.action';
-import {getSelectedInquiry} from '../redux/inquiry.selector';
+import * as InquiryActions from '../../../core/redux/inquiry/action';
+import {getSelectedInquiry} from '../../../core/redux/inquiry/selector';
 
 @Component({
   selector: 'app-inquiry-reply',

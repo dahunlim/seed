@@ -2,16 +2,16 @@
 @import "typography";
 
 .mat-dialog-container{
-  padding: 0 20px !important;
-  height: 204px !important;
-  width: 280px !important;
+  //padding: 0 20px !important;
+  //height: 204px !important;
+  //width: 280px !important;
   .mat-dialog-title{
 
   }
   .mat-dialog-content {
     @include font(body-2);
     align-items: center;
-    color: $color-grey-8;
+    //color: $color-grey-8;
     display: flex;
     height: 144px;
     justify-content: center;
@@ -21,57 +21,57 @@
   }
 
   .mat-dialog-actions {
-    height: 59px;
-    padding: 0;
-    .confirm {
-      display: flex;
-      div {
-        width: 120px;
-        button {
-          @include font(medium-button);
-          &:hover {
-            background-color: rgba($color-grey-4, 0.8);
-          }
-          background-color: $color-grey-1;
-          cursor: pointer;
-          height: 43px;
-          margin: 8px;
-          padding: 0;
-          width: 104px;
-        }
-        &:nth-child(1) {
-          button {
-            color: $color-grey-7;
-          }
-        }
-        &:nth-child(2) {
-          button {
-            color: $color-red-1;
-          }
-        }
-      }
-    }
-
-    .alert {
-      width: 240px;
-      display: flex;
-      justify-content: center;
-      div {
-        width: 120px;
-        button {
-          @include font(medium-button);
-          &:hover {
-            background-color: rgba($color-grey-4, 0.8);
-          }
-          background-color: $color-grey-1;
-          color: $color-grey-7;
-          cursor: pointer;
-          height: 43px;
-          margin: 8px;
-          padding: 0;
-          width: 104px;
-        }
-      }
-    }
+    //height: 59px;
+    //padding: 0;
+    //.confirm {
+    //  display: flex;
+    //  div {
+    //    width: 120px;
+    //    button {
+    //      @include font(medium-button);
+    //      &:hover {
+    //        background-color: rgba($color-grey-4, 0.8);
+    //      }
+    //      background-color: $color-grey-1;
+    //      cursor: pointer;
+    //      height: 43px;
+    //      margin: 8px;
+    //      padding: 0;
+    //      width: 104px;
+    //    }
+    //    &:nth-child(1) {
+    //      button {
+    //        color: $color-grey-7;
+    //      }
+    //    }
+    //    &:nth-child(2) {
+    //      button {
+    //        color: $color-red-1;
+    //      }
+    //    }
+    //  }
+    //}
+    //
+    //.alert {
+    //  width: 240px;
+    //  display: flex;
+    //  justify-content: center;
+    //  div {
+    //    width: 120px;
+    //    button {
+    //      @include font(medium-button);
+    //      &:hover {
+    //        background-color: rgba($color-grey-4, 0.8);
+    //      }
+    //      background-color: $color-grey-1;
+    //      color: $color-grey-7;
+    //      cursor: pointer;
+    //      height: 43px;
+    //      margin: 8px;
+    //      padding: 0;
+    //      width: 104px;
+    //    }
+    //  }
+    //}
   }
 }

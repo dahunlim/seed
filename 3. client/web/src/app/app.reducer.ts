@@ -1,7 +1,7 @@
-import {noticeReducer} from './page/notice/redux/notice.reducer';
-import {accountReducer} from './page/account/redux/account.reducer';
-import {inquiryReducer} from './page/inquiry/redux/inquiry.reducer';
 import {routerReducer} from '@ngrx/router-store';
+import {noticeReducer} from './core/redux/notice/reducer';
+import {accountReducer} from './core/redux/account/reducer';
+import {inquiryReducer} from './core/redux/inquiry/reducer';
 
 export const reducers = {
   router: routerReducer,

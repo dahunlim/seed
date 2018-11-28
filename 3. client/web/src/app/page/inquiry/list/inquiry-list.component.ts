@@ -5,9 +5,9 @@ import {Store} from '@ngrx/store';
 
 import {Inquiry} from '../../../core/model/inquiry';
 import {AppStore} from '../../../app-store.interface';
-import {getInquiry, getInquiryTotalCount} from '../redux/inquiry.selector';
-import * as InquiryActions from '../redux/inquiry.action';
-import * as RouterActions from '../../../core/router/router.action';
+import {getInquiry, getInquiryTotalCount} from '../../../core/redux/inquiry/selector';
+import * as InquiryActions from '../../../core/redux/inquiry/action';
+import * as RouterActions from '../../../core/redux/router/action';
 
 @Component({
   selector: 'app-inquiry-list',

@@ -4,10 +4,9 @@ import {Location} from "@angular/common";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {AppStore} from "../../../app-store.interface";
-import * as AccountActions from "../redux/account.action";
+import * as AccountActions from "../../../core/redux/account/action";
+import * as RouterActions from "../../../core/redux/router/action";
 
-import {aramSlideUpDown} from "app/shared/animation";
-import {SessionService} from "../../../core/service/session.service";
 import {FormHelper} from "../../../core/helper/form";
 import {SpinnerService} from "../../../core/module/spinner/spinner.service";
 
@@ -51,18 +50,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.store.dispatch(new AccountActions.AccountLogin(this.id, this.pass));
-  }
-
-  goToPage(page) {
-    switch (page) {
-      case "join":
-        this.location.go("join");
-        break;
-      case "find":
-        this.location.go("find");
-        break;
-      default:
-    }
   }
 
   spinner(action: boolean): void {

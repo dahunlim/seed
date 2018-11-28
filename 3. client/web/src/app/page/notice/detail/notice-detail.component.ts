@@ -5,10 +5,10 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 
 import {Notice} from '../../../core/model/notice';
-import {getResponse, getSelectedNotice} from '../redux/notice.selector';
+import {getResponse, getSelectedNotice} from '../../../core/redux/notice/selector';
 import {AppStore} from '../../../app-store.interface';
 
-import * as NoticeActions from '../redux/notice.action';
+import * as NoticeActions from '../../../core/redux/notice/action';
 import {AppDialogConfirmComponent} from '../../../core/dialog/confirm/confirm.component';
 import {Login} from '../../../core/model/login';
 

@@ -3,7 +3,7 @@ import {MatDialog} from "@angular/material";
 import {AppDialogAlertComponent} from "../dialog/alert/alert.component";
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
-import * as RouterActions from "../router/router.action";
+import * as RouterActions from "../redux/router/action";
 import {Observable} from "rxjs/Observable";
 import {Action} from "@ngrx/store";
 

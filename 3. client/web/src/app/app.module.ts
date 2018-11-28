@@ -14,7 +14,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {reducers} from './app.reducer';
 
-import {CustomSerializer} from './core/router/router.serializer';
+import {CustomSerializer} from './core/redux/router/router.serializer';
 import {appEffects} from './app.effect';
 
 
@@ -24,14 +24,14 @@ import {appEffects} from './app.effect';
   ],
   imports: [
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument({ maxAge: 5 }),
+    StoreDevtoolsModule.instrument({maxAge: 5}),
     EffectsModule.forRoot(appEffects),
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule
   ],
   providers: [
     {provide: RouterStateSerializer, useClass: CustomSerializer},

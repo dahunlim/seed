@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/Rx';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../app-store.interface';
-import * as AccountActions from '../redux/account.action';
+import * as AccountActions from '../../../core/redux/account/action';
 
 import {Join} from '../../../core/model/join';
 import {FormHelper} from "../../../core/helper/form";

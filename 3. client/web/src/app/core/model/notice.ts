@@ -30,6 +30,10 @@ export class Notice extends Serializable implements IModel {
     this.date =  date;
   }
 
+  customDeserializer(key: string, value: any): any {
+    return undefined;
+  }
+
   toObject(): object {
     return {
       title: this.title,

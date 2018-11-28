@@ -19,7 +19,7 @@
           > input[type=text] {
             @include font(title);
             border: none;
-            color: $color-grey-8;
+            //color: $color-grey-8;
             height: 36px;
             letter-spacing: -0px;
             margin-top: 20px;
@@ -42,7 +42,7 @@
           > textarea {
             @include font(body-1);
             border: none;
-            color: $color-grey-8;
+            //color: $color-grey-8;
             min-height: inherit;
             letter-spacing: -0px;
             padding: 30px 40px;
@@ -80,7 +80,7 @@
             padding: 10px 20px;
             width: 100%;
             @include placeholder {
-              color: $color-grey-7;
+              //color: $color-grey-7;
             }
           }
         }

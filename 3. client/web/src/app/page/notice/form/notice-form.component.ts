@@ -3,8 +3,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Notice} from '../../../core/model/notice';
 import {Observable} from 'rxjs/Observable';
 
-import * as NoticeActions from '../redux/notice.action';
-import {getSelectedNotice} from '../redux/notice.selector';
+import * as NoticeActions from '../../../core/redux/notice/action';
+import {getSelectedNotice} from '../../../core/redux/notice/selector';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../app-store.interface';
 

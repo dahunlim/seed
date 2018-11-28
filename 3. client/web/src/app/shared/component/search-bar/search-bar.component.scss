@@ -20,7 +20,7 @@
   }
   input[type=text] {
     border: none;
-    color: $color-grey-8;
+    //color: $color-grey-8;
     height: 24px;
     margin: 28px 150px 28px 76px;
     position: absolute;
@@ -36,7 +36,7 @@
     color: #3b3d40;
     input[type=text] {
       @include placeholder {
-        color: $color-grey-8;
+        //color: $color-grey-8;
       }
     }
     .search {

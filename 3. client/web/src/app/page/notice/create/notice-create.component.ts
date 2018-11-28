@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import 'rxjs/Rx';
 
-import * as NoticeActions from '../redux/notice.action';
+import * as NoticeActions from '../../../core/redux/notice/action';
 import {Notice} from '../../../core/model/notice';
 import {AppStore} from '../../../app-store.interface';
 

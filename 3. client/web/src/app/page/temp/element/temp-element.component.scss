@@ -1,0 +1,46 @@
+@import "component";
+
+.temp-element-container {
+  .box {
+    border: 1px solid $color-grey-6;
+    padding: 4px;
+    margin-bottom: 10px;
+    width: 30%;
+  }
+
+  .color {
+    .grey1 {
+      color: $color-grey-1;
+    }
+    .grey2 {
+      color: $color-grey-2;
+    }
+    .grey3 {
+      color: $color-grey-3;
+    }
+    .grey4 {
+      color: $color-grey-4;
+    }
+    .grey5 {
+      color: $color-grey-5;
+    }
+    .grey6 {
+      color: $color-grey-6;
+    }
+
+
+    .green1 {
+      color: $color-green-1;
+    }
+    .green2 {
+      color: $color-green-2;
+    }
+
+    .red {
+      color: $color-red;
+    }
+    .orange {
+      color: $color-orange;
+    }
+  }
+}

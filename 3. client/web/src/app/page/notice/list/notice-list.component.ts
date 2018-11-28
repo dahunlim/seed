@@ -2,11 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import * as NoticeActions from '../redux/notice.action';
+import * as NoticeActions from '../../../core/redux/notice/action';
 import {Notice} from '../../../core/model/notice';
 import {AppStore} from '../../../app-store.interface';
-import {getNoticeList, getNoticeTotalCount} from '../redux/notice.selector';
-import * as RouterActions from '../../../core/router/router.action';
+import {getNoticeList, getNoticeTotalCount} from '../../../core/redux/notice/selector';
+import * as RouterActions from '../../../core/redux/router/action';
 
 @Component({
   selector: 'app-notice-list',

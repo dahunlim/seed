@@ -10,10 +10,10 @@ const mainRoutes: Routes = [
     component: MainComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'temp', loadChildren: 'app/page/temp/temp.module#TempModule' },
       { path: 'notice', loadChildren: 'app/page/notice/notice.module#NoticeModule' },
       { path: 'inquiry', loadChildren: 'app/page/inquiry/inquiry.module#InquiryModule' },
-      { path: 'board', loadChildren: 'app/page/board/board.module#BoardModule' },
-      { path: '**', redirectTo: 'home' },
+      { path: '**', redirectTo: 'temp' },
     ]
   }
 ];

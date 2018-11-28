@@ -38,6 +38,10 @@ export class HttpService {
     return this.request<T>('PUT', url, params, withFileUpload);
   }
 
+  public getHttp(): HttpClient {
+    return this.http;
+  }
+
   private request<T>(method: string, url: string, params?: object, withFileUpload: boolean = false): Observable<IResponse<T>> {
     const requestUrl = environment.API_ENDPOINT + url;
     const options = {

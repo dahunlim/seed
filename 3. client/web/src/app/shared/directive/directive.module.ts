@@ -1,12 +1,15 @@
 import {NgModule} from '@angular/core';
 import {AppGrantDirective} from './grant.directive';
+import {RoutePageDirective} from "./routePage.directive";
 
 @NgModule({
   declarations: [
-    AppGrantDirective
+    AppGrantDirective,
+    RoutePageDirective
   ],
   exports: [
-    AppGrantDirective
+    AppGrantDirective,
+    RoutePageDirective
   ]
 })
 export class DirectiveModule {

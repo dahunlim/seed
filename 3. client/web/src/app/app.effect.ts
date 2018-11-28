@@ -1,7 +1,7 @@
-import {RouterEffect} from './core/router/router.effect';
-import {NoticeEffect} from './page/notice/redux/notice.effect';
-import {AccountEffect} from './page/account/redux/account.effect';
-import {InquiryEffect} from './page/inquiry/redux/inquiry.effect';
+import {RouterEffect} from './core/redux/router/effect';
+import {NoticeEffect} from './core/redux/notice/effect';
+import {AccountEffect} from './core/redux/account/effect';
+import {InquiryEffect} from './core/redux/inquiry/effect';
 
 export const appEffects = [
   RouterEffect,

@@ -4,9 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {AppStore} from '../../../app-store.interface';
 import {Inquiry} from '../../../core/model/inquiry';
-import {getSelectedInquiry} from '../redux/inquiry.selector';
+import {getSelectedInquiry} from '../../../core/redux/inquiry/selector';
 
-import * as InquiryActions from '../redux/inquiry.action';
+import * as InquiryActions from '../../../core/redux/inquiry/action';
 
 @Component({
   selector: 'app-inquiry-detail',

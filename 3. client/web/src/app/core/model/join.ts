@@ -15,6 +15,10 @@ export class Join implements IModel {
     phone?: string,
   ) { }
 
+  customDeserializer(key: string, value: any): any {
+    return undefined;
+  }
+
   toObject(): object {
     return {
       _id: this._id,

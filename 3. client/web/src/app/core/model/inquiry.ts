@@ -30,6 +30,10 @@ export class Inquiry extends Serializable implements IModel {
     super();
   }
 
+  customDeserializer(key: string, value: any): any {
+    return undefined;
+  }
+
   toObject(): object {
     return {
       title: this.title,

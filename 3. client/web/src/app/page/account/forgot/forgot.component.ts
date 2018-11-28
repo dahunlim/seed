@@ -8,7 +8,7 @@ import {RESPONSE_CODE} from '../../../core/service/response.service';
 import {DialogService} from '../../../core/service/dialog.service';
 import {FormHelper} from '../../../core/helper/form';
 
-import * as AccountActions from '../redux/account.action';
+import * as AccountActions from '../../../core/redux/account/action';
 
 @Component({
   selector: 'app-forgot',

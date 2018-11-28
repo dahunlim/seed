@@ -7,7 +7,7 @@
 @import "typography";
 
 .paging-container {
-  @include font(large-button);
+  //@include font(large-button);
   box-sizing: inherit;
   display: inline-block;
   height: 42px;
@@ -40,7 +40,7 @@
     }
     &:hover {
       background-color: $color-grey-2;
-      color: $color-grey-8;
+      //color: $color-grey-8;
     }
     a {
       display: table-cell;

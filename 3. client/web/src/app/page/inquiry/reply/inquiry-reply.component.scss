@@ -44,7 +44,7 @@
         padding: 10px 20px;
         width: calc(100% - 42px);
         @include placeholder {
-          color: $color-grey-7;
+          //color: $color-grey-7;
         }
       }
     }
@@ -59,6 +59,6 @@
 
   .link {
     @include font(body-1);
-    color: $color-blue-1;
+    //color: $color-blue-1;
   }
 }

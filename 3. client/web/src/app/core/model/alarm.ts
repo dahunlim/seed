@@ -23,6 +23,11 @@ export class Alarm extends Serializable implements IModel {
     super();
   }
 
+
+  customDeserializer(key: string, value: any): any {
+    return undefined;
+  }
+  
   toObject(): object {
     return {
       _id: this._id,
