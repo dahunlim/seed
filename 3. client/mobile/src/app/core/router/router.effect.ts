@@ -7,13 +7,28 @@ import {HomeComponent} from '../../page/home/home.component';
 
 @Injectable()
 export class RouterEffect {
+
+  // Go
+
+  // TabSelect
+
+
   @Effect({dispatch: false})
   navigate$ = this.actions$
     .ofType(RouterActions.GO)
     .do((action: RouterActions.Go) => {
+
+      if (typeof action.nav !== 'undefined') {
+        action.nav.push(action.pageName, action.data)
+      } else {
+        this.app.getRootNav().push(action.pageName, action.data);
+      }
+
       // this.app.getActiveNavs()[0].push(action.pageName, action.data);
       this.app.getRootNav().push(action.pageName, action.data);
-      console.log(this.app.getRootNav().length());
+      setTimeout(() => {
+        console.log(this.app.getRootNav().getAllChildNavs()[0].getActiveChildNavs());
+      }, 1000);
     });
 
   @Effect({dispatch: false})

@@ -1,9 +1,10 @@
 import {Action} from '@ngrx/store';
+import {NavController} from "ionic-angular";
 
 export const GO = '[Router] Go';
 export class Go implements Action {
   readonly type = GO;
-  constructor(public pageName: string, public data?: any) {}
+  constructor(public pageName: string, public nav?: NavController, public data?: any) {}
 }
 
 export const BACK = '[Router] Back';

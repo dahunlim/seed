@@ -20,6 +20,7 @@ export class AuthGuard {
       .switchMap(isAuthenticated => {
         console.log(isAuthenticated);
         if (!isAuthenticated) {
+        } else {
           return this.sessionService
             .refresh()
             .switchMap((isRefreshed: boolean) => {
@@ -31,7 +32,6 @@ export class AuthGuard {
                 return Observable.of(true);
               }
             });
-        } else {
           return Observable.of(true);
         }
       });
