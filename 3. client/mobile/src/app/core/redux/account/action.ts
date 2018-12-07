@@ -1,5 +1,5 @@
-import {Login} from "../../../core/model/login";
-import {User} from "../../../core/model/user";
+import {Login} from "../../model/login";
+import {User} from "../../model/user";
 import {Action} from "@ngrx/store";
 
 export const ACCOUNT_LOGIN = 'ACCOUNT_LOGIN';
@@ -90,12 +90,24 @@ export class AccountPasswordResetCode implements Action {
 export const ACCOUNT_FORGOT_RESET_PASSWORD = 'ACCOUNT_FORGOT_RESET_PASSWORD';
 export class AccountForgotResetPassword implements Action {
   readonly type = ACCOUNT_FORGOT_RESET_PASSWORD;
-  constructor(public pass: string) {}
+  constructor(public id: string, public pass: string) {}
 }
 
 export const ACCOUNT_LOGOUT = 'ACCOUNT_LOGOUT';
 export class AccountLogout implements Action {
   readonly type = ACCOUNT_LOGOUT;
+  constructor() {}
+}
+
+export const ACCOUNT_DELETE = 'ACCOUNT_DELETE';
+export class AccountDelete implements Action {
+  readonly type = ACCOUNT_DELETE;
+  constructor() {}
+}
+
+export const ACCOUNT_CLEAR = 'ACCOUNT_CLEAR';
+export class AccountClear implements Action {
+  readonly type = ACCOUNT_CLEAR;
   constructor() {}
 }
 
@@ -114,5 +126,6 @@ export type All =
   AccountPasswordResetCode |
   AccountForgotResetPassword |
   AccountAddressSetCode |
-  AccountAddressResetCode
+  AccountAddressResetCode |
+  AccountClear
   ;

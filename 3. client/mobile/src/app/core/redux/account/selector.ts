@@ -1,6 +1,6 @@
 import {AppStore} from '../../../app-store.interface';
 import {createSelector} from "@ngrx/store";
-import {IAccountState} from "./account.state";
+import {IAccountState} from "./state";
 
 export const baseAccount = (state: AppStore) => state.account;
 
@@ -15,3 +15,7 @@ export const accountSearchPasswordCode = createSelector(baseAccount, (state: IAc
 export const accountAddress = createSelector(baseAccount, (state: IAccountState) => {
   return state.address;
 });
+
+export const getLogin = createSelector(baseAccount, (state:IAccountState) => {
+  return state.accountList;
+})

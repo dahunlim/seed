@@ -3,11 +3,13 @@ import {Store} from "@ngrx/store";
 import {IonicPage, LoadingController, ToastController} from "ionic-angular";
 
 import * as RouterActions from "../../../../core/router/router.action";
+import * as AccountActions from "../../../../core/redux/account/action";
+
 import {AppStore} from "../../../../app-store.interface";
-import * as AccountActions from "../../redux/account.action";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormHelper} from "../../../../core/helper/form";
-import {accountSearchPasswordCode} from "../../redux/account.selector";
+import {BasicComponent} from "../../../../core/basic/basic.component";
+import {SessionService} from "../../../../core/service/session.service";
 
 @IonicPage({
   name: 'PasswordSearchComponent',
@@ -17,7 +19,7 @@ import {accountSearchPasswordCode} from "../../redux/account.selector";
   selector: 'page-password-search-ionic',
   templateUrl: 'password-search.component.html'
 })
-export class PasswordSearchComponent {
+export class PasswordSearchComponent extends BasicComponent{
   private searchForm: FormGroup;
   private searchFormErrors: any;
   private change$: any;
@@ -28,7 +30,14 @@ export class PasswordSearchComponent {
   private limitTime: number = 180;
   private authInterval: any;
 
-  constructor(private store: Store<AppStore>, private formBuilder: FormBuilder, private toastCtrl: ToastController, private loadingCtrl: LoadingController) {
+  constructor(
+    protected store: Store<AppStore>,
+    protected session:SessionService,
+    private formBuilder: FormBuilder,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController
+  ) {
+    super(store, session, false);
     this.searchFormErrors = {
       id: {},
       code: {}
@@ -124,14 +133,6 @@ export class PasswordSearchComponent {
       this.toast('인증코드를 입력해주세요.');
       return false;
     }
-    this.store.dispatch(new AccountActions.AccountPasswordCheckCode(this.searchForm.getRawValue().code));
-    this.authCheck$ = this.store.select(accountSearchPasswordCode).subscribe(res => {
-      if(res) {
-        this.allowStep = 3;
-        this.flowTime(false);
-        this.authCheck$.unsubscribe();
-      }
-    });
   }
 
   passReset() {
@@ -141,4 +142,46 @@ export class PasswordSearchComponent {
     }
     this.store.dispatch(new RouterActions.Go('PasswordChangeComponent'));
   }
+
+  // flowTime(bol: boolean) {
+  //   clearInterval(this.authInterval);
+  //   this.limitTime = 180;
+  //   if (bol) {
+  //     this.authInterval = setInterval(() => {
+  //       if (this.limitTime > 0) {
+  //         this.limitTime = this.limitTime - 1;
+  //       } else {
+  //         clearInterval(this.authInterval);
+  //         this.limitTime = 180;
+  //         this.toast('인증시간이 만료되었습니다.');
+  //       }
+  //     }, 1000)
+  //   } else {
+  //     clearInterval(this.authInterval);
+  //   }
+  // }
+  //
+  // sendAuth() {
+  //   this.subs$.push(
+  //     this.authService.mobileSend(this.searchForm.getRawValue().id).subscribe((res: IResponse<any>)=>{
+  //       if(res.code == RESPONSE_CODE.SUCCESS){
+  //         this.flowTime(true);
+  //         this.inputAuth = true;
+  //       }
+  //     })
+  //   );
+  // }
+  //
+  // resetPass() {
+  //   this.subs$.push(
+  //     this.authService.mobileCheck(this.searchForm.getRawValue().code).subscribe((res:IResponse<any>)=>{
+  //       if(res.code == RESPONSE_CODE.SUCCESS){
+  //         this.flowTime(false);
+  //         this.store.dispatch(new RouterActions.Go('PasswordResetComponent', {id: this.searchForm.getRawValue().id}));
+  //       }else{
+  //         this.toast('인증코드 인증실패하였습니다. 확인해주세요.');
+  //       }
+  //     })
+  //   );
+  // }
 }

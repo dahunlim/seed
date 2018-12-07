@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import {App, IonicPage} from "ionic-angular";
 import {Store} from "@ngrx/store";
+import {MatDialog} from '@angular/material';
+
+import * as RouterActions from '../../core/router/router.action';
 
 import {AppStore} from "../../app-store.interface";
-import * as RouterActions from '../../core/router/router.action';
-import {AuthGuard} from "../../core/guard/auth.guard";
 import {SessionService} from "../../core/service/session.service";
-import {MatDialog} from '@angular/material';
 import {AppDialogAlertComponent} from '../../core/dialog/alert/alert.component';
+import {BasicComponent} from "../../core/basic/basic.component";
 
 @IonicPage({
   name: 'HomeComponent',
@@ -18,7 +19,7 @@ import {AppDialogAlertComponent} from '../../core/dialog/alert/alert.component';
   templateUrl: 'home.component.html'
 })
 
-export class HomeComponent extends AuthGuard {
+export class HomeComponent extends BasicComponent {
 
   constructor(
     protected store: Store<AppStore>,
@@ -26,7 +27,7 @@ export class HomeComponent extends AuthGuard {
     private dialog: MatDialog,
     private app: App
   ) {
-    super(store, sessionService)
+    super(store, sessionService, false)
   }
 
   ionViewDidLoad() {
@@ -38,33 +39,6 @@ export class HomeComponent extends AuthGuard {
   ionViewWillLeave() {
   }
 
-  goToPage(page: string) {
-    switch (page) {
-      case 'home':
-        this.store.dispatch(new RouterActions.Go('HomeComponent'));
-        break;
-      case 'tabs':
-        this.store.dispatch(new RouterActions.Go('TabsComponent'));
-        break;
-      case 'signin':
-        this.store.dispatch(new RouterActions.Go('SigninComponent'));
-        break;
-      case 'signup':
-        this.store.dispatch(new RouterActions.Go('SignupComponent'));
-        break;
-      case 'notice':
-
-        // SigninComponent
-        this.app.getRootNav().getActiveChildNav().select(1);
-        console.log(this.app.getRootNav().getActiveChildNav());
-        break;
-      case 'back':
-        console.log(this.app.getRootNav().getActiveChildNav().previousTab());
-        console.log(this.app.getRootNav().getActiveChildNav());
-        // this.app.getRootNav().getActiveChildNav().previousTab();
-        break;
-    }
-  }
 
   setLocalStorage(): void {
     const data = {

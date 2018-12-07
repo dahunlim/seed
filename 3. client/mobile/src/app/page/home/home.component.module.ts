@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {IonicPageModule} from 'ionic-angular';
+import {NgModule} from "@angular/core";
+import {IonicPageModule} from "ionic-angular";
 import {HomeComponent} from "./home.component";
 import {SharedModule} from '../../shared/shared.module';
 

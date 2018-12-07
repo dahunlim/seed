@@ -1,19 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 
-import {ToastController, Platform} from "ionic-angular";
+import {ToastController} from "ionic-angular";
 
-import * as AccountActions from './account.action';
-import * as RouterActions from '../../../core/router/router.action';
-import {IResponse, RESPONSE_CODE} from "../../../core/service/response.service";
-import {Converter} from "../../../core/helper/converter";
-import {AuthService} from '../../../core/api/auth.service';
-import {AccountService} from "../../../core/api/account.service";
-import {LoginService} from "../../../core/api/login.service";
-import {SessionService} from "../../../core/service/session.service";
-import {Login} from "../../../core/model/login";
-import {UserService} from "../../../core/api/user.service";
-// import {Firebase} from "@ionic-native/firebase";
+import * as AccountActions from './action';
+import * as RouterActions from '../../router/router.action';
+import {IResponse, RESPONSE_CODE} from "../../service/response.service";
+import {Converter} from "../../helper/converter";
+import {AuthService} from '../../api/auth.service';
+import {SessionService} from "../../service/session.service";
+import {Login} from "../../model/login";
+import {SignService} from "../../api/sign.service";
+import {UserService} from "../../api/user.service";
 
 @Injectable()
 export class AccountEffect {
@@ -21,14 +19,11 @@ export class AccountEffect {
   constructor(
     private toastCtrl: ToastController,
     private actions$: Actions,
-    private accountService: AccountService,
-    private loginService: LoginService,
+    private signService: SignService,
     private sessionService: SessionService,
     private authService: AuthService,
-    private userService: UserService,
-    // private firebase: Firebase,
-    private platform: Platform,) {
-  }
+    private userService: UserService
+  ) {}
 
   toast(msg: string = 'null', position: string = 'top') {
     this.toastCtrl.create({
@@ -41,18 +36,11 @@ export class AccountEffect {
   @Effect() login$ = this.actions$
     .ofType(AccountActions.ACCOUNT_LOGIN)
     .switchMap((action: AccountActions.AccountLogin) =>
-      this.loginService.login(action.id, action.pass)
+      this.signService.in(action.id, action.pass)
         .map((res: IResponse<any>) => {
-          console.log(res);
           if (res.code === RESPONSE_CODE.SUCCESS) {
             this.sessionService.init(res.data);
-            // Cordova Check;
-            /*if(this.platform.is('cordova')) {
-              this.firebase.getToken().then(token => {
-                this.userService.putToken(token);
-              });
-            }*/
-            return new RouterActions.Go('HomeComponent');
+            return new RouterActions.SetRoot('TabsComponent');
           } else {
             this.toast(res.msg);
             return {type: 'NO_ACTION'};
@@ -63,7 +51,7 @@ export class AccountEffect {
   @Effect() loginGet$ = this.actions$
     .ofType(AccountActions.ACCOUNT_GET_LOGINED)
     .switchMap((action: AccountActions.AccountGetLogined) =>
-      this.loginService.loginGet()
+      this.signService.loginGet()
         .map((res: IResponse<Login>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             const login: Login = Converter.jsonToInstance<Login>(Login, res.data);
@@ -77,11 +65,11 @@ export class AccountEffect {
   @Effect() signup$ = this.actions$
     .ofType(AccountActions.ACCOUNT_SIGNUP)
     .switchMap((action: AccountActions.AccountSignup) =>
-      this.accountService.add(action.user)
+      this.signService.up(action.user)
         .map((res: IResponse<any>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             this.toast('회원가입이 완료 되었습니다.');
-            return new RouterActions.Go('SigninComponent');
+            return new AccountActions.AccountLogin(action.user._id, action.user.pass);
           } else {
             this.toast(res.msg);
             return {type: 'NO_ACTION'};
@@ -153,15 +141,15 @@ export class AccountEffect {
         })
     });
 
+  // 비밀번호를 잃어버려 메인페이지에서
   @Effect() resetPassword$ = this.actions$
     .ofType(AccountActions.ACCOUNT_FORGOT_RESET_PASSWORD)
     .switchMap((action: AccountActions.AccountForgotResetPassword) =>
-      this.authService.resetPassword(action.pass)
+      this.userService.resetPassword(action.id, action.pass)
         .map((res: IResponse<any>) => {
-          console.log(action);
           if (res.code === RESPONSE_CODE.SUCCESS) {
             this.toast('패스워드가 변경되었습니다.');
-            return new RouterActions.Go('SigninComponent');
+            return {type: 'NO_ACTION'}
           } else {
             this.toast(res.msg);
             return {type: 'NO_ACTION'}
@@ -172,11 +160,11 @@ export class AccountEffect {
   @Effect() accountLogout$ = this.actions$
     .ofType(AccountActions.ACCOUNT_LOGOUT)
     .switchMap((action: AccountActions.AccountLogout) => {
-      return this.loginService.logout()
+      return this.signService.logout()
         .map((res: IResponse<any>) => {
           if (res.code === RESPONSE_CODE.SUCCESS) {
             this.sessionService.destory();
-            return new RouterActions.Go('SigninComponent');
+            return new RouterActions.SetRoot('HomeComponent');
           } else {
             this.toast(res.msg);
             return {type: 'NO_ACTION'};

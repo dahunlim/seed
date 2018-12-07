@@ -1,7 +1,7 @@
 <ion-content class="home-container top-margin-container">
-  <button ion-button block (click)="goToPage('tabs')" style="width: 200px">Tab</button>
-  <button ion-button block (click)="showDialog()" style="width: 200px">Dialog</button>
-  <button ion-button block (click)="goToPage('notice')" style="width: 200px">Go second tab</button>
-  <button ion-button block (click)="goToPage('back')" style="width: 200px">Back</button>
+  <button ion-button block routePage="HomeComponent" style="width: 200px">Tab</button>
+  <button ion-button block routePage="TabsComponent" style="width: 200px">Dialog</button>
+  <button ion-button block routePage="NoticeListComponent" style="width: 200px">Go second tab</button>
+  <button ion-button block routePage="back" style="width: 200px">Back</button>
   <button ion-button block (click)="setLocalStorage()" style="width: 200px">Set</button>
 </ion-content>

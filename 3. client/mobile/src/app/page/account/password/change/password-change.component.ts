@@ -4,9 +4,12 @@ import {IonicPage, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import * as RouterActions from "../../../../core/router/router.action";
+import * as AccountActions from "../../../../core/redux/account/action";
+
 import {AppStore} from "../../../../app-store.interface";
 import {FormHelper} from "../../../../core/helper/form";
-import * as AccountActions from "../../redux/account.action";
+import {BasicComponent} from "../../../../core/basic/basic.component";
+import {SessionService} from "../../../../core/service/session.service";
 
 @IonicPage({
   name: 'PasswordChangeComponent',
@@ -16,11 +19,17 @@ import * as AccountActions from "../../redux/account.action";
   selector: 'page-password-change-ionic',
   templateUrl: 'password-change.component.html'
 })
-export class PasswordChangeComponent {
+export class PasswordChangeComponent extends BasicComponent{
   private change$: any;
   private passForm: FormGroup;
   private passFormErrors: any;
-  constructor(private store: Store<AppStore>, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(
+    protected store: Store<AppStore>,
+    protected session: SessionService,
+    private formBuilder: FormBuilder,
+    private toastCtrl: ToastController
+  ) {
+    super(store, session, false);
     this.passFormErrors = {
       password: {},
       confirmPassword: {}
@@ -53,7 +62,5 @@ export class PasswordChangeComponent {
       this.toast('비밀번호를 확인해주세요.');
       return false;
     }
-
-    this.store.dispatch(new AccountActions.AccountForgotResetPassword(form.password));
   }
 }

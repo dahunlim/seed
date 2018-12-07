@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {HttpService} from './http.service';
-import {IResponse, RESPONSE_CODE} from '../helpers/response';
-import {Observable} from 'rxjs/Observable';
+import {Injectable} from "@angular/core";
+import {HttpService} from "./http.service";
+import {IResponse, RESPONSE_CODE} from "./response.service";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class SessionService {
 
-  private LOCAL_STORAGE_NAME: string = 'aram-session';
+  private LOCAL_STORAGE_NAME: string = "aram-session";
   private sub$: any;
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) { }
 
   init(data: { data: any, expire: string }): void {
     localStorage.removeItem(this.LOCAL_STORAGE_NAME);
@@ -17,13 +17,13 @@ export class SessionService {
     this.setPing();
   }
 
-  isAuthenticated(): Observable<boolean> {
+  isAuthenticated(): boolean {
     const localSession = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME));
-    return Observable.of((localSession && !this.isExpired(localSession['expire'])) ? true : false);
+    return (localSession != null && !this.isExpired(localSession["expire"])) ? true : false;
   }
 
   public setPing(): void {
-    const expire = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME))['expire'];
+    const expire = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_NAME))["expire"];
     const timeoutCount = Date.parse(expire) - Date.now() - 60000;
     this.sub$ = Observable
       .interval(timeoutCount)
@@ -32,10 +32,11 @@ export class SessionService {
   }
 
   public refresh(): Observable<boolean> {
-    return this.http.put<IResponse<any>>('session', {})
+    return this.http.put<IResponse<any>>(`session`, {})
       .map((res: IResponse<any>) => {
         if (res && res.code === RESPONSE_CODE.SUCCESS) {
-          localStorage.setItem(this.LOCAL_STORAGE_NAME, JSON.stringify(res.data));
+          this.destory();
+          this.init(res.data);
           return true;
         } else {
           return false;

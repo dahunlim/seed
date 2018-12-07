@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {IonicPage} from "ionic-angular";
-import * as RouterActions from "../../core/router/router.action";
 import {Store} from "@ngrx/store";
+
 import {AppStore} from "../../app-store.interface";
+import {BasicComponent} from "../../core/basic/basic.component";
+import {SessionService} from "../../core/service/session.service";
 
 @IonicPage({
   name: 'TabsComponent'
@@ -11,12 +13,17 @@ import {AppStore} from "../../app-store.interface";
   templateUrl: 'tabs.component.html'
 })
 
-export class TabsComponent {
+export class TabsComponent extends BasicComponent{
 
   tab1 = 'HomeComponent';
   tab2 = 'SigninComponent';
+  tab3 = '';
 
-  constructor(private store: Store<AppStore>) {
+  constructor(
+    protected store: Store<AppStore>,
+    protected session: SessionService
+  ) {
+    super(store, session, false);
   }
 
 }

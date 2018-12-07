@@ -29,7 +29,8 @@ import {InquiryService} from "./api/inquiry.service";
 import {MediaService} from "./api/media.service";
 import {DaumService} from "./service/daum.service";
 import {DialogModule} from './dialog/dialog.module';
-// import {DialogModule} from "./dialog/dialog.module";
+import {SignService} from "./api/sign.service";
+import {ToastService} from "./service/toast.service";
 
 @NgModule({
   imports: [
@@ -52,7 +53,9 @@ import {DialogModule} from './dialog/dialog.module';
     NoticeService,
     InquiryService,
     MediaService,
-    DaumService
+    DaumService,
+    SignService,
+    ToastService
   ]
 })
 export class CoreModule {

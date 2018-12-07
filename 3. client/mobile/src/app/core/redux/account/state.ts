@@ -4,12 +4,14 @@ export interface IAccountState extends Map<string, any> {
   isMobileAuth: boolean,
   isAuthenticated: boolean,
   isPasswordAuth: boolean,
-  address: any
+  address: any,
+  accountList: any,
 }
 
-export const AccountState = Record({
+export const State = Record({
   isMobileAuth: false,
   isAuthenticated: false,
   isPasswordAuth: false,
-  address: null
+  address: null,
+  accountList: null,
 });

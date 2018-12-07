@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import {IonicPage} from "ionic-angular";
+import {Store} from "@ngrx/store";
+
 import * as RouterActions from "../../../core/router/router.action";
 import * as NoticeActions from "../redux/notice.action"
-import {Store} from "@ngrx/store";
+
 import {AppStore} from "../../../app-store.interface";
 import {getNoticeList} from "../redux/notice.selector";
 

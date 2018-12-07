@@ -4,7 +4,7 @@ import {IonicPage} from "ionic-angular";
 import {AppStore} from "../../app-store.interface";
 import {Store} from "@ngrx/store";
 import * as RouterActions from "../../core/router/router.action";
-import * as AccountActions from "../account/redux/account.action";
+import * as AccountActions from "../../core/redux/account/action";
 
 declare var daum: any;
 
