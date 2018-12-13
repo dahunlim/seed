@@ -12,5 +12,5 @@ module.exports = {
 
     read: (user_id, alarm_id) => {
         return Alarm.read(user_id, alarm_id);
-    },
+    }
 }

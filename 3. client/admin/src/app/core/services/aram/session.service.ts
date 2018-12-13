@@ -32,7 +32,7 @@ export class SessionService {
   }
 
   public refresh(): Observable<boolean> {
-    return this.http.put<IResponse<any>>(`sessions`, {})
+    return this.http.put<IResponse<any>>(`session`, {})
       .map((res: IResponse<any>) => {
         if (res && res.code === RESPONSE_CODE.SUCCESS) {
           localStorage.setItem(this.LOCAL_STORAGE_NAME, JSON.stringify(res.data));

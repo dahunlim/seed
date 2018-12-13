@@ -12,7 +12,7 @@ Router.get(
         Auth.has()
     ],
     Handler.request(
-        Controller.getList,
+        Controller.list,
         (req, res, next) => [
             Session.get(req, 'userId'),
             req.query['type']

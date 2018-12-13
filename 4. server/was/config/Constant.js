@@ -6,25 +6,25 @@ module.exports = {
 
     DATABASE : {
         POOL_SIZE: 10,
-        HOST : '13.126.158.196',
-        PORT : '27017',
-        NAME : 'senglish',
-        USER_ID: 'senglish',
-        USER_PASS: 'senglish12!'
+        HOST : '',
+        PORT : '',
+        NAME : '',
+        USER_ID: '',
+        USER_PASS: ''
     },
 
     S3_BUCKET: {
-        TEMP: 's-english.biz-file-temp',
-        FILE: 's-english.biz-file'
+        TEMP: '',
+        FILE: ''
     },
 
     SMS_DATABASE : {
-        HOST : '1.aram-in.com',
-        PORT : '3306',
-        NAME : 'lg_sms',
-        USER_ID : 'aram',
-        USER_PASS : 'aram7242456',
-        SMS_CALLBACK : '18005681'
+        HOST : '',
+        PORT : '',
+        NAME : '',
+        USER_ID : '',
+        USER_PASS : '',
+        SMS_CALLBACK : ''
     },
 
     SESSION : {

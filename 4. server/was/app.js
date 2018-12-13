@@ -38,11 +38,11 @@ app.use(
 /**
  * Route Init
  */
-var files = fs.readdirSync('route');
-for(var i = 0; i < files.length; i++){
-    var fileNameArr = files[i].split('.');
-    app.use('/' + fileNameArr[0].toLowerCase(), require('./route/' + files[i]));
-}
+const files = fs.readdirSync('route');
+files.forEach(file => {
+    const fileNameArr = file.split('.');
+    app.use('/' + fileNameArr[0].toLowerCase(), require('./route/' + file));
+});
 
 /**
  * Cross-Domain Request Settings
