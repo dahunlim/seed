@@ -35,17 +35,20 @@ export class AccountEffect {
 
   @Effect() login$ = this.actions$
     .ofType(AccountActions.ACCOUNT_LOGIN)
-    .switchMap((action: AccountActions.AccountLogin) =>
-      this.signService.in(action.id, action.pass)
-        .map((res: IResponse<any>) => {
-          if (res.code === RESPONSE_CODE.SUCCESS) {
-            this.sessionService.init(res.data);
-            return new RouterActions.SetRoot('TabsComponent');
-          } else {
-            this.toast(res.msg);
-            return {type: 'NO_ACTION'};
-          }
-        })
+    .switchMap((action: AccountActions.AccountLogin) => {
+      console.log(action);
+      return this.signService.in(action.id, action.pass)
+          .map((res: IResponse<any>) => {
+            if (res.code === RESPONSE_CODE.SUCCESS) {
+              this.sessionService.init(res.data);
+              return new RouterActions.SetRoot('TabsComponent');
+            } else {
+              this.toast(res.msg);
+              return {type: 'NO_ACTION'};
+            }
+          })
+    }
+
     );
 
   @Effect() loginGet$ = this.actions$

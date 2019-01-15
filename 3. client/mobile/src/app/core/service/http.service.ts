@@ -70,7 +70,7 @@ export class HttpService {
       });
       parameter = formData;
     }
-
+    console.log(parameter);
     const httpRequest: HttpRequest<any> = new HttpRequest<any>(method, requestUrl, parameter, options);
     return this.http.request<IResponse<T>>(httpRequest)
       .map((res: HttpResponse<IResponse<any>>) => res.body)

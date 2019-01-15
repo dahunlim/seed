@@ -1,16 +1,16 @@
 module.exports = {
 
     APP: {
-        NAME: 'S-ENGLISH'
+        NAME: '가문의레시피'
     },
 
     DATABASE : {
         POOL_SIZE: 10,
-        HOST : '',
-        PORT : '',
-        NAME : '',
-        USER_ID: '',
-        USER_PASS: ''
+        HOST : '52.78.155.231',
+        PORT : '27017',
+        NAME : 'familyrecipe',
+        USER_ID: 'familyrecipe',
+        USER_PASS: 'aram7242456!'
     },
 
     S3_BUCKET: {
@@ -28,8 +28,8 @@ module.exports = {
     },
 
     SESSION : {
-        DOMAIN: 'aram-in.com',
-        SECRET: 'aramin',
+        DOMAIN: 'familyrecipe.co.kr',
+        SECRET: 'familyrecipe',
         TTL: 604800,
         MAX_AGE: 604800000,
         COLLECTION: 'Session'

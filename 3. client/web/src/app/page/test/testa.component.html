@@ -1,0 +1,10 @@
+
+<div>
+  AAAAAAAAAAAAA
+  {{num}}
+</div>
+<li *ngFor="let data of datas.data">
+  <span>{{data.id}} : {{data.title}}, {{data.contents}}</span>
+</li>
+<button (click) = "add()">add</button>
+<button (click) = "subs()">subs</button>

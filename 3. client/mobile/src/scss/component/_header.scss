@@ -1,0 +1,25 @@
+ion-header{
+  .toolbar{
+    min-height: 48px;
+  }
+  ion-toolbar {
+    .toolbar-background{
+      background: $color-red-3;
+      height: 48px;
+    }
+    .button1{
+      color: white !important;
+    }
+    .button2{
+      background: transparent;
+      color:white;
+    }
+    .toolbar-content{
+      ion-title{
+        .toolbar-title{
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

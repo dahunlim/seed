@@ -1,0 +1,84 @@
+<ion-content class="test-container top-margin-container">
+  <ion-segment [(ngModel)]="selected" color="primary">
+    <ion-segment-button value="signin">
+      로그인
+    </ion-segment-button>
+    <ion-segment-button value="signup">
+      회원가입
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="switch" [ngSwitch]="selected">
+    <ion-buttons class="fb">
+      <button ion-button block outline item-left>
+        <ion-icon name="logo-facebook"></ion-icon>
+        <div>페이스북으로 시작!</div>
+      </button>
+    </ion-buttons>
+    <div>또는</div>
+    <ion-list *ngSwitchCase="'signin'" no-lines>
+      <form name="loginForm" [formGroup]="loginForm">
+        <ion-item>
+          <ion-input type="text" formControlName="id" placeholder="아이디"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" formControlName="password" placeholder="비밀번호"></ion-input>
+        </ion-item>
+      </form>
+      <ion-item>
+        <ion-buttons>
+          <button ion-button block outline (click)="signin()">
+            <div>로그인</div>
+          </button>
+        </ion-buttons>
+        <ion-buttons>
+          <button ion-button block outline>
+            <div>비밀번호 찾기</div>
+          </button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'signup'" no-lines>
+      <form name="userForm" [formGroup]="userForm">
+        <ion-item>
+          <ion-input type="text" formControlName="id" placeholder="아이디(이메일)" required></ion-input>
+        </ion-item>
+        <div *ngIf="!userFormErrors.id.valid">
+          <p class="error-text" *ngIf="userFormErrors.id.required" >
+            이메일을 입력해주세요
+          </p>
+          <p class="error-text" *ngIf="userFormErrors.id.email" >
+            이메일 형식에 맞지 않습니다
+          </p>
+        </div>
+        <ion-item>
+          <ion-input type="password" formControlName="pass" placeholder="비밀번호" required></ion-input>
+        </ion-item>
+        <div *ngIf="!userFormErrors.pass.valid">
+          <p class="error-text" *ngIf="userFormErrors.pass.required" >
+            비밀번호를 입력해주세요
+          </p>
+          <p class="error-text" *ngIf="userFormErrors.pass.minlength" >
+            비밀번호는 6글자 이상 입력해주세요
+          </p>
+        </div>
+        <ion-item>
+          <ion-input type="text" formControlName="name" placeholder="이름"></ion-input>
+        </ion-item>
+        <ion-item class="item-left">
+          <ion-input type="text" formControlName="phone" placeholder="핸드폰번호"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-buttons>
+            <button ion-button block outline (click)="signup()">
+              회원가입
+            </button>
+          </ion-buttons>
+        </ion-item>
+      </form>
+    </ion-list>
+
+  </div>
+
+</ion-content>

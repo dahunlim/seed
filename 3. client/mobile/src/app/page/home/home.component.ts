@@ -49,6 +49,6 @@ export class HomeComponent extends BasicComponent {
   }
 
   showDialog(): void {
-    this.dialog.open(AppDialogAlertComponent, {data:{message: 'test'}});
+    this.dialog.open(AppDialogAlertComponent, {data:{message: 'test!'}});
   }
 }

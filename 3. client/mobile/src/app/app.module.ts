@@ -27,7 +27,8 @@ import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
       maxAge: 5
     }),
     CoreModule,
-    NgProgressModule
+    NgProgressModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],

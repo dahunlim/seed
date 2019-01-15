@@ -18,6 +18,7 @@ export class SignService extends BaseService {
   }
 
   public up(user: IModel): Observable<IResponse<any>> {
+    console.log(user);
     return this.http.post(`${this.controllerName}/up`, user);
   }
 

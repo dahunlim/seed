@@ -78,7 +78,10 @@ export class HttpService {
 
     const httpRequest: HttpRequest<any> = new HttpRequest<any>(method, requestUrl, parameter, options);
     return this.http.request<IResponse<T>>(httpRequest)
-      .map((res: HttpResponse<IResponse<any>>) => res.body )
+      .map((res: HttpResponse<IResponse<any>>) => {
+
+        return res.body
+      } )
   }
 
   private getHeaders(isFileUpload: boolean): HttpHeaders {

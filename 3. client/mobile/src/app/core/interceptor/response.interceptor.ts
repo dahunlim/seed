@@ -24,18 +24,12 @@ export class ResponseInterceptor implements HttpInterceptor {
           case RESPONSE_CODE.SUCCESS:
             break;
           case RESPONSE_CODE.NOT_AUTHENTICATION:
-            // this.sessionService.destory();
             this.store.dispatch(new RouterActions.Go('SigninComponent'));
-            // console.log(res.body.msg);
-            // this.sessionService.destory();
-            // this.store.dispatch(new RouterActions.Back());
             break;
           case RESPONSE_CODE.NOT_GRANTED:
-            // alert(res.body.msg);
             this.store.dispatch(new RouterActions.Back());
             break;
           case RESPONSE_CODE.NO_RESULT:
-            // alert(res.body.msg);
             this.store.dispatch(new RouterActions.Back());
             break;
           default:

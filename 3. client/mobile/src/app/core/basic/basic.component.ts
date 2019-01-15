@@ -12,7 +12,6 @@ export class BasicComponent implements OnDestroy {
   constructor(protected store: Store<AppStore>, protected sessionService: SessionService, private isGuarded: boolean) { }
 
   ngOnDestroy(): void {
-    console.log('test');
     this.subs$.forEach(sub$ => sub$.unsubscribe());
   }
 

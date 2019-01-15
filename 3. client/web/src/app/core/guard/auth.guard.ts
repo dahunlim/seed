@@ -22,7 +22,7 @@ export class CanActiveViaAuthGuard implements CanActivate {
             .switchMap((isRefreshed: boolean) => {
               if (!isRefreshed) {
                 this.sessionService.destory();
-                // this.store.dispatch(new RouterActions.Go({path: ['membership/login']}));
+                // this.store.dispatch(new RouterActions.Go({path: ['membership/logins']}));
                 return Observable.of(false);
               } else {
                 return Observable.of(true);

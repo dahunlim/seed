@@ -27,7 +27,7 @@ export class ResponseInterceptor implements HttpInterceptor {
             case RESPONSE_CODE.NOT_SIGNED:
               break;
             case RESPONSE_CODE.NOT_AUTHENTICATION:
-              // this.store.dispatch(new RouterActions.Go({path: ['/membership/login']}));
+              // this.store.dispatch(new RouterActions.Go({path: ['/membership/logins']}));
               break;
             case RESPONSE_CODE.NOT_GRANTED:
               /*this.dialog.open(FuseAlertDialogComponent, {

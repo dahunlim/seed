@@ -7,7 +7,8 @@ import {BasicComponent} from "../../core/basic/basic.component";
 import {SessionService} from "../../core/service/session.service";
 
 @IonicPage({
-  name: 'TabsComponent'
+  name: 'TabsComponent',
+  segment: 'tabs'
 })
 @Component({
   templateUrl: 'tabs.component.html'

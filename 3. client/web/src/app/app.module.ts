@@ -13,14 +13,18 @@ import {CoreModule} from './core/core.module';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {reducers} from './app.reducer';
+import {TestaComponent} from './page/test/testa.component';
 
 import {CustomSerializer} from './core/redux/router/router.serializer';
 import {appEffects} from './app.effect';
+import {AuthComponent} from "./page/auth/auth.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // TestaComponent,
+    AuthComponent
   ],
   imports: [
     StoreModule.forRoot(reducers),

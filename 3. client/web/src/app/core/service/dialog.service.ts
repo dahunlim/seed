@@ -43,7 +43,7 @@ export class DialogService {
     Alert.afterClosed().subscribe(rs => {
       switch (type) {
         case "login":
-          this.location.go("/login");
+          this.location.go("/logins");
           break;
         case "back":
           this.location.back();

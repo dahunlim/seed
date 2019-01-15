@@ -7,6 +7,7 @@ import {MediaService} from './media.service';
 import {NoticeService} from './notice.service';
 import {UserService} from './user.service';
 import {AwsApiService} from "./aws-api.service";
+import {TestService} from "./test.service";
 
 @NgModule({
   imports: [],
@@ -18,7 +19,8 @@ import {AwsApiService} from "./aws-api.service";
     LoginService,
     MediaService,
     NoticeService,
-    UserService
+    UserService,
+    TestService
   ]
 })
 export class ApiModule {}

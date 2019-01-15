@@ -13,6 +13,7 @@ import {NgProgress} from "ngx-progressbar";
 export class MyApp {
   @ViewChild('content') navCtrl: NavController;
   // rootPage:any = 'TabsComponent';
+  // rootPage:any = 'TestComponent';
   rootPage:any = 'HomeComponent';
 
   constructor(private store: Store<AppStore>, platform: Platform, public ngProgress: NgProgress, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -50,6 +51,9 @@ export class MyApp {
         break;
       case 'inquiry':
         this.store.dispatch(new RouterActions.Go('InquiryListComponent'));
+        break;
+      case 'test' :
+        this.store.dispatch(new RouterActions.Go('TestComponent'));
         break;
     }
   }
