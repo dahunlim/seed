@@ -46,7 +46,7 @@
     "hammerjs": "2.0.8",
     "immutable": "^3.8.2",
     "lodash": "4.17.10",
-    "moment": "2.22.1",
+    "moment": "2.29.2",
     "ng2-charts": "1.6.0",
     "ngrx-store-freeze": "0.2.3",
     "ngx-color-picker": "6.0.0",
